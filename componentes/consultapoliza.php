@@ -5,16 +5,16 @@
         <!-- Pagina de Busqueda -->
         <div class="card">
             <div class="card-header">
-                <label for="titulo" class="labeltitulo" style="width: 100%;">ASEGURADO</label>
+                <label for="titulo" class="labeltitulo" style="width: 100%;">Por Numero de Poliza</label>
             </div>
             <div class="card-body">
                 <form action="#" class="form-inline">
                     <div class="form-group row">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="asegurado_a_buscar">Asegurado: </span>
-                            <input type="text" class="form-control" placeholder=" ingrese dato a Buscar (Apellido) " aria-label="asegurado"
-                                aria-describedby="asegurado">
-                            <button type="submit" class="btn btn-primary"> Buscar Asegurado <i
+                            <span class="input-group-text" id="poliza_a_buscar">Poliza Nº: </span>
+                            <input type="text" class="form-control" placeholder=" ingrese poliza a Buscar" aria-label="poliza"
+                                aria-describedby="poliza">
+                            <button type="submit" class="btn btn-primary"> Buscar <i
                                     class="fa-solid fa-search"></i></button>
                         </div>
                     </div>
@@ -30,11 +30,15 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>DNI</th>
-                            <th>Apellido y Nombre</th>
-                            <th>Telefono</th>
-                            <th>Correo Electrónico</th>
-                            <th>Accion</th>
+                            <th>Nº Poliza</th>
+                            <th>Endoso</th>
+                            <th>Asegurado</th>
+                            <th>Compañia</th>
+                            <th>Sección</th>
+                            <th>Emision</th>
+                            <th>Vigencia desde</th>
+                            <th>Vigencia Hasta</th>
+                            <th>Descripcion Asegurado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +47,14 @@
                             <td></td>
                             <td></td>
                             <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
                             <td>
+                                <button type="submit" class="btn btn-primary"><i
+                                class="fa-solid fa-print"></i></button>
                                 <button type="submit" class="btn btn-primary"><i
                                 class="fa-solid fa-pen"></i></button>
                                 <button type="submit" class="btn btn-primary"><i
@@ -55,26 +66,39 @@
                             <td></td>
                             <td></td>
                             <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
                             <td>
+                                <button type="submit" class="btn btn-primary"><i
+                                class="fa-solid fa-print"></i></button>
                                 <button type="submit" class="btn btn-primary"><i
                                 class="fa-solid fa-pen"></i></button>
                                 <button type="submit" class="btn btn-primary"><i
                                 class="fa-solid fa-trash"></i></button>
                             </td>
-                        </tr>
+                        </tr>                                      
                         <tr>
                             <td scope="row"></td>
                             <td></td>
                             <td></td>
                             <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
+                            <td></td>                           
                             <td>
+                                <button type="submit" class="btn btn-primary"><i
+                                class="fa-solid fa-print"></i></button>
                                 <button type="submit" class="btn btn-primary"><i
                                 class="fa-solid fa-pen"></i></button>
                                 <button type="submit" class="btn btn-primary"><i
                                 class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
 

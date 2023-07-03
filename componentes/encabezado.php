@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <html lang="es">
     <title>Sistema de Seguros AJ</title>
     <!-- 
   <base href="/sis_seguros_aj">
@@ -40,17 +41,17 @@
                             <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-poliza.php">Alta
                                     Poliza</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/consultapolizaxasegurado">Consulta por Asegurado</a>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxasegurado.php">Consulta por Asegurado</a>
                             </li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/consultapoliza">Consulta por Nro de Poliza</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapoliza.php">Consulta por Nro de Poliza</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/consultapolizaxcompaniaseccion">Consulta por Compañia -
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxcompaniaseccion.php">Consulta por Compañia -
                                     Sección</a></li>
-                            <li><a class="dropdown-item" href="/consultapolizaxriesgo">Consulta por Detalle de
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxriesgo.php">Consulta por Detalle de
                                     Riesgo</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/consultapolizaxvencimiento">Consulta por Vencimiento</a>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxvencimiento.php">Consulta por Vencimiento</a>
                             </li>
                         </ul>
                     </div>
