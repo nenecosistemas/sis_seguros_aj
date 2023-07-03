@@ -68,10 +68,9 @@
                             <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-asegurado.php">Alta
                                     Asegurados</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/abm-compania">Alta Compañias</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-compania.PHP">Alta Compañias</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/abm-seccion">Alta Secciones</a></li>
-
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-seccion.php">Alta Secciones</a></li>
                         </ul>
                     </div>
                 </li>
@@ -87,8 +86,8 @@
                             <li><a class="dropdown-item"
                                     href="/sis_seguros_aj/componentes/consultaasegurado.php">Consulta Asegurados</a>
                             </li>
-                            <li><a class="dropdown-item" href="/consultacompania">Consulta Compañias</a></li>
-                            <li><a class="dropdown-item" href="/consultaseccion">Consulta Secciones</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultacompania.php">Consulta Compañias</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultaseccion.php">Consulta Secciones</a></li>
                         </ul>
                     </div>
                 </li>
