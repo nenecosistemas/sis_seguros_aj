@@ -69,7 +69,7 @@
                             <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-asegurado.php">Alta
                                     Asegurados</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/compania.PHP">Compañias</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/compania.php">Compañias</a></li>
                             <div class="dropdown-divider"></div>
                             <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/seccion.php">Secciones</a></li>
                         </ul>
