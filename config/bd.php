@@ -11,5 +11,10 @@ try {
     }
 } catch (PDOException $ex) {
     echo $ex->getMessage();
+    echo '<script>
+    alert("Problema de conexion con la base de datos")
+    </script>';
+    //header("Location: /sis_seguros_aj/index.php");
+    //die();
 }
 ?>

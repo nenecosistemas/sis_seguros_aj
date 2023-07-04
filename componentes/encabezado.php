@@ -23,6 +23,7 @@
     <!-- fontawesome CSS -->
     <script src="https://kit.fontawesome.com/b56caa63bd.js" crossorigin="anonumous">   
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/sis_seguros_aj/css/styles.css" />
 </head>
 <div class="container-fluid" id="Encabezado">
@@ -66,8 +67,7 @@
                             Archivos Auxiliares
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-asegurado.php">Alta
-                                    Asegurados</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/asegurado.php">Asegurados</a></li>
                             <div class="dropdown-divider"></div>
                             <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/compania.php">Compañias</a></li>
                             <div class="dropdown-divider"></div>
