@@ -5,6 +5,10 @@ body {
   background-color: aliceblue;    
 }
 
+.navbar.navbar-expand-lg.bg-primary {
+  background-color:teal !important;
+}
+
 .bodyerror { 
   margin: 0rem;  
   padding: 0rem;
@@ -93,8 +97,7 @@ i.fa-brands, i.fa-solid  {
 }
 
 #logo {
-  width: 5vw;
-  height: 5vw;
+  padding-left: 1rem;
 }
 
 .avatar {  
@@ -190,3 +193,50 @@ i.fa-brands, i.fa-solid  {
   .dropdown-menu > li:hover > .dropdown-submenu {
   display: block;
   }
+
+
+/* From uiverse.io by @alexroumi */
+#pills-consulta-tab,
+#pills-alta-tab {
+  padding: 15px 25px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms;
+  overflow: hidden;
+ }
+ 
+ #pills-consulta-tab::before,
+ #pills-alta-tab::before  {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: rgb(128, 0, 105) !important;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgb(128, 0, 105) !important;
+  box-shadow: 4px 8px 19px -3px rgb(128, 0, 105) !important;
+  transition: all 250ms
+ }
+ 
+ #pills-consulta-tab:hover,
+ #pills-alta-tab:hover {
+  color: #e8e8e8;
+ }
+ 
+ #pills-consulta-tab:hover::before,
+ #pills-alta-tab:hover::before {
+  width: 100%;
+ }
+
+ 

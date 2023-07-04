@@ -10,7 +10,7 @@
   -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/sis_seguros_aj/assets/favicon.ico">
-    <link rel="stylesheet" href="/sis_seguros_aj/css/styles.css" />
+    
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -21,14 +21,15 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <!-- fontawesome CSS -->
-    <script src="https://kit.fontawesome.com/b56caa63bd.js" crossorigin="anonumous">
+    <script src="https://kit.fontawesome.com/b56caa63bd.js" crossorigin="anonumous">   
     </script>
+    <link rel="stylesheet" href="/sis_seguros_aj/css/styles.css" />
 </head>
 <div class="container-fluid" id="Encabezado">
     <nav class="navbar navbar-expand-lg bg-primary fixed-top ">
         <div class="container-fluid">
             <a class="navbar-brand" href="/sis_seguros_aj/index.php">
-                <img src="/sis_seguros_aj/assets/logo.png" alt="" width="40%" />
+                <img src="/sis_seguros_aj/assets/logo.png" id="logo" alt="logo" width="40%" />
             </a>
             <ul class="list-group list-group-horizontal" id="menu">
                 <li class="list-group-item border-0">
@@ -68,9 +69,9 @@
                             <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-asegurado.php">Alta
                                     Asegurados</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-compania.PHP">Alta Compañias</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/compania.PHP">Compañias</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-seccion.php">Alta Secciones</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/seccion.php">Secciones</a></li>
                         </ul>
                     </div>
                 </li>
@@ -85,9 +86,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item"
                                     href="/sis_seguros_aj/componentes/consultaasegurado.php">Consulta Asegurados</a>
-                            </li>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultacompania.php">Consulta Compañias</a></li>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultaseccion.php">Consulta Secciones</a></li>
+                            </li>                                                        
                         </ul>
                     </div>
                 </li>
