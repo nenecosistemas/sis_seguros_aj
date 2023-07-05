@@ -7,14 +7,11 @@ $contrasenia = "Ed2506do.";
 try {
     $conexion = new PDO("mysql:host=$host;dbname=$bd", $usuario, $contrasenia);
     if ($conexion) {
-        echo "conectado a la base de datos......";
+        //echo "conectado a la base de datos......";
     }
 } catch (PDOException $ex) {
     echo $ex->getMessage();
-    echo '<script>
-    alert("Problema de conexion con la base de datos")
-    </script>';
-    //header("Location: /sis_seguros_aj/index.php");
-    //die();
+    session_start();
+    $_SESSION["msj_error"] = "Error de conexion con la Base de Datos";    
 }
 ?>

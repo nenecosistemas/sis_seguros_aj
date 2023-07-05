@@ -10,7 +10,7 @@
   -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/sis_seguros_aj/assets/favicon.ico">
-    
+
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -21,7 +21,7 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <!-- fontawesome CSS -->
-    <script src="https://kit.fontawesome.com/b56caa63bd.js" crossorigin="anonumous">   
+    <script src="https://kit.fontawesome.com/b56caa63bd.js" crossorigin="anonumous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/sis_seguros_aj/css/styles.css" />
@@ -43,17 +43,25 @@
                             <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/abm-poliza.php">Alta
                                     Poliza</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxasegurado.php">Consulta por Asegurado</a>
+                            <li><a class="dropdown-item"
+                                    href="/sis_seguros_aj/componentes/consultapolizaxasegurado.php">Consulta por
+                                    Asegurado</a>
                             </li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapoliza.php">Consulta por Nro de Poliza</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapoliza.php">Consulta
+                                    por Nro de Poliza</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxcompaniaseccion.php">Consulta por Compañia -
+                            <li><a class="dropdown-item"
+                                    href="/sis_seguros_aj/componentes/consultapolizaxcompaniaseccion.php">Consulta por
+                                    Compañia -
                                     Sección</a></li>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxriesgo.php">Consulta por Detalle de
+                            <li><a class="dropdown-item"
+                                    href="/sis_seguros_aj/componentes/consultapolizaxriesgo.php">Consulta por Detalle de
                                     Riesgo</a></li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxvencimiento.php">Consulta por Vencimiento</a>
+                            <li><a class="dropdown-item"
+                                    href="/sis_seguros_aj/componentes/consultapolizaxvencimiento.php">Consulta por
+                                    Vencimiento</a>
                             </li>
                         </ul>
                     </div>
@@ -67,26 +75,14 @@
                             Archivos Auxiliares
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/asegurado.php">Asegurados</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/asegurado.php">Asegurados</a>
+                            </li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/compania.php">Compañias</a></li>
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/compania.php">Compañias</a>
+                            </li>
                             <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/seccion.php">Secciones</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-            <ul class="list-group list-group-horizontal" id="menu">
-                <li class="list-group-item border-0">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Otras Consultas
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item"
-                                    href="/sis_seguros_aj/componentes/consultaasegurado.php">Consulta Asegurados</a>
-                            </li>                                                        
+                            <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/seccion.php">Secciones</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -114,8 +110,19 @@
                     }
                     ?>
                 </li>
-
             </ul>
         </div>
     </nav>
 </div>
+<?php
+if (isset($_SESSION["msj_error"])) {
+    $mensaje = $_SESSION["msj_error"];
+    ?>
+    <script>
+        Swal.fire('Error!', '<?php echo $mensaje ?>', 'error');
+        setTimeout(function () { window.location.href = "/sis_seguros_aj/index.php"; }, 1500);                
+    </script>
+<?php 
+    unset($_SESSION["msj_error"]);
+}    
+?>
