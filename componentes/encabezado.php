@@ -108,15 +108,10 @@ if (isset($_SESSION["entre"])) {
                     <?php
                     if (empty($_SESSION['loggedin'])) {
                     ?>
-
                         <a href="/sis_seguros_aj/componentes/login.php">
                             <i class="fa-solid fa-user-lock fa-2xl">
                             </i>
                         </a>
-                        <!--
-                        <i type="button" id="login" data-bs-toggle="modal" data-bs-target="#loginModal" class="fa-solid fa-user-lock fa-2xl">
-                        </i>
-                    -->
                     <?php
                     }
                     ?>

@@ -50,6 +50,7 @@ switch ($txtAccion) {
         $sentenciaSQL->bindParam(':apellido_y_nombre_asegurado', $txtAsegurado, PDO::PARAM_STR);
         $sentenciaSQL->execute();
         $listaAsegurados = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+        //$_SESSION["msj_normal"] = " Se realizó la siguiente busqueda: ";
         echo "Boton Buscar";
         break;
     case "Cancelar":
@@ -106,7 +107,7 @@ if (isset($_SESSION["msj_error"])) {
                         <div class="card-header">
                         </div>
                         <div class="card-body">
-                            <form method="POST" enctype="multipart/form-data" action="#" class="form-inline">
+                            <form method="POST" enctype="multipart/form-data" action="#" >
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="aseguradobuscado">Asegurado: </span>

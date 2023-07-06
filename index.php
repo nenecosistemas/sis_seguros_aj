@@ -3,5 +3,4 @@
   <?php include("componentes/principal.php"); ?>  
 </body>
 <?php include("componentes/pie.php"); ?>   
-   
-
+  

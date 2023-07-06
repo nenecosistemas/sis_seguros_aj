@@ -3,7 +3,7 @@
 session_start();
 $_SESSION["entre"] = true;
 //echo 'Ud. ha ingresado al sistema correctamente';
-header('Refresh: 2; URL = /sis_seguros_aj/index.php');
+header('Refresh: 1; URL = /sis_seguros_aj/index.php');
 
 /*
 $txtusuario = (isset($_POST["emailusuario"])) ? $_POST["emailusuario"] : "";
