@@ -1,6 +1,5 @@
 <?php
 include("../config/bd.php");
-$_SESSION["loggedin"] = false;
 
 $txtAsegurado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
@@ -49,7 +48,6 @@ switch ($txtAccion) {
         $sentenciaSQL = $conexion->prepare("SELECT * FROM aj_asegurado 
         WHERE apellido_y_nombre_asegurado LIKE CONCAT('%', :apellido_y_nombre_asegurado, '%') ");
         $sentenciaSQL->bindParam(':apellido_y_nombre_asegurado', $txtAsegurado, PDO::PARAM_STR);
-
         $sentenciaSQL->execute();
         $listaAsegurados = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
         echo "Boton Buscar";
