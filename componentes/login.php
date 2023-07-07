@@ -1,44 +1,80 @@
 <?php
-session_start();
-$_SESSION["entre"] = true;
-//echo 'Ud. ha ingresado al sistema correctamente';
-header('Refresh: 0; URL = /sis_seguros_aj/index.php');
 
-/*
+//include("../config/bd.php");
+
 $txtusuario = (isset($_POST["emailusuario"])) ? $_POST["emailusuario"] : "";
+$txtclave = (isset($_POST["claveusuario"])) ? $_POST["claveusuario"] : "";
 
 switch ($txtusuario) {
    case "andrea@andrea.com":
-      session_start();
-      $_SESSION["entre"] = true;
-      echo 'Ud. ha ingresado al sistema correctamente';
-      header('Refresh: 2; URL = /sis_seguros_aj/index.php');
-      break;
+      switch ($txtclave) {
+         case "valentina":
+            session_start();
+            $_SESSION["entre"] = true;
+            $_SESSION["msj_normal"] = " Usuario Logeado correctamente";
+            //echo 'Ud. ha ingresado al sistema correctamente';      
+            header('Refresh: 0; URL = /sis_seguros_aj/index.php');
+            break;
+      }
 }
-*/
+
 ?>
 
-<!--
+<?php include("encabezado.php"); ?>
+<?php
+## Mensajes comunes
+if (isset($_SESSION["msj_normal"])) {
+   $mensaje = $_SESSION["msj_normal"];
+?>
+   <script>
+      Swal.fire('Mensaje!', '<?php echo $mensaje ?>', 'success');
+   </script>
+<?php
+   unset($_SESSION["msj_normal"]);
+}
+
+## Mensajes de Errores
+if (isset($_SESSION["msj_error"])) {
+   $mensaje = $_SESSION["msj_error"];
+?>
+   <script>
+      Swal.fire('Error!', '<?php echo $mensaje ?>', 'error');
+      setTimeout(function() {
+         window.location.href = "/sis_seguros_aj/index.php";
+      }, 1500);
+   </script>
+<?php
+   unset($_SESSION["msj_normal"]);
+}
+?>
 
 <body>
    <div class="col-md-12 justify-content-center" id="Normalpage">
-      <form>
-         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      <label for="titulo" class="labeltitulo" style="width: 100%;">LOGIN</label>
+      <div class="container-fluid text-center ">
+         <div class="card">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+               <form method="POST" enctype="multipart/form-data" action="#">
+                  <div class="form-group row">
+                     <div class="input-group mb-3">
+                        <span class="input-group-text" id="email_asegurado">Correo Electónico</span>
+                        <input type="email" id="emailusuario" name="emailusuario" class="form-control" placeholder="" aria-label="email_asegurado" aria-describedby="email_asegurado">
+                     </div>
+                  </div>
+                  <div class="input-group mb-3">
+                     <span class="input-group-text" id="clave_asegurado">Clave</span>
+                     <input type="password" id="claveusuario" name="claveusuario" class="form-control" placeholder="" aria-label="clave_asegurado" aria-describedby="clave_asegurado">
+                  </div>
+            </div>
+            <div class="col-sm-12 ">
+               <button type="submit" name="accion" value="Agregar" class="btn btn-primary"> Verificar Usuario <i class="fa-solid fa-save"></i></button>
+            </div>
+            </form>
          </div>
-         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-         </div>
-         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-         </div>
-         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      </div>
+   </div>
    </div>
 </body>
-
--->
+<?php include("pie.php"); ?>

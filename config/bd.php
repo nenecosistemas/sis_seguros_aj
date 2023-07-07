@@ -11,7 +11,7 @@ try {
         //echo "conectado a la base de datos......";
     }
 } catch (PDOException $ex) {    
-    echo $ex->getMessage();    
+    //echo $ex->getMessage();    
     session_start();
     $_SESSION["msj_error"] = "Error de conexion con la Base de Datos";
 }
