@@ -42,7 +42,7 @@ switch ($txtAccion) {
         $sentenciaSQL->execute();
 
         $_SESSION["msj_normal"] = " El documento " . $txtId . " Se elimino correctamente";
-        echo $txtDni;
+        //echo $txtDni;
         break;
     case "Buscar":
         $sentenciaSQL = $conexion->prepare("SELECT * FROM aj_asegurado 
@@ -51,10 +51,10 @@ switch ($txtAccion) {
         $sentenciaSQL->execute();
         $listaAsegurados = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
         //$_SESSION["msj_normal"] = " Se realizó la siguiente busqueda: ";
-        echo "Boton Buscar";
+        //echo "Boton Buscar";
         break;
     case "Cancelar":
-        echo "Boton Cancelar";
+        //echo "Boton Cancelar";
         break;
 }
 ?>

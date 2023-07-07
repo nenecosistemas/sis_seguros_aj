@@ -1,15 +1,19 @@
 <?php
-if (!isset($_SESSION["loggedin"])) {
+if (!isset($_SESSION["entre"])) {
     ob_start();
-    //ob_end_flush();    
-    session_start();
-}
+    //ob_end_flush();  
+    if (session_id() == "" && !headers_sent()) {
+        session_start(["read_and_close" => true]);
+        } 
+    //session_start();
 
+
+    
+}
 ?>
 
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <html lang="es">
@@ -31,13 +35,11 @@ if (!isset($_SESSION["loggedin"])) {
 </head>
 
 <?php
-
 if (isset($_SESSION["entre"])) {
     $_SESSION['loggedin'] = true;
 } else {
     $_SESSION['loggedin'] = false;
 }
-
 ?>
 
 <div class="container-fluid" id="Encabezado">

@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $_SESSION["entre"] = true;
 //echo 'Ud. ha ingresado al sistema correctamente';

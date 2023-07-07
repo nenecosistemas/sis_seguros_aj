@@ -1,4 +1,5 @@
 <?php
+
 $host = "localhost";
 $bd = "id20981420_segurosaj";
 $usuario = "id20981420_root";
