@@ -40,7 +40,7 @@ switch ($txtAccion) {
         $sentenciaSQL = $conexion->prepare("DELETE FROM aj_asegurado WHERE dni_asegurado=:dni_asegurado");
         $sentenciaSQL->bindParam(':dni_asegurado', $txtId);
         $sentenciaSQL->execute();
-
+        session_start();
         $_SESSION["msj_normal"] = " El documento " . $txtId . " Se elimino correctamente";
         //echo $txtDni;
         break;
