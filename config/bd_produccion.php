@@ -13,6 +13,7 @@ try {
 } catch (PDOException $ex) {
     //echo $ex->getMessage();
     session_start();
-    $_SESSION["msj_error"] = "Error de conexion con la Base de Datos";    
+    $_SESSION["msj_error"] = "Error de conexion con la Base de Datos";   
+    //die($ex->getMessage()); 
 }
 ?>

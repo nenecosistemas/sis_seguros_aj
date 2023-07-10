@@ -25,9 +25,13 @@ if (isset($_SESSION["msj_normal"])) {
    $mensaje = $_SESSION["msj_normal"];
 ?>
    <script>
-      Swal.fire('Mensaje!', '<?php echo $mensaje ?>', 'success');
+      Swal.fire('Mensaje!', '<?php echo $mensaje ?>', 'success');      
+      setTimeout(function() {         
+         window.location.href = "/sis_seguros_aj/index.php";
+      }, 1500);
    </script>
 <?php
+   //header("Location:/sis_seguros_aj/index.php");
    unset($_SESSION["msj_normal"]);
 }
 
@@ -37,10 +41,11 @@ if (isset($_SESSION["msj_error"])) {
 ?>
    <script>
       Swal.fire('Error!', '<?php echo $mensaje ?>', 'error');
-      setTimeout(function() {
+      setTimeout(function() {         
          window.location.href = "/sis_seguros_aj/index.php";
       }, 1500);
-   </script>
+      
+   </script>   
 <?php
    unset($_SESSION["msj_normal"]);
 }

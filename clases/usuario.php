@@ -42,9 +42,11 @@ class Usuario
     {
         $this->_correo = $correo;
         $this->_clave = $clave;
-    }
+
+        //include_once("../config/bd.php");
+                    }
     public function esUsuarioHabilitado()
-    {                
+    {
         if ($this->getcorreo() == "andrea@andrea.com" and $this->getclave() == "valentina") {
             return true;
         } else {

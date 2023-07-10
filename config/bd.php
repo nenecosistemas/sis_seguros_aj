@@ -14,5 +14,6 @@ try {
     //echo $ex->getMessage();    
     session_start();
     $_SESSION["msj_error"] = "Error de conexion con la Base de Datos";
+    die($ex->getMessage());
 }
 ?>
