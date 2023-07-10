@@ -1,21 +1,19 @@
 <?php
 
-//include("../config/bd.php");
+//include_once("../config/bd.php");
+include_once("../clases/usuario.php");
 
-$txtusuario = (isset($_POST["emailusuario"])) ? $_POST["emailusuario"] : "";
-$txtclave = (isset($_POST["claveusuario"])) ? $_POST["claveusuario"] : "";
+if (isset($_POST["emailusuario"])) {
+   $txtcorreo = (isset($_POST["emailusuario"])) ? $_POST["emailusuario"] : "";
+   $txtclave = (isset($_POST["claveusuario"])) ? $_POST["claveusuario"] : "";
 
-switch ($txtusuario) {
-   case "andrea@andrea.com":
-      switch ($txtclave) {
-         case "valentina":
-            session_start();
-            $_SESSION["entre"] = true;
-            $_SESSION["msj_normal"] = " Usuario Logeado correctamente";
-            //echo 'Ud. ha ingresado al sistema correctamente';      
-            header('Refresh: 0; URL = /sis_seguros_aj/index.php');
-            break;
-      }
+   $txUsuario = new Usuario($txtcorreo, $txtclave);
+
+   if ($txUsuario->esUsuarioHabilitado()) {
+      session_start();
+      $_SESSION["entre"] = true;
+      $_SESSION["msj_normal"] = " Usuario Logeado correctamente";
+   }
 }
 
 ?>
@@ -58,14 +56,14 @@ if (isset($_SESSION["msj_error"])) {
             <div class="card-body">
                <form method="POST" enctype="multipart/form-data" action="#">
                   <div class="form-group row">
-                     <div class="input-group mb-3">
+                     <div class="input-group mb-2">
                         <span class="input-group-text" id="email_asegurado">Correo Electónico</span>
                         <input type="email" id="emailusuario" name="emailusuario" class="form-control" placeholder="" aria-label="email_asegurado" aria-describedby="email_asegurado">
                      </div>
-                  </div>
-                  <div class="input-group mb-3">
-                     <span class="input-group-text" id="clave_asegurado">Clave</span>
-                     <input type="password" id="claveusuario" name="claveusuario" class="form-control" placeholder="" aria-label="clave_asegurado" aria-describedby="clave_asegurado">
+                     <div class="input-group mb-2">
+                        <span class="input-group-text" id="clave_asegurado">Clave</span>
+                        <input type="password" id="claveusuario" name="claveusuario" class="form-control" placeholder="" aria-label="clave_asegurado" aria-describedby="clave_asegurado">
+                     </div>
                   </div>
             </div>
             <div class="col-sm-12 ">
