@@ -244,7 +244,6 @@ if (isset($_SESSION["msj_error"])) {
                     </div>
                 </div>
                 <!-- fin Modal -->
-
                 <!-- Alta -->
                 <div class="container-fluid text-center tab-pane fade" id="pills-alta" role="tabpanel"
                     aria-labelledby="pills-alta-tab" tabindex="0">
@@ -256,7 +255,7 @@ if (isset($_SESSION["msj_error"])) {
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">DNI Asegurado</span>
-                                        <input type="text" id="dni_asegurado" name="dni_asegurado" class="form-control"
+                                        <input type="text" inputmode="numeric" id="dni_asegurado" name="dni_asegurado" class="form-control"
                                             placeholder="" aria-label="dni_asegurado" aria-describedby="dni_asegurado">
                                         <span class="input-group-text">Apellido y Nombre</span>
                                         <input type="text" id="apellido_y_nombre_asegurado"

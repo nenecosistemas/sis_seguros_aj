@@ -29,6 +29,8 @@ class Conexion
         } catch (PDOException $ex) {            
             session_start();
             $_SESSION["msj_error"] = "Error de conexion con la Base de Datos";
+            session_destroy();
+            session_unset();
             die($ex->getMessage());
         }
         

@@ -45,11 +45,10 @@ if (isset($_SESSION["msj_error"])) {
       Swal.fire('Error!', '<?php echo $mensaje ?>', 'error');
       setTimeout(function() {         
          window.location.href = "/sis_seguros_aj/index.php";
-      }, 1500);
-      
+      }, 1500);      
    </script>   
 <?php
-   unset($_SESSION["msj_normal"]);
+   unset($_SESSION["msj_error"]);
 }
 ?>
 

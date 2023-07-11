@@ -1,14 +1,9 @@
 <?php
 if (!isset($_SESSION["entre"])) {
     ob_start();
-    //ob_end_flush();  
     if (session_id() == "" && !headers_sent()) {
         session_start(["read_and_close" => true]);
         } 
-    //session_start();
-
-
-    
 }
 ?>
 
@@ -89,13 +84,13 @@ if (isset($_SESSION["entre"])) {
                                 Archivos Auxiliares
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/asegurado.php">Asegurados</a>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/aseguradoform.php">Asegurados</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/compania.php">Compañias</a>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/companiaform.php">Compañias</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/seccion.php">Secciones</a>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/seccionform.php">Secciones</a>
                                 </li>
                             </ul>
                         </div>
@@ -147,6 +142,6 @@ if (isset($_SESSION["msj_error"])) {
         }, 1500);
     </script>
 <?php
-    unset($_SESSION["msj_error"]);
+    unset($_SESSION["msj_error"]);    
 }
 ?>
