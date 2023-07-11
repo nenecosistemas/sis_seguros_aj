@@ -98,7 +98,7 @@
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="cuit_compania">C.U.I.T.</span>
-                                        <input type="number" class="form-control" placeholder="99-99999999-9" pattern="[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9] " aria-label="cuit_compania" aria-describedby="cuit_compania">
+                                        <input type="number" class="form-control" placeholder="99-99999999-9" pattern="[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]" aria-label="cuit_compania" aria-describedby="cuit_compania">
                                         <span class="input-group-text" id="nombre_compania">Compañia</span>
                                         <input type="text" class="form-control" placeholder="" aria-label="nombre_compania" aria-describedby="nombre_compania">
                                         <label class="input-group-text" for="tipoiva_compania">I.V.A.</label>
