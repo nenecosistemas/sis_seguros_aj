@@ -92,6 +92,9 @@ if (isset($_SESSION["entre"])) {
                                 <div class="dropdown-divider"></div>
                                 <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/seccionform.php">Secciones</a>
                                 </li>
+                                <div class="dropdown-divider"></div>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/ivaform.php">IVA</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
