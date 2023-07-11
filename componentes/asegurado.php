@@ -1,57 +1,42 @@
 <?php
-include("../config/bd.php");
+include_once("../clases/conexion.php");
+include_once("../clases/asegurado.php");
+include_once("../clases/aseguradomodel.php");
 
-$txtAsegurado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
+$txtAseguradoBuscado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
-
-$txtDni = (isset($_POST["dni_asegurado"])) ? $_POST["dni_asegurado"] : "";
-$txtApellido = (isset($_POST["apellido_y_nombre_asegurado"])) ? $_POST["apellido_y_nombre_asegurado"] : "";
-$txtDomicilio = (isset($_POST["domicilio_asegurado"])) ? $_POST["domicilio_asegurado"] : "";
-$txtTelefono = (isset($_POST["telefono_asegurado"])) ? $_POST["telefono_asegurado"] : "";
-$txtCorreo = (isset($_POST["correo_asegurado"])) ? $_POST["correo_asegurado"] : "";
-$txtIva = (isset($_POST["tipoiva_asegurado"])) ? $_POST["tipoiva_asegurado"] : "";
-$txtCuit = (isset($_POST["cuit_asegurado"])) ? $_POST["cuit_asegurado"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
-
-$txtAsegurado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
-
 $listaAsegurados = [];
+
+$txAsegurado = new Asegurado();
+
+if (isset($_POST["accion"])) {    
+    $txAsegurado->__SET("dni_asegurado",(isset($_POST["dni_asegurado"])) ? $_POST["dni_asegurado"] : "");
+    $txAsegurado->__SET("apellido_y_nombre_asegurado",(isset($_POST["apellido_y_nombre_asegurado"])) ? $_POST["apellido_y_nombre_asegurado"] : "");
+    $txAsegurado->__SET("domicilio_asegurado",(isset($_POST["domicilio_asegurado"])) ? $_POST["domicilio_asegurado"] : "");
+    $txAsegurado->__SET("telefono_asegurado",(isset($_POST["telefono_asegurado"])) ? $_POST["telefono_asegurado"] : "");
+    $txAsegurado->__SET("correo_asegurado",(isset($_POST["correo_asegurado"])) ? $_POST["correo_asegurado"] : "");
+    $txAsegurado->__SET("tipoiva_asegurado",(isset($_POST["tipoiva_asegurado"])) ? $_POST["tipoiva_asegurado"] : "");
+    $txAsegurado->__SET("cuit_asegurado",(isset($_POST["cuit_asegurado"])) ? $_POST["cuit_asegurado"] : "");
+}
 
 switch ($txtAccion) {
     case "Agregar":
-        $sentenciaSQL = $conexion->prepare("INSERT INTO aj_asegurado 
-                (dni_asegurado,apellido_y_nombre_asegurado,domicilio_asegurado,
-                telefono_asegurado,correo_asegurado,tipoiva_asegurado,cuit_asegurado) 
-                values 
-                (:dni_asegurado,:apellido_y_nombre_asegurado,:domicilio_asegurado,
-                :telefono_asegurado,:correo_asegurado,:tipoiva_asegurado,:cuit_asegurado );");
-        $sentenciaSQL->bindParam(':dni_asegurado', $txtDni);
-        $sentenciaSQL->bindParam(':apellido_y_nombre_asegurado', $txtApellido);
-        $sentenciaSQL->bindParam(':domicilio_asegurado', $txtDomicilio);
-        $sentenciaSQL->bindParam(':telefono_asegurado', $txtTelefono);
-        $sentenciaSQL->bindParam(':correo_asegurado', $txtCorreo);
-        $sentenciaSQL->bindParam(':tipoiva_asegurado', $txtIva);
-        $sentenciaSQL->bindParam(':cuit_asegurado', $txtCuit);
-        $sentenciaSQL->execute();
+        $txAseguradoModel = new AseguradoModel();
+        $txAseguradoModel->Agregar($txAsegurado);        
         session_start();
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
     case "Eliminar":
-        $sentenciaSQL = $conexion->prepare("DELETE FROM aj_asegurado WHERE dni_asegurado=:dni_asegurado");
-        $sentenciaSQL->bindParam(':dni_asegurado', $txtId);
-        $sentenciaSQL->execute();
+        $txAseguradoModel = new AseguradoModel();
+        $txAseguradoModel->Eliminar($txtId);         
         session_start();
         $_SESSION["msj_normal"] = " El documento " . $txtId . " Se elimino correctamente";
         //echo $txtDni;
         break;
     case "Buscar":
-        $sentenciaSQL = $conexion->prepare("SELECT * FROM aj_asegurado 
-        WHERE apellido_y_nombre_asegurado LIKE CONCAT('%', :apellido_y_nombre_asegurado, '%') ");
-        $sentenciaSQL->bindParam(':apellido_y_nombre_asegurado', $txtAsegurado, PDO::PARAM_STR);
-        $sentenciaSQL->execute();
-        $listaAsegurados = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
-        //$_SESSION["msj_normal"] = " Se realizó la siguiente busqueda: ";
-        //echo "Boton Buscar";
+        $txAseguradoModel = new AseguradoModel();        
+        $listaAsegurados = $txAseguradoModel->Buscar($txtAseguradoBuscado);               
         break;
     case "Cancelar":
         //echo "Boton Cancelar";

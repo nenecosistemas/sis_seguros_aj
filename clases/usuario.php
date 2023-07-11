@@ -1,56 +1,24 @@
 <?php
 class Usuario
 {
-    private $_nombre;
-    private $_nombreReal;
-    private $_correo;
-    private $_clave;
-    public function setnombre($nombre)
+    private $nombre;
+    private $nombreReal;
+    private $correo;
+    private $clave;
+    public function __GET($k)
     {
-        $this->_nombre = $nombre;
+        return $this->$k;
     }
-    public function setnombreReal($nombreReal)
+    public function __SET($k, $v)
     {
-        $this->_nombreReal = $nombreReal;
-    }
-    public function setcorreo($correo)
-    {
-        $this->_correo = $correo;
-    }
-    public function setclave($clave)
-    {
-        $this->_clave = $clave;
-    }
-    public function getnombre()
-    {
-        return $this->_nombre;
-    }
-    public function getnombreReal()
-    {
-        return $this->_nombreReal;
-    }
-    public function getcorreo()
-    {
-        return $this->_correo;
-    }
-    public function getclave()
-    {
-        return $this->_clave;
+        return $this->$k = $v;
     }
 
     public function __construct(string $correo, string $clave)
     {
-        $this->_correo = $correo;
-        $this->_clave = $clave;
+        $this->correo = $correo;
+        $this->clave = $clave;
 
-        //include_once("../config/bd.php");
-                    }
-    public function esUsuarioHabilitado()
-    {
-        if ($this->getcorreo() == "andrea@andrea.com" and $this->getclave() == "valentina") {
-            return true;
-        } else {
-            return false;
-        }
     }
+
 }

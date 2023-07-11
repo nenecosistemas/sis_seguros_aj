@@ -1,15 +1,17 @@
 <?php
 
-//include_once("../config/bd.php");
+include_once("../clases/conexion.php");
 include_once("../clases/usuario.php");
+include_once("../clases/usuariomodel.php");
 
 if (isset($_POST["emailusuario"])) {
    $txtcorreo = (isset($_POST["emailusuario"])) ? $_POST["emailusuario"] : "";
    $txtclave = (isset($_POST["claveusuario"])) ? $_POST["claveusuario"] : "";
 
    $txUsuario = new Usuario($txtcorreo, $txtclave);
+   $txUsuarioModel = new UsuarioModel();
 
-   if ($txUsuario->esUsuarioHabilitado()) {
+   if ($txUsuarioModel->esUsuarioHabilitado($txUsuario->__GET('correo'), $txUsuario->__GET('clave'))) {
       session_start();
       $_SESSION["entre"] = true;
       $_SESSION["msj_normal"] = " Usuario Logeado correctamente";
