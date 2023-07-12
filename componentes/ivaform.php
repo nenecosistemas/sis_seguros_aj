@@ -77,7 +77,6 @@
                                 class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
 
@@ -96,7 +95,7 @@
                     <div class="form-group row">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="nombre_seccion">IVA</span>
-                            <input type="text" placeholder="9999" pattern="[0-9][0-9][0-9][0-9]" 
+                            <input type="number" placeholder="9999"  
                             class="form-control" aria-label="iva" aria-describedby="iva">
                         </div>
                         <div class="input-group mb-3">

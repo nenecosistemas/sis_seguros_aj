@@ -76,5 +76,15 @@ class AseguradoModel
             die($ex->getMessage());
         }
     }
+    public function Seleccionar($id){
+        try {
+            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_asegurado WHERE dni_asegurado=:dni_asegurado");
+            $sentenciaSQL->bindParam(':dni_asegurado', $id);
+            $sentenciaSQL->execute();
+            return $sentenciaSQL->fetch(PDO::FETCH_LAZY);
+        }catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
 
 }
