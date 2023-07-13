@@ -2,6 +2,8 @@
 include_once("../clases/conexion.php");
 include_once("../clases/asegurado.php");
 include_once("../clases/aseguradomodel.php");
+include_once("encabezado.php"); 
+
 
 $txtAseguradoBuscado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
