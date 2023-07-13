@@ -85,7 +85,6 @@
                             </table>
                         </div>
                     </div>
-
                 </div>
                 <!-- Alta -->
                 <div class="container-fluid text-center tab-pane fade" id="pills-alta" role="tabpanel" aria-labelledby="pills-alta-tab" tabindex="0">
