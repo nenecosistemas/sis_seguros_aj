@@ -5,8 +5,8 @@ class Compania
     private $nombre_compania;
     private $tipoiva_compania;
     private $domicilio_compania;
-    private $telefono_asegurado;
-    private $email_compania;
+    private $telefono_compania;
+    private $correo_compania;
     public function __GET($k)
     {
         return $this->$k;
