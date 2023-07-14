@@ -29,7 +29,7 @@ class CompaniaModel
         try {
             $cuit = $compania->__GET('cuit_compania');
             $nombre = $compania->__GET('nombre_compania');
-            $Iva = $compania->__GET('tipoiva_compania');
+            $iva = $compania->__GET('tipoiva_compania');
             $domicilio = $compania->__GET('domicilio_compania');
             $telefono = $compania->__GET('telefono_compania');
             $correo = $compania->__GET('correo_compania');
@@ -42,24 +42,24 @@ class CompaniaModel
                 (:cuit_compania,:nombre_compania,:domicilio_compania,
                 :telefono_compania,:correo_compania,:tipoiva_compania);");
 
-            $sentenciaSQL->bindParam(':dni_compania', $cuit);
+            $sentenciaSQL->bindParam(':cuit_compania', $cuit);
             $sentenciaSQL->bindParam(':nombre_compania', $nombre);
             $sentenciaSQL->bindParam(':domicilio_compania', $domicilio);
             $sentenciaSQL->bindParam(':telefono_compania', $telefono);
             $sentenciaSQL->bindParam(':correo_compania', $correo);
-            $sentenciaSQL->bindParam(':tipoiva_compania', $Iva);            
+            $sentenciaSQL->bindParam(':tipoiva_compania', $iva);            
             $sentenciaSQL->execute();
         } catch (PDOException $ex) {
             die($ex->getMessage());
         }
 
     }
-    public function Modificar(compania $compania,string $id)
+    public function Modificar(Compania $compania, string $id)
     {
         try {
             $cuit = $compania->__GET('cuit_compania');
             $nombre = $compania->__GET('nombre_compania');
-            $Iva = $compania->__GET('tipoiva_compania');
+            $iva = $compania->__GET('tipoiva_compania');
             $domicilio = $compania->__GET('domicilio_compania');
             $telefono = $compania->__GET('telefono_compania');
             $correo = $compania->__GET('correo_compania');
@@ -70,15 +70,14 @@ class CompaniaModel
                 domicilio_compania=:domicilio_compania,
                 telefono_compania=:telefono_compania,
                 correo_compania=:correo_compania,
-                tipoiva_compania=:tipoiva_compania,
-                 WHERE cuit_compania=:cuit_compania");
+                tipoiva_compania=:tipoiva_compania WHERE cuit_compania=:cuit_compania");
 
-            $sentenciaSQL->bindParam(':cuit_compania', $cuit);
+            $sentenciaSQL->bindParam(':cuit_compania', $id);            
             $sentenciaSQL->bindParam(':nombre_compania', $nombre);
             $sentenciaSQL->bindParam(':domicilio_compania', $domicilio);
             $sentenciaSQL->bindParam(':telefono_compania', $telefono);
             $sentenciaSQL->bindParam(':correo_compania', $correo);
-            $sentenciaSQL->bindParam(':tipoiva_compania', $Iva);
+            $sentenciaSQL->bindParam(':tipoiva_compania', $iva);
             
             $sentenciaSQL->execute();       
                         

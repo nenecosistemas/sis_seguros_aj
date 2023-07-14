@@ -2,7 +2,7 @@
 include_once("../clases/conexion.php");
 include_once("../clases/asegurado.php");
 include_once("../clases/aseguradomodel.php");
-include_once("encabezado.php"); 
+include("encabezado.php"); 
 
 $txtAseguradoBuscado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
@@ -50,8 +50,6 @@ switch ($txtAccion) {
 }
 ?>
 
-<?php include("encabezado.php"); ?>
-
 <?php
 ## Mensajes comunes
 if (isset($_SESSION["msj_normal"])) {
@@ -61,7 +59,10 @@ if (isset($_SESSION["msj_normal"])) {
         Swal.fire('Mensaje!', '<?php echo $mensaje ?>', 'success');
     </script>
     <?php
-    session_start();
+    if(session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
+        // session isn't started
+        session_start();
+    }
     unset($_SESSION["msj_normal"]);
 }
 
@@ -76,7 +77,10 @@ if (isset($_SESSION["msj_error"])) {
         }, 1500);
     </script>
     <?php
-    session_start();
+    if(session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
+        // session isn't started
+        session_start();
+    }
     unset($_SESSION["msj_normal"]);
 }
 ?>
@@ -188,7 +192,7 @@ if (isset($_SESSION["msj_error"])) {
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">DNI Asegurado</span>
                                         <input type="text" inputmode="numeric" id="dni_asegurado" name="dni_asegurado"
-                                            class="form-control" placeholder="" value="<?php echo $txtdni; ?>"
+                                            class="form-control" placeholder="" 
                                             aria-label="dni_asegurado" aria-describedby="dni_asegurado">
                                         <span class="input-group-text">Apellido y Nombre</span>
                                         <input type="text" id="apellido_y_nombre_asegurado"
@@ -201,7 +205,7 @@ if (isset($_SESSION["msj_error"])) {
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="domicilio_asegurado">Domicilio</span>
                                         <input type="text" id="domicilio_asegurado" name="domicilio_asegurado"
-                                            class="form-control" placeholder="" value="<?php echo $txtapellido; ?>"
+                                            class="form-control" placeholder="" 
                                             aria-label="domicilio_asegurado" aria-describedby="domicilio_asegurado">
                                     </div>
                                 </div>
@@ -242,7 +246,11 @@ if (isset($_SESSION["msj_error"])) {
 
                                         <span class="input-group-text" id="cuit_asegurado">C.U.I.T.</span>
                                         <input type="text" id="cuit_asegurado" name="cuit_asegurado"
-                                            class="form-control" placeholder="99-99999999-9" aria-label="cuit_asegurado"
+                                            class="form-control" 
+                                            placeholder="99-99999999-9" 
+                                            pattern="[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]"  
+                                            title="99-99999999-9"
+                                            aria-label="cuit_asegurado"
                                             aria-describedby="cuit_asegurado">
                                     </div>
                                 </div>

@@ -30,11 +30,7 @@ if (!isset($_SESSION["entre"])) {
 </head>
 
 <?php
-if (isset($_SESSION["entre"])) {
-    $_SESSION['loggedin'] = true;
-} else {
-    $_SESSION['loggedin'] = false;
-}
+$_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
 ?>
 
 <div class="container-fluid" id="Encabezado">
