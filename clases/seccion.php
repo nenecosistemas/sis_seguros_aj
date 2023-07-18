@@ -1,6 +1,7 @@
 <?php
 class Seccion
 {
+    private $id;
     private $nombre_seccion;
     private $descripcion_seccion;    
     public function __GET($k)

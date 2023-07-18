@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 ">
-                        <button type="submit" class="btn btn-primary"> Grabar Asegurado <i class="fa-solid fa-save"></i></button>
+                        <button type="submit" class="btn btn-primary"> Grabar Sección <i class="fa-solid fa-save"></i></button>
                     </div>
                 </form>
             </div>
