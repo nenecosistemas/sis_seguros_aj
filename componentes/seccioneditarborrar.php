@@ -36,9 +36,9 @@ switch ($txtAccion) {
         break;
     case "Eliminar":
         $txseccionModel = new SeccionModel();
-        $txcotxseccionModelmpaniaModel->Eliminar($txtId);
+        $txseccionModel->Eliminar($txtId);
         session_start();
-        $_SESSION["msj_normal"] = " El documento " . $txtId . " Se elimino correctamente";
+        $_SESSION["msj_normal"] = " La Sección " . $txtId . " Se elimino correctamente";
         ?>
         <script>
             setTimeout(function () {
