@@ -36,7 +36,7 @@ class SeccionModel
                 (:nombre_seccion, :descripcion_seccion);");
 
             $sentenciaSQL->bindParam(':nombre_seccion', $nombre);
-            $sentenciaSQL->bindParam(':descripcion', $descripcion);
+            $sentenciaSQL->bindParam(':descripcion_seccion', $descripcion);
             $sentenciaSQL->execute();
 
         } catch (PDOException $ex) {
