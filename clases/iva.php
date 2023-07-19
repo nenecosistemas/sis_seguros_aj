@@ -1,7 +1,8 @@
 <?php
 class Iva
 {
-    private $iva;
+    private $id;
+    private $nombre_iva;
     private $descripcion_iva;    
     public function __GET($k)
     {
@@ -10,7 +11,6 @@ class Iva
     public function __SET($k, $v)
     {
         return $this->$k = $v;
-    }
-    
+    }   
 
 }
