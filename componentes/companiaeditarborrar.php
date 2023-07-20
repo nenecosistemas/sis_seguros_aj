@@ -10,8 +10,8 @@ $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txcompania = new Compania();
 $txiva = new Iva();
 
-$txivaModel = new CompaniaModel();
-$listaivas = $txivaModel->Buscar("");
+$txivaModel = new IvaModel();
+$listaivas = $txivaModel->Todos();
 
 
 if (isset($_POST["accion"])) {

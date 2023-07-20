@@ -92,6 +92,18 @@ class IvaModel
             die($ex->getMessage());
         }
     }
+    public function Todos()
+    {
+        try {
+
+            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_iva");            
+            $sentenciaSQL->execute();
+            return $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
     public function Seleccionar($id)
     {
         try {            

@@ -1,8 +1,8 @@
 <?php
 include_once("../clases/conexion.php");
 include_once("../clases/compania.php");
-include_once("../clases/iva.php");
 include_once("../clases/companiamodel.php");
+include_once("../clases/iva.php");
 include_once("../clases/ivamodel.php");
 
 include("encabezado.php");
@@ -13,8 +13,8 @@ $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txcompania = new Compania();
 $txiva = new Iva();
 
-$txivaModel = new CompaniaModel();
-$listaivas = $txivaModel->Buscar("");
+$txivaModel = new IvaModel();
+$listaivas = $txivaModel->Todos();
 
 if (isset($_POST["accion"])) {
     $txcompania->__SET("cuit_compania", (isset($_POST["cuit_compania"])) ? $_POST["cuit_compania"] : "");

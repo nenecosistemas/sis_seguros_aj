@@ -12,8 +12,8 @@ $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txAsegurado = new Asegurado();
 $txiva = new Iva();
 
-$txivaModel = new CompaniaModel();
-$listaivas = $txivaModel->Buscar("");
+$txivaModel = new IvaModel();
+$listaivas = $txivaModel->Todos();
 
 $txtdni = "";
 $txtapellido = "";
