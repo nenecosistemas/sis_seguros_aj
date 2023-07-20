@@ -89,7 +89,7 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                                 <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/seccionform.php">Secciones</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/ivaform.php">IVA</a>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/ivaform.php">I.V.A.</a>
                                 </li>
                             </ul>
                         </div>

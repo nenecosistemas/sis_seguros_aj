@@ -78,7 +78,7 @@ if (isset($_SESSION["msj_error"])) {
 
 <body>
     <div class="col-md-12 justify-content-center" id="Normalpage">
-        <label for="titulo" class="labeltitulo" style="width: 100%;">SECCIÓN</label>
+        <label for="titulo" class="labeltitulo" style="width: 100%;">I.V.A.</label>
         <div class="container-fluid">
             <ul class="nav nav-pills justify-content-around id=" menu" role="tablist"">  
                 <li class=" nav-item" role="presentation">
@@ -104,10 +104,10 @@ if (isset($_SESSION["msj_error"])) {
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="ivabuscado">Sección: </span>
                                         <input type="text" id="ivabuscado" name="ivabuscado"
-                                            class="form-control" placeholder=" ingrese dato a Buscar (Sección) "
+                                            class="form-control" placeholder=" ingrese dato a Buscar (I.V.A.) "
                                             aria-label="iva" aria-describedby="iva">
                                         <button type="submit" name="accion" value="Buscar" class="btn btn-primary">
-                                            Buscar Sección <i class="fa-solid fa-search"></i></button>
+                                            Buscar I.V.A. <i class="fa-solid fa-search"></i></button>
                                     </div>
                                 </div>
                             </form>
@@ -122,9 +122,9 @@ if (isset($_SESSION["msj_error"])) {
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>iva</th>
-                                            <th>descripcion</th>
-                                            <th>Accion</th>
+                                            <th>I.V.A.</th>
+                                            <th>Descripción</th>
+                                            <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -170,11 +170,10 @@ if (isset($_SESSION["msj_error"])) {
                         <div class="card-body">
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="id" type="hidden">ID</span>
+                                    <div class="input-group mb-3">                                        
                                         <input type="hidden" id="id" name="id" class="form-control" aria-label="id"
                                             aria-describedby="id" hide>
-                                        <span class="input-group-text">Nombre</span>
+                                        <span class="input-group-text">I.V.A.</span>
                                         <input type="text" id="nombre_iva" name="nombre_iva"
                                             class="form-control" placeholder="" aria-label="nombre_iva"
                                             aria-describedby="nombre_iva">
@@ -182,7 +181,7 @@ if (isset($_SESSION["msj_error"])) {
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="descripcion_iva">descripcion</span>
+                                        <span class="input-group-text" id="descripcion_iva">Descripción</span>
                                         <input type="text" id="descripcion_iva" name="descripcion_iva"
                                             class="form-control" placeholder="" aria-label="descripcion_iva"
                                             aria-describedby="descripcion_iva">
@@ -190,7 +189,7 @@ if (isset($_SESSION["msj_error"])) {
                                 </div>
                                 <div class="col-md-12 ">
                                     <button type="submit" name="accion" value="Agregar" class="btn btn-primary">
-                                        Grabar Sección <i class="fa-solid fa-save"></i></button>
+                                        Grabar I.V.A. <i class="fa-solid fa-save"></i></button>
                                     <button type="cancel" name="accion" value="Cancelar" class="btn btn-info">
                                         Cancelar
                                         <i class="fa-solid fa-cancel"></i></button>
