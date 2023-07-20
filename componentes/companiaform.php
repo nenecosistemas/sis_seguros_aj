@@ -1,20 +1,20 @@
 <?php
 include_once("../clases/conexion.php");
 include_once("../clases/compania.php");
+include_once("../clases/iva.php");
 include_once("../clases/companiamodel.php");
-include("encabezado.php"); 
+include_once("../clases/ivamodel.php");
+
+include("encabezado.php");
 
 $txtcompaniaBuscado = (isset($_POST["companiabuscado"])) ? $_POST["companiabuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txcompania = new Compania();
+$txiva = new Iva();
 
-$txtcuit = "";
-$txtnombre = "";
-$txtiva = "";
-$txtdomicilio = "";
-$txttelefono = "";
-$txtcorreo = "";
+$txivaModel = new CompaniaModel();
+$listaivas = $txivaModel->Buscar("");
 
 if (isset($_POST["accion"])) {
     $txcompania->__SET("cuit_compania", (isset($_POST["cuit_compania"])) ? $_POST["cuit_compania"] : "");
@@ -22,13 +22,13 @@ if (isset($_POST["accion"])) {
     $txcompania->__SET("tipoiva_compania", (isset($_POST["tipoiva_compania"])) ? $_POST["tipoiva_compania"] : "");
     $txcompania->__SET("domicilio_compania", (isset($_POST["domicilio_compania"])) ? $_POST["domicilio_compania"] : "");
     $txcompania->__SET("telefono_compania", (isset($_POST["telefono_compania"])) ? $_POST["telefono_compania"] : "");
-    $txcompania->__SET("correo_compania", (isset($_POST["correo_compania"])) ? $_POST["correo_compania"] : "");    
+    $txcompania->__SET("correo_compania", (isset($_POST["correo_compania"])) ? $_POST["correo_compania"] : "");
 }
 
 switch ($txtAccion) {
     case "Agregar":
         $txcompaniaModel = new CompaniaModel();
-        $txcompaniaModel->Agregar($txcompania);        
+        $txcompaniaModel->Agregar($txcompania);
         session_start();
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
@@ -37,13 +37,13 @@ switch ($txtAccion) {
         $listacompanias = $txcompaniaModel->Buscar($txtcompaniaBuscado);
         break;
     case "Cancelar":
-        ?>
+?>
         <script>
-            setTimeout(function () {
+            setTimeout(function() {
                 window.location.href = "/sis_seguros_aj/componentes/companiaform.php";
             });
         </script>
-        <?php
+<?php
         break;
 }
 ?>
@@ -52,12 +52,12 @@ switch ($txtAccion) {
 ## Mensajes comunes
 if (isset($_SESSION["msj_normal"])) {
     $mensaje = $_SESSION["msj_normal"];
-    ?>
+?>
     <script>
         Swal.fire('Mensaje!', '<?php echo $mensaje ?>', 'success');
     </script>
     <?php
-    if(session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
+    if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
         // session isn't started
         session_start();
     }
@@ -70,12 +70,12 @@ if (isset($_SESSION["msj_error"])) {
     ?>
     <script>
         Swal.fire('Error!', '<?php echo $mensaje ?>', 'error');
-        setTimeout(function () {
+        setTimeout(function() {
             window.location.href = "/sis_seguros_aj/index.php";
         }, 1500);
     </script>
-    <?php
-    if(session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
+<?php
+    if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
         // session isn't started
         session_start();
     }
@@ -89,18 +89,15 @@ if (isset($_SESSION["msj_error"])) {
         <div class="container-fluid">
             <ul class="nav nav-pills justify-content-around id=" menu" role="tablist"">  
                 <li class=" nav-item" role="presentation">
-                <button class="nav-link" id="pills-consulta-tab" data-bs-toggle="pill" data-bs-target="#pills-consulta"
-                    type="button" role="tab" aria-controls="pills-consulta" aria-selected="true">Consulta</button>
+                <button class="nav-link" id="pills-consulta-tab" data-bs-toggle="pill" data-bs-target="#pills-consulta" type="button" role="tab" aria-controls="pills-consulta" aria-selected="true">Consulta</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-alta-tab" data-bs-toggle="pill" data-bs-target="#pills-alta"
-                        type="button" role="tab" aria-controls="pills-alta" aria-selected="true">Alta</button>
+                    <button class="nav-link" id="pills-alta-tab" data-bs-toggle="pill" data-bs-target="#pills-alta" type="button" role="tab" aria-controls="pills-alta" aria-selected="true">Alta</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <!-- Consulta -->
-                <div class="container-fluid text-center tab-pane fade show active" id="pills-consulta" role="tabpanel"
-                    aria-labelledby="pills-consulta-tab" tabindex="0">
+                <div class="container-fluid text-center tab-pane fade show active" id="pills-consulta" role="tabpanel" aria-labelledby="pills-consulta-tab" tabindex="0">
                     <!-- Pagina de Busqueda -->
                     <div class="card">
                         <div class="card-header">
@@ -110,9 +107,7 @@ if (isset($_SESSION["msj_error"])) {
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="companiabuscado">Compañia: </span>
-                                        <input type="text" id="companiabuscado" name="companiabuscado"
-                                            class="form-control" placeholder=" ingrese dato a Buscar (Compañia) "
-                                            aria-label="compania" aria-describedby="compania">
+                                        <input type="text" id="companiabuscado" name="companiabuscado" class="form-control" placeholder=" ingrese dato a Buscar (Compañia) " aria-label="compania" aria-describedby="compania">
                                         <button type="submit" name="accion" value="Buscar" class="btn btn-primary">
                                             Buscar compañia
                                             <i class="fa-solid fa-search"></i></button>
@@ -132,7 +127,7 @@ if (isset($_SESSION["msj_error"])) {
                                         <tr>
                                             <th>CUIT</th>
                                             <th>Nombre</th>
-                                            <th>Domicilio</th>                                            
+                                            <th>Domicilio</th>
                                             <th>Teléfono</th>
                                             <th>Correo Electrónico</th>
                                             <th>Accion</th>
@@ -149,7 +144,7 @@ if (isset($_SESSION["msj_error"])) {
                                                 </td>
                                                 <td>
                                                     <?php echo $compania['domicilio_compania'] ?>
-                                                </td>                                                
+                                                </td>
                                                 <td>
                                                     <?php echo $compania['telefono_compania'] ?>
                                                 </td>
@@ -157,19 +152,14 @@ if (isset($_SESSION["msj_error"])) {
                                                     <?php echo $compania['correo_compania'] ?>
                                                 </td>
                                                 <td>
-                                                    <form method="POST" enctype="multipart/form-data"
-                                                        action="companiaeditarborrar.php">
-                                                        <input type="hidden" name="id"
-                                                            value="<?php echo $compania['cuit_compania'] ?>" />
+                                                    <form method="POST" enctype="multipart/form-data" action="companiaeditarborrar.php">
+                                                        <input type="hidden" name="id" value="<?php echo $compania['cuit_compania'] ?>" />
 
-                                                        <button type="submit" name="accion" value="Seleccionar"
-                                                            data-bs-toggle="modal" data-bs-target="#ModificarModal"
-                                                            class="btn btn-sm btn-warning">
+                                                        <button type="submit" name="accion" value="Seleccionar" data-bs-toggle="modal" data-bs-target="#ModificarModal" class="btn btn-sm btn-warning">
                                                             <i class="fa-solid fa-pen-to-square"></i> Editar
                                                         </button>
 
-                                                        <button type="submit" name="accion" value="Eliminar"
-                                                            class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i>
+                                                        <button type="submit" name="accion" value="Eliminar" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i>
                                                             Eliminar </button>
                                                     </form>
                                                 </td>
@@ -183,8 +173,7 @@ if (isset($_SESSION["msj_error"])) {
                     <?php } ?>
                 </div>
                 <!-- Alta -->
-                <div class="container-fluid text-center tab-pane fade" id="pills-alta" role="tabpanel"
-                    aria-labelledby="pills-alta-tab" tabindex="0">
+                <div class="container-fluid text-center tab-pane fade" id="pills-alta" role="tabpanel" aria-labelledby="pills-alta-tab" tabindex="0">
                     <div class="card">
                         <div class="card-header">
                         </div>
@@ -193,63 +182,34 @@ if (isset($_SESSION["msj_error"])) {
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="cuit_compania">C.U.I.T.</span>
-                                        <input type="text" id="cuit_compania" name="cuit_compania"
-                                            class="form-control" 
-                                            placeholder="99-99999999-9"  
-                                            required pattern="[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]"  
-                                            title="99-99999999-9"
-                                            aria-label="cuit_compania"                                        
-                                            aria-describedby="cuit_compania">                                        
+                                        <input type="text" id="cuit_compania" name="cuit_compania" class="form-control" placeholder="99-99999999-9" required pattern="[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]" title="99-99999999-9" aria-label="cuit_compania" aria-describedby="cuit_compania">
                                         <span class="input-group-text">Nombre</span>
-                                        <input type="text" id="nombre_compania" 
-                                            name="nombre_compania" class="form-control" placeholder=""                                            
-                                            aria-label="nombre_compania"
-                                            aria-describedby="nombre_compania">
+                                        <input type="text" id="nombre_compania" name="nombre_compania" class="form-control" placeholder="" aria-label="nombre_compania" aria-describedby="nombre_compania">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="domicilio_compania">Domicilio</span>
-                                        <input type="text" id="domicilio_compania" name="domicilio_compania"
-                                            class="form-control" placeholder=""                                            
-                                            aria-label="domicilio_compania" aria-describedby="domicilio_compania">
+                                        <input type="text" id="domicilio_compania" name="domicilio_compania" class="form-control" placeholder="" aria-label="domicilio_compania" aria-describedby="domicilio_compania">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="telefono_compania">Teléfono</span>
-                                        <input type="tel" id="telefono_compania" name="telefono_compania"
-                                            class="form-control" placeholder="" aria-label="telefono_compania"
-                                            aria-describedby="telefono_compania">
+                                        <input type="tel" id="telefono_compania" name="telefono_compania" class="form-control" placeholder="" aria-label="telefono_compania" aria-describedby="telefono_compania">
                                         <span class="input-group-text" id="email_compania">Correo Electónico</span>
-                                        <input type="email" id="correo_compania" name="correo_compania"
-                                            class="form-control" placeholder="" aria-label="correo_compania"
-                                            aria-describedby="correo_compania">
+                                        <input type="email" id="correo_compania" name="correo_compania" class="form-control" placeholder="" aria-label="correo_compania" aria-describedby="correo_compania">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="tipoiva_compania">Tipo IVA</label>
-                                        <select id="tipoiva_compania" name="tipoiva_compania" class="form-select"
-                                            id="tipoiva_compania">
+                                        <select id="tipoiva_compania" name="tipoiva_compania" class="form-select" id="tipoiva_compania">
                                             <option value="">Seleccione Tipo de Iva...</option>
-                                            <option value="1">Responsable Inscripto</option>
-                                            <option value="2">Responsable no Inscripto</option>
-                                            <option value="3">IVA no Responsable</option>
-                                            <option value="4">IVA Sujeto Exento</option>
-                                            <option value="5">Consumidor Final</option>
-                                            <option value="6">Monotributo</option>
-                                            <option value="7">Sujeto no Categorizado</option>
-                                            <option value="8">Proveedor del Exterior</option>
-                                            <option value="9">Cliente del Exterior</option>
-                                            <option value="10">IVA Liberado – Ley Nº 19.640</option>
-                                            <option value="11">IVA Responsable Inscripto – Agente de Percepción
-                                            </option>
-                                            <option value="12">Pequeño Contribuyente Eventual</option>
-                                            <option value="13">Monotributista Social</option>
-                                            <option value="14">Pequeño Contribuyente Eventual Social</option>
+                                            <?php foreach ($listaivas as $iva) { ?>
+                                                <option value="<?php echo $iva['id'] ?>"><?php echo $iva['nombre_iva'] ?></option>
+                                            <?php } ?>
                                         </select>
-                                        
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">

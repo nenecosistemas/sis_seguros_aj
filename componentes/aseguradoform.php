@@ -1,13 +1,19 @@
 <?php
 include_once("../clases/conexion.php");
 include_once("../clases/asegurado.php");
+include_once("../clases/iva.php");
 include_once("../clases/aseguradomodel.php");
-include("encabezado.php"); 
+include_once("../clases/ivamodel.php");
+include("encabezado.php");
 
 $txtAseguradoBuscado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txAsegurado = new Asegurado();
+$txiva = new Iva();
+
+$txivaModel = new CompaniaModel();
+$listaivas = $txivaModel->Buscar("");
 
 $txtdni = "";
 $txtapellido = "";
@@ -39,13 +45,13 @@ switch ($txtAccion) {
         $listaAsegurados = $txAseguradoModel->Buscar($txtAseguradoBuscado);
         break;
     case "Cancelar":
-        ?>
+?>
         <script>
-            setTimeout(function () {
+            setTimeout(function() {
                 window.location.href = "/sis_seguros_aj/componentes/aseguradoform.php";
             });
         </script>
-        <?php
+<?php
         break;
 }
 ?>
@@ -54,12 +60,12 @@ switch ($txtAccion) {
 ## Mensajes comunes
 if (isset($_SESSION["msj_normal"])) {
     $mensaje = $_SESSION["msj_normal"];
-    ?>
+?>
     <script>
         Swal.fire('Mensaje!', '<?php echo $mensaje ?>', 'success');
     </script>
     <?php
-    if(session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
+    if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
         // session isn't started
         session_start();
     }
@@ -72,12 +78,12 @@ if (isset($_SESSION["msj_error"])) {
     ?>
     <script>
         Swal.fire('Error!', '<?php echo $mensaje ?>', 'error');
-        setTimeout(function () {
+        setTimeout(function() {
             window.location.href = "/sis_seguros_aj/index.php";
         }, 1500);
     </script>
-    <?php
-    if(session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
+<?php
+    if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
         // session isn't started
         session_start();
     }
@@ -91,18 +97,15 @@ if (isset($_SESSION["msj_error"])) {
         <div class="container-fluid">
             <ul class="nav nav-pills justify-content-around id=" menu" role="tablist"">  
                 <li class=" nav-item" role="presentation">
-                <button class="nav-link" id="pills-consulta-tab" data-bs-toggle="pill" data-bs-target="#pills-consulta"
-                    type="button" role="tab" aria-controls="pills-consulta" aria-selected="true">Consulta</button>
+                <button class="nav-link" id="pills-consulta-tab" data-bs-toggle="pill" data-bs-target="#pills-consulta" type="button" role="tab" aria-controls="pills-consulta" aria-selected="true">Consulta</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-alta-tab" data-bs-toggle="pill" data-bs-target="#pills-alta"
-                        type="button" role="tab" aria-controls="pills-alta" aria-selected="true">Alta</button>
+                    <button class="nav-link" id="pills-alta-tab" data-bs-toggle="pill" data-bs-target="#pills-alta" type="button" role="tab" aria-controls="pills-alta" aria-selected="true">Alta</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <!-- Consulta -->
-                <div class="container-fluid text-center tab-pane fade show active" id="pills-consulta" role="tabpanel"
-                    aria-labelledby="pills-consulta-tab" tabindex="0">
+                <div class="container-fluid text-center tab-pane fade show active" id="pills-consulta" role="tabpanel" aria-labelledby="pills-consulta-tab" tabindex="0">
                     <!-- Pagina de Busqueda -->
                     <div class="card">
                         <div class="card-header">
@@ -112,9 +115,7 @@ if (isset($_SESSION["msj_error"])) {
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="aseguradobuscado">Asegurado: </span>
-                                        <input type="text" id="aseguradobuscado" name="aseguradobuscado"
-                                            class="form-control" placeholder=" ingrese dato a Buscar (Apellido) "
-                                            aria-label="asegurado" aria-describedby="asegurado">
+                                        <input type="text" id="aseguradobuscado" name="aseguradobuscado" class="form-control" placeholder=" ingrese dato a Buscar (Apellido) " aria-label="asegurado" aria-describedby="asegurado">
                                         <button type="submit" name="accion" value="Buscar" class="btn btn-primary">
                                             Buscar Asegurado
                                             <i class="fa-solid fa-search"></i></button>
@@ -155,19 +156,14 @@ if (isset($_SESSION["msj_error"])) {
                                                     <?php echo $Asegurado['correo_asegurado'] ?>
                                                 </td>
                                                 <td>
-                                                    <form method="POST" enctype="multipart/form-data"
-                                                        action="aseguradoeditarborrar.php">
-                                                        <input type="hidden" name="id"
-                                                            value="<?php echo $Asegurado['dni_asegurado'] ?>" />
+                                                    <form method="POST" enctype="multipart/form-data" action="aseguradoeditarborrar.php">
+                                                        <input type="hidden" name="id" value="<?php echo $Asegurado['dni_asegurado'] ?>" />
 
-                                                        <button type="submit" name="accion" value="Seleccionar"
-                                                            data-bs-toggle="modal" data-bs-target="#ModificarModal"
-                                                            class="btn btn-sm btn-warning">
+                                                        <button type="submit" name="accion" value="Seleccionar" data-bs-toggle="modal" data-bs-target="#ModificarModal" class="btn btn-sm btn-warning">
                                                             <i class="fa-solid fa-pen-to-square"></i> Editar
                                                         </button>
 
-                                                        <button type="submit" name="accion" value="Eliminar"
-                                                            class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i>
+                                                        <button type="submit" name="accion" value="Eliminar" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i>
                                                             Eliminar </button>
                                                     </form>
                                                 </td>
@@ -181,8 +177,7 @@ if (isset($_SESSION["msj_error"])) {
                     <?php } ?>
                 </div>
                 <!-- Alta -->
-                <div class="container-fluid text-center tab-pane fade" id="pills-alta" role="tabpanel"
-                    aria-labelledby="pills-alta-tab" tabindex="0">
+                <div class="container-fluid text-center tab-pane fade" id="pills-alta" role="tabpanel" aria-labelledby="pills-alta-tab" tabindex="0">
                     <div class="card">
                         <div class="card-header">
                         </div>
@@ -191,67 +186,36 @@ if (isset($_SESSION["msj_error"])) {
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">DNI Asegurado</span>
-                                        <input type="text" inputmode="numeric" id="dni_asegurado" name="dni_asegurado"
-                                            class="form-control" placeholder="" 
-                                            aria-label="dni_asegurado" aria-describedby="dni_asegurado">
+                                        <input type="text" inputmode="numeric" id="dni_asegurado" name="dni_asegurado" class="form-control" placeholder="" aria-label="dni_asegurado" aria-describedby="dni_asegurado">
                                         <span class="input-group-text">Apellido y Nombre</span>
-                                        <input type="text" id="apellido_y_nombre_asegurado"
-                                            name="apellido_y_nombre_asegurado" class="form-control" placeholder=""
-                                            aria-label="apellido_y_nombre_asegurado"
-                                            aria-describedby="apellido_y_nombre_asegurado">
+                                        <input type="text" id="apellido_y_nombre_asegurado" name="apellido_y_nombre_asegurado" class="form-control" placeholder="" aria-label="apellido_y_nombre_asegurado" aria-describedby="apellido_y_nombre_asegurado">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="domicilio_asegurado">Domicilio</span>
-                                        <input type="text" id="domicilio_asegurado" name="domicilio_asegurado"
-                                            class="form-control" placeholder="" 
-                                            aria-label="domicilio_asegurado" aria-describedby="domicilio_asegurado">
+                                        <input type="text" id="domicilio_asegurado" name="domicilio_asegurado" class="form-control" placeholder="" aria-label="domicilio_asegurado" aria-describedby="domicilio_asegurado">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="telefono_asegurado">Teléfono</span>
-                                        <input type="tel" id="telefono_asegurado" name="telefono_asegurado"
-                                            class="form-control" placeholder="" aria-label="telefono_asegurado"
-                                            aria-describedby="telefono_asegurado">
+                                        <input type="tel" id="telefono_asegurado" name="telefono_asegurado" class="form-control" placeholder="" aria-label="telefono_asegurado" aria-describedby="telefono_asegurado">
                                         <span class="input-group-text" id="email_asegurado">Correo Electónico</span>
-                                        <input type="email" id="correo_asegurado" name="correo_asegurado"
-                                            class="form-control" placeholder="" aria-label="email_asegurado"
-                                            aria-describedby="email_asegurado">
+                                        <input type="email" id="correo_asegurado" name="correo_asegurado" class="form-control" placeholder="" aria-label="email_asegurado" aria-describedby="email_asegurado">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="tipoiva_asegurado">Tipo IVA</label>
-                                        <select id="tipoiva_asegurado" name="tipoiva_asegurado" class="form-select"
-                                            id="tipoiva_asegurado">
+                                        <select id="tipoiva_compania" name="tipoiva_compania" class="form-select" id="tipoiva_compania">
                                             <option value="">Seleccione Tipo de Iva...</option>
-                                            <option value="1">Responsable Inscripto</option>
-                                            <option value="2">Responsable no Inscripto</option>
-                                            <option value="3">IVA no Responsable</option>
-                                            <option value="4">IVA Sujeto Exento</option>
-                                            <option value="5">Consumidor Final</option>
-                                            <option value="6">Monotributo</option>
-                                            <option value="7">Sujeto no Categorizado</option>
-                                            <option value="8">Proveedor del Exterior</option>
-                                            <option value="9">Cliente del Exterior</option>
-                                            <option value="10">IVA Liberado – Ley Nº 19.640</option>
-                                            <option value="11">IVA Responsable Inscripto – Agente de Percepción
-                                            </option>
-                                            <option value="12">Pequeño Contribuyente Eventual</option>
-                                            <option value="13">Monotributista Social</option>
-                                            <option value="14">Pequeño Contribuyente Eventual Social</option>
+                                            <?php foreach ($listaivas as $iva) { ?>
+                                                <option value="<?php echo $iva['id'] ?>"><?php echo $iva['nombre_iva'] ?></option>
+                                            <?php } ?>
                                         </select>
-
                                         <span class="input-group-text" id="cuit_asegurado">C.U.I.T.</span>
-                                        <input type="text" id="cuit_asegurado" name="cuit_asegurado"
-                                            class="form-control" 
-                                            placeholder="99-99999999-9" 
-                                            pattern="[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]"  
-                                            title="99-99999999-9"
-                                            aria-label="cuit_asegurado"
-                                            aria-describedby="cuit_asegurado">
+                                        <input type="text" id="cuit_asegurado" name="cuit_asegurado" class="form-control" placeholder="99-99999999-9" pattern="[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]" title="99-99999999-9" aria-label="cuit_asegurado" aria-describedby="cuit_asegurado">
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">

@@ -1,11 +1,17 @@
 <?php
 include_once("../clases/conexion.php");
 include_once("../clases/asegurado.php");
+include_once("../clases/iva.php");
 include_once("../clases/aseguradomodel.php");
+include_once("../clases/ivamodel.php");
 
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txAsegurado = new Asegurado();
+$txiva = new Iva();
+
+$txivaModel = new CompaniaModel();
+$listaivas = $txivaModel->Buscar("");
 
 if (isset($_POST["accion"])) {
     $txAsegurado->__SET("dni_asegurado", (isset($_POST["dni_asegurado"])) ? $_POST["dni_asegurado"] : "");
@@ -34,35 +40,35 @@ switch ($txtAccion) {
         $txAseguradoModel->Modificar($txAsegurado, $txAsegurado->__GET("dni_asegurado"));
         session_start();
         $_SESSION["msj_normal"] = " Los datos se modificaron correctamente ";
-        ?>
+?>
         <script>
-            setTimeout(function () {
+            setTimeout(function() {
                 window.location.href = "/sis_seguros_aj/componentes/aseguradoform.php";
             });
         </script>
-        <?php
+    <?php
         break;
     case "Eliminar":
         $txAseguradoModel = new AseguradoModel();
         $txAseguradoModel->Eliminar($txtId);
         session_start();
         $_SESSION["msj_normal"] = " El documento " . $txtId . " Se elimino correctamente";
-        ?>
+    ?>
         <script>
-            setTimeout(function () {
+            setTimeout(function() {
                 window.location.href = "/sis_seguros_aj/componentes/aseguradoform.php";
             });
         </script>
-        <?php
+    <?php
         break;
     case "Cancelar":
-        ?>
+    ?>
         <script>
-            setTimeout(function () {
+            setTimeout(function() {
                 window.location.href = "/sis_seguros_aj/componentes/aseguradoform.php";
             });
         </script>
-        <?php
+<?php
         break;
 }
 
@@ -83,81 +89,41 @@ switch ($txtAccion) {
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">DNI Asegurado</span>
-                                    <input type="text" inputmode="numeric" id="dni_asegurado" readonly
-                                        name="dni_asegurado" class="form-control" placeholder=""
-                                        value="<?php echo $txtdni; ?>" aria-label="dni_asegurado"
-                                        aria-describedby="dni_asegurado">
+                                    <input type="text" inputmode="numeric" id="dni_asegurado" readonly name="dni_asegurado" class="form-control" placeholder="" value="<?php echo $txtdni; ?>" aria-label="dni_asegurado" aria-describedby="dni_asegurado">
                                     <span class="input-group-text">Apellido y Nombre</span>
-                                    <input type="text" id="apellido_y_nombre_asegurado"
-                                        name="apellido_y_nombre_asegurado" class="form-control" placeholder=""
-                                        value="<?php echo $txtapellido; ?>" aria-label="apellido_y_nombre_asegurado"
-                                        aria-describedby="apellido_y_nombre_asegurado">
+                                    <input type="text" id="apellido_y_nombre_asegurado" name="apellido_y_nombre_asegurado" class="form-control" placeholder="" value="<?php echo $txtapellido; ?>" aria-label="apellido_y_nombre_asegurado" aria-describedby="apellido_y_nombre_asegurado">
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="domicilio_asegurado">Domicilio</span>
-                                        <input type="text" id="domicilio_asegurado" name="domicilio_asegurado"
-                                            class="form-control" placeholder="" value="<?php echo $txtdomicilio; ?>"
-                                            aria-label="domicilio_asegurado" aria-describedby="domicilio_asegurado">
+                                        <input type="text" id="domicilio_asegurado" name="domicilio_asegurado" class="form-control" placeholder="" value="<?php echo $txtdomicilio; ?>" aria-label="domicilio_asegurado" aria-describedby="domicilio_asegurado">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="telefono_asegurado">Teléfono</span>
-                                        <input type="tel" id="telefono_asegurado" name="telefono_asegurado"
-                                            class="form-control" placeholder="" value="<?php echo $txttelefono; ?>"
-                                            aria-label="telefono_asegurado" aria-describedby="telefono_asegurado">
+                                        <input type="tel" id="telefono_asegurado" name="telefono_asegurado" class="form-control" placeholder="" value="<?php echo $txttelefono; ?>" aria-label="telefono_asegurado" aria-describedby="telefono_asegurado">
                                         <span class="input-group-text" id="email_asegurado">Correo
                                             Electónico</span>
-                                        <input type="email" id="correo_asegurado" name="correo_asegurado"
-                                            class="form-control" placeholder="" value="<?php echo $txtcorreo; ?>"
-                                            aria-label="email_asegurado" aria-describedby="email_asegurado">
+                                        <input type="email" id="correo_asegurado" name="correo_asegurado" class="form-control" placeholder="" value="<?php echo $txtcorreo; ?>" aria-label="email_asegurado" aria-describedby="email_asegurado">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="tipoiva_asegurado">Tipo
                                             IVA</label>
-                                        <select id="tipoiva_asegurado" name="tipoiva_asegurado"
-                                            value="<?php echo $txtiva; ?>" class="form-select" id="tipoiva_asegurado">
+                                        <select id="tipoiva_asegurado" name="tipoiva_asegurado" value="<?php echo $txtiva; ?>" class="form-select" id="tipoiva_asegurado">
                                             <option selected>Seleccione Tipo de Iva...</option>
-                                            <option value="1" <?php echo ($txtiva == 1) ? 'selected' : '' ?>> Responsable
-                                                Inscripto</option>
-                                            <option value="2" <?php echo ($txtiva == 2) ? 'selected' : '' ?>>Responsable
-                                                no Inscripto</option>
-                                            <option value="3" <?php echo ($txtiva == 3) ? 'selected' : '' ?>>IVA no
-                                                Responsable</option>
-                                            <option value="4" <?php echo ($txtiva == 4) ? 'selected' : '' ?>>IVA Sujeto
-                                                Exento</option>
-                                            <option value="5" <?php echo ($txtiva == 5) ? 'selected' : '' ?>>Consumidor
-                                                Final</option>
-                                            <option value="6" <?php echo ($txtiva == 6) ? 'selected' : '' ?>>Monotributo
-                                            </option>
-                                            <option value="7" <?php echo ($txtiva == 7) ? 'selected' : '' ?>>Sujeto no
-                                                Categorizado</option>
-                                            <option value="8" <?php echo ($txtiva == 8) ? 'selected' : '' ?>>Proveedor del
-                                                Exterior</option>
-                                            <option value="9" <?php echo ($txtiva == 9) ? 'selected' : '' ?>>Cliente del
-                                                Exterior</option>
-                                            <option value="10" <?php echo ($txtiva == 10) ? 'selected' : '' ?>>IVA
-                                                Liberado Ley Nº 19.640</option>
-                                            <option value="11" <?php echo ($txtiva == 11) ? 'selected' : '' ?>>IVA
-                                                Responsable Inscripto Agente de Percepción
-                                            </option>
-                                            <option value="12" <?php echo ($txtiva == 12) ? 'selected' : '' ?>>Pequeño Contribuyente Eventual</option>
-                                            <option value="13" <?php echo ($txtiva == 13) ? 'selected' : '' ?>>Monotributista Social</option>
-                                            <option value="14" <?php echo ($txtiva == 14) ? 'selected' : '' ?>>Pequeño Contribuyente Eventual Social
-                                            </option>
+                                            <?php foreach ($listaivas as $iva) { ?>
+                                                <option value="<?php echo $iva['id'] ?>" <?php echo ($txtiva == $iva['id']) ? 'selected' : '' ?>><?php echo $iva['nombre_iva'] ?></option>
+                                            <?php } ?>
                                         </select>
                                         <script>
                                             $('select[name="tipoiva_asegurado"]').val("<?php echo $txtiva; ?>");
                                         </script>
                                         <span class="input-group-text" id="cuit_asegurado">C.U.I.T.</span>
-                                        <input type="text" id="cuit_asegurado" name="cuit_asegurado"
-                                            class="form-control" placeholder="99-99999999-9"
-                                            value="<?php echo $txtcuit; ?>" aria-label="cuit_asegurado"
-                                            aria-describedby="cuit_asegurado">
+                                        <input type="text" id="cuit_asegurado" name="cuit_asegurado" class="form-control" placeholder="99-99999999-9" value="<?php echo $txtcuit; ?>" aria-label="cuit_asegurado" aria-describedby="cuit_asegurado">
                                     </div>
                                 </div>
 
@@ -169,7 +135,6 @@ switch ($txtAccion) {
                                         Cancelar
                                         <i class="fa-solid fa-cancel"></i></button>
                                 </div>
-
                             </form>
                         </div>
                     </div>
