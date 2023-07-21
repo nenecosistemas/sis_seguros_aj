@@ -1,24 +1,24 @@
 <?php
 include_once("../clases/conexion.php");
-include_once("../clases/iva.php");
-include_once("../clases/ivamodel.php");
+include_once("../clases/poliza.php");
+include_once("../clases/polizamodel.php");
 include("encabezado.php");
 
-$txtivaBuscado = (isset($_POST["ivabuscado"])) ? $_POST["ivabuscado"] : "";
+$txtaseguradoBuscado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
-$txiva = new Iva();
+$txpoliza = new Poliza();
 
 if (isset($_POST["accion"])) {
-    $txiva->__SET("id", (isset($_POST["id"])) ? $_POST["id"] : "");
-    $txiva->__SET("nombre_iva", (isset($_POST["nombre_iva"])) ? $_POST["nombre_iva"] : "");
-    $txiva->__SET("descripcion_iva", (isset($_POST["descripcion_iva"])) ? $_POST["descripcion_iva"] : "");
+    $txpoliza->__SET("id", (isset($_POST["id"])) ? $_POST["id"] : "");
+    $txpoliza->__SET("nombre_iva", (isset($_POST["nombre_iva"])) ? $_POST["nombre_iva"] : "");
+    $txpoliza->__SET("descripcion_iva", (isset($_POST["descripcion_iva"])) ? $_POST["descripcion_iva"] : "");
 }
 
 switch ($txtAccion) {
     case "Agregar":
-        $txivaModel = new ivaModel();
-        $txivaModel->Agregar($txiva);
+        $txpolizaModel = new PolizaModel();
+        $txpolizaModel->Agregar($txpoliza);
         if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
             // session isn't started
             session_start();
@@ -26,8 +26,8 @@ switch ($txtAccion) {
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
     case "Buscar":
-        $txivaModel = new ivaModel();
-        $listaivas = $txivaModel->Buscar($txtivaBuscado);
+        $txpolizaModel = new PolizaModel();
+        $listapolizas = $txpolizaModel->Buscar($txtaseguradoBuscado);
         break;
     case "Cancelar":
         ?>
@@ -78,7 +78,7 @@ if (isset($_SESSION["msj_error"])) {
 
 <body>
     <div class="col-md-12 justify-content-center" id="Normalpage">
-        <label for="titulo" class="labeltitulo" style="width: 100%;">I.V.A.</label>
+        <label for="titulo" class="labeltitulo" style="width: 100%;">POLIZAS</label>
         <div class="container-fluid">
             <ul class="nav nav-pills justify-content-around id=" menu" role="tablist"">  
                 <li class=" nav-item" role="presentation">
@@ -102,18 +102,18 @@ if (isset($_SESSION["msj_error"])) {
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="ivabuscado">Sección: </span>
-                                        <input type="text" id="ivabuscado" name="ivabuscado"
-                                            class="form-control" placeholder=" ingrese dato a Buscar (I.V.A.) "
+                                        <span class="input-group-text" id="aseguradobuscado">Sección: </span>
+                                        <input type="text" id="aseguradobuscado" name="aseguradobuscado"
+                                            class="form-control" placeholder=" ingrese dato a Buscar (Asegurado) "
                                             aria-label="iva" aria-describedby="iva">
                                         <button type="submit" name="accion" value="Buscar" class="btn btn-primary">
-                                            Buscar I.V.A. <i class="fa-solid fa-search"></i></button>
+                                            Buscar Poliza <i class="fa-solid fa-search"></i></button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <?php if (isset($listaivas) and !empty($listaivas)) { ?>
+                     <?php if (isset($listapolizas) and !empty($listapolizas)) { ?> 
                         <!-- Resultado de Busqueda -->
                         <div class="card">
                             <div class="card-header">
@@ -122,24 +122,32 @@ if (isset($_SESSION["msj_error"])) {
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>I.V.A.</th>
+                                            <th>Poliza</th>
+                                            <th>Asegurado</th>
+                                            <th>Vigencia desde</th>
                                             <th>Descripción</th>
                                             <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($listaivas as $iva) { ?>
+                                        <?php foreach ($listapolizas as $poliza) { ?>
                                             <tr>
                                                 <td>
-                                                    <?php echo $iva['nombre_iva'] ?>
+                                                    <?php echo $poliza['poliza_nro'] ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $iva['descripcion_iva'] ?>
+                                                    <?php echo $poliza['apellido_y_nombre_asegurado'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $poliza['vigencia_desde'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $poliza['descripcion_asegurado'] ?>
                                                 </td>
                                                 <td>
                                                     <form method="POST" enctype="multipart/form-data"
-                                                        action="ivaeditarborrar.php">
-                                                        <input type="hidden" name="id" value="<?php echo $iva['id'] ?>" />
+                                                        action="polizaeditarborrar.php">
+                                                        <input type="hidden" name="id" value="<?php echo $poliza['id'] ?>" />
 
                                                         <button type="submit" name="accion" value="Seleccionar"
                                                             data-bs-toggle="modal" data-bs-target="#ModificarModal"
@@ -153,13 +161,13 @@ if (isset($_SESSION["msj_error"])) {
                                                     </form>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                         <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <!-- fin div -->
-                    <?php } ?>
+                     <?php } ?> 
                 </div>
                 <!-- Alta -->
                 <div class="container-fluid text-center tab-pane fade" id="pills-alta" role="tabpanel"
@@ -173,7 +181,7 @@ if (isset($_SESSION["msj_error"])) {
                                     <div class="input-group mb-3">                                        
                                         <input type="hidden" id="id" name="id" class="form-control" aria-label="id"
                                             aria-describedby="id" hide>
-                                        <span class="input-group-text">I.V.A.</span>
+                                        <span class="input-group-text">POLIZA</span>
                                         <input type="text" id="nombre_iva" name="nombre_iva"
                                             class="form-control" placeholder="" aria-label="nombre_iva"
                                             aria-describedby="nombre_iva">
