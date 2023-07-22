@@ -102,7 +102,7 @@ if (isset($_SESSION["msj_error"])) {
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="aseguradobuscado">Sección: </span>
+                                        <span class="input-group-text" id="aseguradobuscado">Asegurado a Buscar: </span>
                                         <input type="text" id="aseguradobuscado" name="aseguradobuscado"
                                             class="form-control" placeholder=" ingrese dato a Buscar (Asegurado) "
                                             aria-label="iva" aria-describedby="iva">
@@ -113,7 +113,7 @@ if (isset($_SESSION["msj_error"])) {
                             </form>
                         </div>
                     </div>
-                     <?php if (isset($listapolizas) and !empty($listapolizas)) { ?> 
+                    <?php if (isset($listapolizas) and !empty($listapolizas)) { ?>
                         <!-- Resultado de Busqueda -->
                         <div class="card">
                             <div class="card-header">
@@ -123,8 +123,12 @@ if (isset($_SESSION["msj_error"])) {
                                     <thead>
                                         <tr>
                                             <th>Poliza</th>
+                                            <th>Endoso</th>
+                                            <th>Compañia</th>
+                                            <th>Sección</th>
                                             <th>Asegurado</th>
                                             <th>Vigencia desde</th>
+                                            <th>hasta</th>
                                             <th>Descripción</th>
                                             <th>Acción</th>
                                         </tr>
@@ -133,14 +137,29 @@ if (isset($_SESSION["msj_error"])) {
                                         <?php foreach ($listapolizas as $poliza) { ?>
                                             <tr>
                                                 <td>
-                                                    <?php echo $poliza['poliza_nro'] ?>
+                                                    <a href="#" title="Consultar Poliza">
+                                                        <?php echo $poliza['poliza_nro'] ?>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <?php echo $poliza['endoso_nro'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $poliza['nombre_compania'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $poliza['nombre_seccion'] ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $poliza['apellido_y_nombre_asegurado'] ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $poliza['vigencia_desde'] ?>
+                                                    <?php echo date('d/m/Y',strtotime($poliza['vigencia_desde']))  ?>
                                                 </td>
+                                                <td>
+                                                    <?php echo date('d/m/Y',strtotime($poliza['vigencia_hasta']))  ?>
+                                                </td>
+                                                
                                                 <td>
                                                     <?php echo $poliza['descripcion_asegurado'] ?>
                                                 </td>
@@ -161,13 +180,13 @@ if (isset($_SESSION["msj_error"])) {
                                                     </form>
                                                 </td>
                                             </tr>
-                                         <?php } ?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <!-- fin div -->
-                     <?php } ?> 
+                    <?php } ?>
                 </div>
                 <!-- Alta -->
                 <div class="container-fluid text-center tab-pane fade" id="pills-alta" role="tabpanel"
@@ -178,13 +197,12 @@ if (isset($_SESSION["msj_error"])) {
                         <div class="card-body">
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
-                                    <div class="input-group mb-3">                                        
+                                    <div class="input-group mb-3">
                                         <input type="hidden" id="id" name="id" class="form-control" aria-label="id"
                                             aria-describedby="id" hide>
                                         <span class="input-group-text">POLIZA</span>
-                                        <input type="text" id="nombre_iva" name="nombre_iva"
-                                            class="form-control" placeholder="" aria-label="nombre_iva"
-                                            aria-describedby="nombre_iva">
+                                        <input type="text" id="nombre_iva" name="nombre_iva" class="form-control"
+                                            placeholder="" aria-label="nombre_iva" aria-describedby="nombre_iva">
                                     </div>
                                 </div>
                                 <div class="form-group row">
