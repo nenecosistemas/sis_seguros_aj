@@ -12,6 +12,7 @@ class Poliza
     private $vigencia_desde;
     private $vigencia_hasta;
     private $descripcion_asegurado;
+    private $cobertura_asegurado;
     private $suma_asegurada;
     private $prima;
     private $premio;    

@@ -30,13 +30,14 @@ class PolizaModel
             $compania = $poliza->__GET('compania_id');
             $seccion = $poliza->__GET('seccion_id');
             $asegurado = $poliza->__GET('asegurado_id');
-            $poliza = $poliza->__GET('poliza_nro');
+            $polizanro = $poliza->__GET('poliza_nro');
             $endoso = $poliza->__GET('endoso_nro');
             $renueva = $poliza->__GET('renovacion_poliza');
             $emision = $poliza->__GET('fecha_emision');
             $desde = $poliza->__GET('vigencia_desde');
             $hasta = $poliza->__GET('vigencia_hasta');
             $descripcion = $poliza->__GET('descripcion_asegurado');
+            $cobertura = $poliza->__GET('cobertura_asegurado');
             $suma = $poliza->__GET('suma_asegurada');
             $prima = $poliza->__GET('prima');
             $premio = $poliza->__GET('premio');
@@ -52,6 +53,7 @@ class PolizaModel
                 vigencia_desde,
                 vigencia_hasta,
                 descripcion_asegurado,
+                cobertura_asegurado,
                 suma_asegurada,
                 prima,
                 premio) 
@@ -66,6 +68,7 @@ class PolizaModel
                 :vigencia_desde,
                 :vigencia_hasta,
                 :descripcion_asegurado,
+                :cobertura_asegurado,
                 :suma_asegurada,
                 :prima,
                 :premio);");
@@ -73,13 +76,14 @@ class PolizaModel
             $sentenciaSQL->bindParam(':compania_id', $compania);
             $sentenciaSQL->bindParam(':seccion_id', $seccion);
             $sentenciaSQL->bindParam(':asegurado_id', $asegurado);
-            $sentenciaSQL->bindParam(':poliza_nro', $poliza);
+            $sentenciaSQL->bindParam(':poliza_nro', $polizanro);
             $sentenciaSQL->bindParam(':endoso_nro', $endoso);
             $sentenciaSQL->bindParam(':renovacion_poliza', $renueva);
             $sentenciaSQL->bindParam(':fecha_emision', $emision);
             $sentenciaSQL->bindParam(':vigencia_desde', $desde);
             $sentenciaSQL->bindParam(':vigencia_hasta', $hasta);            
             $sentenciaSQL->bindParam(':descripcion_asegurado', $descripcion);
+            $sentenciaSQL->bindParam(':cobertura_asegurado', $cobertura);
             $sentenciaSQL->bindParam(':suma_asegurada', $suma);
             $sentenciaSQL->bindParam(':prima', $prima);
             $sentenciaSQL->bindParam(':premio', $premio);
@@ -105,6 +109,7 @@ class PolizaModel
             $desde = $poliza->__GET('vigencia_desde');
             $hasta = $poliza->__GET('vigencia_hasta');
             $descripcion = $poliza->__GET('descripcion_asegurado');
+            $cobertura = $poliza->__GET('descripcion_cobertura');
             $suma = $poliza->__GET('suma_asegurada');
             $prima = $poliza->__GET('prima');
             $premio = $poliza->__GET('premio');                       
@@ -120,6 +125,7 @@ class PolizaModel
                 vigencia_desde=:vigencia_desde,
                 vigencia_hasta=:vigencia_hasta,
                 descripcion_asegurado=:descripcion_asegurado,
+                cobertura_asegurado=:cobertura_asegurado,
                 suma_asegurada=:suma_asegurada,
                 prima=:prima,
                 premio=:premio
@@ -136,6 +142,7 @@ class PolizaModel
             $sentenciaSQL->bindParam(':vigencia_desde', $desde);
             $sentenciaSQL->bindParam(':vigencia_hasta', $hasta);            
             $sentenciaSQL->bindParam(':descripcion_asegurado', $descripcion);
+            $sentenciaSQL->bindParam(':cobertura_asegurado', $cobertura);
             $sentenciaSQL->bindParam(':suma_asegurada', $suma);
             $sentenciaSQL->bindParam(':prima', $prima);
             $sentenciaSQL->bindParam(':premio', $premio);

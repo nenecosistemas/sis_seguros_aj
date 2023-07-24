@@ -79,6 +79,18 @@ class SeccionModel
             die($ex->getMessage());
         }
     }
+     public function Todos()
+    {
+        try {
+
+            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_seccion");            
+            $sentenciaSQL->execute();
+            return $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
     public function Buscar($txtseccionBuscado)
     {
         try {
