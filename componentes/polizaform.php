@@ -27,6 +27,7 @@ $listaasegurados = $txaseguradoModel->Todos();
 
 if (isset($_POST["accion"])) {
     $txPoliza->__SET("compania_id", (isset($_POST["compania_id"])) ? $_POST["compania_id"] : "");
+    $txPoliza->__SET("compania_id", (isset($_POST["compania_id"])) ? $_POST["compania_id"] : "");
     $txPoliza->__SET("seccion_id", (isset($_POST["seccion_id"])) ? $_POST["seccion_id"] : "");
     $txPoliza->__SET("asegurado_id", (isset($_POST["asegurado_id"])) ? $_POST["asegurado_id"] : "");
     $txPoliza->__SET("poliza_nro", (isset($_POST["poliza_nro"])) ? $_POST["poliza_nro"] : "");
@@ -159,9 +160,9 @@ if (isset($_SESSION["msj_error"])) {
                                         <?php foreach ($listapolizas as $poliza) { ?>
                                             <tr>
                                                 <td>
-                                                    <a href="#" title="Consultar Poliza">
+                                                    <!--<a href="#" title="Consultar Poliza">-->
                                                         <?php echo $poliza['poliza_nro'] ?>
-                                                    </a>
+                                                    <!--</a>-->
                                                 </td>
                                                 <td>
                                                     <?php echo $poliza['endoso_nro'] ?>

@@ -50,12 +50,7 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                                 Polizas
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/polizaform.php">Alta
-                                        Poliza</a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxasegurado.php">Consulta por
-                                        Asegurado</a>
-                                </li>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/polizaform.php">ABM - Poliza</a></li>
                                 <div class="dropdown-divider"></div>
                                 <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapoliza.php">Consulta
                                         por Nro de Poliza</a></li>

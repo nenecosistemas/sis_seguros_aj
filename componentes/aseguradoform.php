@@ -208,7 +208,7 @@ if (isset($_SESSION["msj_error"])) {
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <label class="input-group-text" for="tipoiva_asegurado">Tipo IVA</label>
-                                        <select id="tipoiva_compania" name="tipoiva_compania" class="form-select" id="tipoiva_compania">
+                                        <select id="tipoiva_asegurado" name="tipoiva_asegurado" class="form-select" id="tipoiva_asegurado">
                                             <option value="">Seleccione Tipo de Iva...</option>
                                             <?php foreach ($listaivas as $iva) { ?>
                                                 <option value="<?php echo $iva['id'] ?>"><?php echo $iva['nombre_iva'] ?></option>
