@@ -161,7 +161,7 @@ if (isset($_SESSION["msj_error"])) {
                                             <tr>
                                                 <td>
                                                     <!--<a href="#" title="Consultar Poliza">-->
-                                                        <?php echo $poliza['poliza_nro'] ?>
+                                                    <?php echo $poliza['poliza_nro'] ?>
                                                     <!--</a>-->
                                                 </td>
                                                 <td>
@@ -257,8 +257,8 @@ if (isset($_SESSION["msj_error"])) {
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="fecha_emision">Fecha de Emisión</span>
                                         <input type="date" class="form-control" id="fecha_emision" name="fecha_emision" placeholder="" aria-label="fecha_emision" aria-describedby="fecha_emision">
-                                        <span class="input-group-text" >Vigencia</span>
-                                        <span class="input-group-text" >desde:</span>
+                                        <span class="input-group-text">Vigencia</span>
+                                        <span class="input-group-text">desde:</span>
                                         <input type="date" class="form-control" id="vigencia_desde" name="vigencia_desde" placeholder="" aria-label="vigencia_desde" aria-describedby="vigencia_desde">
                                         <span class="input-group-text" id="vigencia_hasta">hasta:</span>
                                         <input type="date" class="form-control" id="vigencia_hasta" name="vigencia_hasta" placeholder="" aria-label="vigencia_hasta" aria-describedby="vigencia_hasta">
@@ -278,10 +278,12 @@ if (isset($_SESSION["msj_error"])) {
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
+
                                         <span class="input-group-text" id="suma_asegurada">Suma Asegurada</span>
-                                        <input type="number" class="form-control" id="suma_asegurada" name="suma_asegurada" placeholder="" aria-label="suma_asegurada" aria-describedby="suma_asegurada">
+                                        <!-- data-type="currency" -->
+                                        <input type="number" class="form-control" id="suma_asegurada" name="suma_asegurada"  placeholder="" aria-label="suma_asegurada" aria-describedby="suma_asegurada">
                                         <span class="input-group-text" id="prima">Prima</span>
-                                        <input type="number" class="form-control" id="prima" name="prima" placeholder="" aria-label="prima" aria-describedby="Prima">
+                                        <input type="number" class="form-control" id="prima" name="prima"  placeholder="" aria-label="prima" aria-describedby="Prima">
                                         <span class="input-group-text" id="premio">Premio</span>
                                         <input type="number" class="form-control" id="premio" name="premio" placeholder="" aria-label="premio" aria-describedby="Premio">
                                     </div>
@@ -299,6 +301,6 @@ if (isset($_SESSION["msj_error"])) {
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
 </body>
 <?php include("pie.php"); ?>
