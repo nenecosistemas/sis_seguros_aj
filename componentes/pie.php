@@ -1,5 +1,5 @@
 <div class="pie">
-    <h6>Desarrollado por ( <i class="fa-solid fa-user"></i> Eduardo Recoliza ) - <i class="fa-solid fa-earth-americas"></i> Argentina (2023)</h6>
+    <h6>Desarrollado por ( <i class="fa-solid fa-user"></i> Neneco-Sistemas ) - <i class="fa-solid fa-earth-americas"></i> Argentina (2023)</h6>
 </div>
 
 <script>

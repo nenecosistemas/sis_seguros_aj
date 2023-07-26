@@ -15,6 +15,9 @@ if (isset($_POST["emailusuario"])) {
       session_start();
       $_SESSION["entre"] = true;
       $_SESSION["msj_normal"] = " Usuario Logeado correctamente";
+   } else {      
+      session_start();
+      $_SESSION["msj_error"] = " Usuario o Clave erronea";
    }
 }
 
@@ -27,8 +30,8 @@ if (isset($_SESSION["msj_normal"])) {
    $mensaje = $_SESSION["msj_normal"];
 ?>
    <script>
-      Swal.fire('Mensaje!', '<?php echo $mensaje ?>', 'success');      
-      setTimeout(function() {         
+      Swal.fire('Mensaje!', '<?php echo $mensaje ?>', 'success');
+      setTimeout(function() {
          window.location.href = "/sis_seguros_aj/index.php";
       }, 1500);
    </script>
@@ -43,10 +46,10 @@ if (isset($_SESSION["msj_error"])) {
 ?>
    <script>
       Swal.fire('Error!', '<?php echo $mensaje ?>', 'error');
-      setTimeout(function() {         
+      setTimeout(function() {
          window.location.href = "/sis_seguros_aj/index.php";
-      }, 1500);      
-   </script>   
+      }, 1500);
+   </script>
 <?php
    unset($_SESSION["msj_error"]);
 }
@@ -54,31 +57,38 @@ if (isset($_SESSION["msj_error"])) {
 
 <body>
    <div class="col-md-12 justify-content-center" id="Normalpage">
-      <label for="titulo" class="labeltitulo" style="width: 100%;">LOGIN</label>
-      <div class="container-fluid text-center ">
-         <div class="card">
+
+      <div class="container-fluid text-center w-50">
+         <div class="card justify-content-center">
             <div class="card-header">
+               <label for="titulo" class="labeltitulo" style="width: 100%;">LOGIN</label>
             </div>
             <div class="card-body">
                <form method="POST" enctype="multipart/form-data" action="#">
                   <div class="form-group row">
-                     <div class="input-group mb-2">
-                        <span class="input-group-text" id="email_asegurado">Correo Electónico</span>
-                        <input type="email" id="emailusuario" name="emailusuario" class="form-control" placeholder="" aria-label="email_asegurado" aria-describedby="email_asegurado">
+                     <div class="form-floating">
+                        <input type="email" class="form-control" id="email_asegurado" name="emailusuario" placeholder="name@example.com">
+                        <label for="email_asegurado"> Correo Electrónico </label>
                      </div>
-                     <div class="input-group mb-2">
-                        <span class="input-group-text" id="clave_asegurado">Clave</span>
-                        <input type="password" id="claveusuario" name="claveusuario" class="form-control" placeholder="" aria-label="clave_asegurado" aria-describedby="clave_asegurado">
+                     <div class="form-floating">
+                        <input type="password" class="form-control" id="claveusuario" name="claveusuario" placeholder="name@example.com">
+                        <label for="claveusuario"> Clave </label>
+
                      </div>
                   </div>
             </div>
             <div class="col-sm-12 ">
-               <button type="submit" name="accion" value="Agregar" class="btn btn-primary"> Verificar Usuario <i class="fa-solid fa-save"></i></button>
+               <button type="submit" name="accion" value="Agregar" class="btn btn-primary"> Verificar Usuario <i class="fa-solid fa-solid fa-user-shield"></i></button>
             </div>
             </form>
          </div>
       </div>
    </div>
    </div>
+   <script>
+      $(document).ready(function() {
+         document.getElementById("email_asegurado").focus();
+      });
+   </script>
 </body>
 <?php include("pie.php"); ?>

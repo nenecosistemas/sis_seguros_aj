@@ -204,16 +204,16 @@ switch ($txtAccion) {
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="suma_asegurada">Suma Asegurada</span>
-                                        <input type="number" class="form-control" id="suma_asegurada"
-                                            name="suma_asegurada" value="<?php echo $suma ?>" placeholder=""
+                                        <input type="text" class="form-control" id="suma_asegurada"
+                                            name="suma_asegurada" value="<?php echo $suma ?>" data-type="currency" placeholder=""
                                             aria-label="suma_asegurada" aria-describedby="suma_asegurada">
                                         <span class="input-group-text" id="prima">Prima</span>
-                                        <input type="number" class="form-control" id="prima" name="prima"
-                                            value="<?php echo $prima ?>" placeholder="" aria-label="prima"
+                                        <input type="text" class="form-control" id="prima" name="prima"
+                                            value="<?php echo $prima ?>" data-type="currency" placeholder="" aria-label="prima"
                                             aria-describedby="Prima">
                                         <span class="input-group-text" id="premio">Premio</span>
-                                        <input type="number" class="form-control" id="premio" name="premio"
-                                            value="<?php echo $premio ?>" placeholder="" aria-label="premio"
+                                        <input type="text" class="form-control" id="premio" name="premio"
+                                            value="<?php echo $premio ?>" data-type="currency" placeholder="" aria-label="premio"
                                             aria-describedby="Premio">
                                     </div>
                                 </div>   

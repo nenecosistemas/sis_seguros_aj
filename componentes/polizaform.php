@@ -281,11 +281,11 @@ if (isset($_SESSION["msj_error"])) {
 
                                         <span class="input-group-text" id="suma_asegurada">Suma Asegurada</span>
                                         <!-- data-type="currency" -->
-                                        <input type="number" class="form-control" id="suma_asegurada" name="suma_asegurada"  placeholder="" aria-label="suma_asegurada" aria-describedby="suma_asegurada">
+                                        <input type="text" class="form-control" id="suma_asegurada" name="suma_asegurada" data-type="currency" placeholder="" aria-label="suma_asegurada" aria-describedby="suma_asegurada">
                                         <span class="input-group-text" id="prima">Prima</span>
-                                        <input type="number" class="form-control" id="prima" name="prima"  placeholder="" aria-label="prima" aria-describedby="Prima">
+                                        <input type="text" class="form-control" id="prima" name="prima" data-type="currency" placeholder="" aria-label="prima" aria-describedby="Prima">
                                         <span class="input-group-text" id="premio">Premio</span>
-                                        <input type="number" class="form-control" id="premio" name="premio" placeholder="" aria-label="premio" aria-describedby="Premio">
+                                        <input type="text" class="form-control" id="premio" name="premio" data-type="currency" placeholder="" aria-label="premio" aria-describedby="Premio">
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">
