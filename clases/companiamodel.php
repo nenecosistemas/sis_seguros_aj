@@ -100,7 +100,7 @@ class CompaniaModel
     {
         try {
 
-            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_compania");            
+            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_compania ORDER BY nombre_compania");            
             $sentenciaSQL->execute();
             return $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
@@ -111,7 +111,7 @@ class CompaniaModel
     public function Buscar($txtcompaniaBuscado)
     {
         try {
-            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_compania WHERE nombre_compania LIKE CONCAT('%', :nombre_compania, '%') order by nombre_compania");
+            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_compania WHERE nombre_compania LIKE CONCAT('%', :nombre_compania, '%') order by nombre_compania") ;
             $sentenciaSQL->bindParam(':nombre_compania', $txtcompaniaBuscado, PDO::PARAM_STR);
             $sentenciaSQL->execute();
             return $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);

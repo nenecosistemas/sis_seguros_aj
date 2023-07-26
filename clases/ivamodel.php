@@ -96,7 +96,7 @@ class IvaModel
     {
         try {
 
-            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_iva");            
+            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_iva ORDER BY nombre_iva");            
             $sentenciaSQL->execute();
             return $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 

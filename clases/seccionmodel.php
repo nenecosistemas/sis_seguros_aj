@@ -83,7 +83,7 @@ class SeccionModel
     {
         try {
 
-            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_seccion");            
+            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_seccion ORDER BY nombre_seccion");            
             $sentenciaSQL->execute();
             return $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 

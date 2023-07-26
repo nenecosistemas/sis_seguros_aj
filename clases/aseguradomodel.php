@@ -104,7 +104,7 @@ class AseguradoModel
     {
         try {
 
-            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_asegurado");            
+            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT * FROM aj_asegurado ORDER BY apellido_y_nombre_asegurado");            
             $sentenciaSQL->execute();
             return $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
