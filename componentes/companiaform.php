@@ -126,8 +126,7 @@ if (isset($_SESSION["msj_error"])) {
                                     <thead>
                                         <tr>
                                             <th>CUIT</th>
-                                            <th>Nombre</th>
-                                            <th>Domicilio</th>
+                                            <th>Nombre</th>                                            
                                             <th>Teléfono</th>
                                             <th>Correo Electrónico</th>
                                             <th>Accion</th>
@@ -141,10 +140,7 @@ if (isset($_SESSION["msj_error"])) {
                                                 </td>
                                                 <td>
                                                     <?php echo $compania['nombre_compania'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $compania['domicilio_compania'] ?>
-                                                </td>
+                                                </td>                                                
                                                 <td>
                                                     <?php echo $compania['telefono_compania'] ?>
                                                 </td>
