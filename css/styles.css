@@ -54,16 +54,16 @@ i.fa-solid.fa-house:hover{
 }
 
 /*Tablas - Grid*/
+thead {
+  background-color :grey;
+  color: white  
+}
+/*
 tbody tr:nth-child(even)
 {
   background: cornsilk;
 }
-
-thead {
-  background-color :grey;
-  color: white
-  
-}
+*/
 
 .navbar.navbar-expand-lg.bg-primary {
   background-color:rgb(128, 0, 105) !important;

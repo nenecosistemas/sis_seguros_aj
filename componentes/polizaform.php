@@ -142,7 +142,7 @@ if (isset($_SESSION["msj_error"])) {
                             <div class="card-header">
                             </div>
                             <div class="card-body">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered table-hover" >
                                     <thead>
                                         <tr>
                                             <th>Poliza</th>
