@@ -179,11 +179,15 @@ if (isset($_SESSION["msj_error"])) {
                                             </tr>
                                         <?php } ?>
                                     </tbody>
-
                                 </table>
-                                <button type="submit" name="accion" value="imprimir" data-bs-toggle="modal" data-bs-target="#ModificarModal" class="btn btn-sm btn-warning">
-                                    <i class="fa-solid fa-print"></i> Imprimir
-                                </button>
+                                <form method="POST" enctype="multipart/form-data" action="pdf-consultapolizaxvencimiento.php">
+                                    <input type="hidden" name="fechadesde" value="<?php echo $vencimientodesde ?>" />
+                                    <input type="hidden" name="fechahasta" value="<?php echo $vencimientohasta ?>" />
+
+                                    <button type="submit" name="accion" value="imprimir" data-bs-toggle="modal" data-bs-target="#ModificarModal" class="btn btn-sm btn-warning">
+                                        <i class="fa-solid fa-print"></i> Imprimir
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <!-- fin div -->
