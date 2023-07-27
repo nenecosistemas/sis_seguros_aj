@@ -102,7 +102,7 @@ if (isset($_SESSION["msj_error"])) {
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="ivabuscado">Sección: </span>
+                                        <span class="input-group-text" id="txivabuscado">Sección: </span>
                                         <input type="text" id="ivabuscado" name="ivabuscado"
                                             class="form-control" placeholder=" ingrese dato a Buscar (I.V.A.) "
                                             aria-label="iva" aria-describedby="iva">
@@ -201,5 +201,10 @@ if (isset($_SESSION["msj_error"])) {
             </div>
         </div>
     </div>
+    <script>
+      $(document).ready(function() {
+         document.getElementById("ivabuscado").focus();
+      });
+   </script>
 </body>
 <?php include("pie.php"); ?>

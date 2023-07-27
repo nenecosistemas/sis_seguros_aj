@@ -200,4 +200,27 @@ class PolizaModel
         }
     }
 
+    public function BuscarporVigenciahasta($fechadesde, $fechahasta)
+    {
+        try {
+
+            $sentenciaSQL = $this->__GET('conexion')->prepare("SELECT aj_poliza.*,
+            aj_compania.nombre_compania,
+            aj_seccion.nombre_seccion,
+            aj_asegurado.apellido_y_nombre_asegurado
+            FROM aj_poliza 
+            LEFT JOIN aj_compania on aj_poliza.compania_id = aj_compania.cuit_compania
+            LEFT JOIN aj_seccion on aj_poliza.seccion_id = aj_seccion.id
+            LEFT JOIN aj_asegurado on aj_poliza.asegurado_id = aj_asegurado.dni_asegurado
+            WHERE aj_poliza.vigencia_hasta between :fechadesde and :fechahasta order by aj_poliza.poliza_nro");
+            $sentenciaSQL->bindParam(':fechadesde', $fechadesde);
+            $sentenciaSQL->bindParam(':fechahasta', $fechahasta);            
+            $sentenciaSQL->execute();
+            return $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
+
 }

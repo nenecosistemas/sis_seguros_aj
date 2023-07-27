@@ -106,7 +106,7 @@ if (isset($_SESSION["msj_error"])) {
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="companiabuscado">Compañia: </span>
+                                        <span class="input-group-text" id="txcompaniabuscado">Compañia: </span>
                                         <input type="text" id="companiabuscado" name="companiabuscado" class="form-control" placeholder=" ingrese dato a Buscar (Compañia) " aria-label="compania" aria-describedby="compania">
                                         <button type="submit" name="accion" value="Buscar" class="btn btn-primary">
                                             Buscar compañia
@@ -223,5 +223,10 @@ if (isset($_SESSION["msj_error"])) {
             </div>
         </div>
     </div>
+    <script>
+      $(document).ready(function() {
+         document.getElementById("companiabuscado").focus();
+      });
+   </script>
 </body>
 <?php include("pie.php"); ?>

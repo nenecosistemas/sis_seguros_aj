@@ -55,18 +55,16 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/polizaform.php">ABM - Poliza</a></li>
                                 <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapoliza.php">Consulta
-                                        por Nro de Poliza</a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxcompaniaseccion.php">Consulta por
-                                        Compañia -
-                                        Sección</a></li>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxriesgo.php">Consulta por Detalle de
-                                        Riesgo</a></li>
-                                <div class="dropdown-divider"></div>
                                 <li><a class="dropdown-item" href="/sis_seguros_aj/componentes/consultapolizaxvencimiento.php">Consulta por
                                         Vencimiento</a>
                                 </li>
+                                <div class="dropdown-divider"></div>
+                                <li><a class="dropdown-item" href="#">Consulta por
+                                        Compañia -
+                                        Sección</a></li>
+                                <li><a class="dropdown-item" href="#">Consulta por Detalle de
+                                        Riesgo</a></li>
+                                <div class="dropdown-divider"></div>                                
                             </ul>
                         </div>
                     </li>
