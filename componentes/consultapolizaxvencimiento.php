@@ -50,13 +50,13 @@ switch ($txtAccion) {
         $listapolizas = $txPolizaModel->BuscarporVigenciahasta($vencimientodesde, $vencimientohasta);
         break;
     case "Cancelar":
-?>
+        ?>
         <script>
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = "/sis_seguros_aj/componentes/polizaform.php";
             });
         </script>
-<?php
+        <?php
         break;
 }
 ?>
@@ -65,7 +65,7 @@ switch ($txtAccion) {
 ## Mensajes comunes
 if (isset($_SESSION["msj_normal"])) {
     $mensaje = $_SESSION["msj_normal"];
-?>
+    ?>
     <script>
         Swal.fire('Mensaje!', '<?php echo $mensaje ?>', 'success');
     </script>
@@ -83,11 +83,11 @@ if (isset($_SESSION["msj_error"])) {
     ?>
     <script>
         Swal.fire('Error!', '<?php echo $mensaje ?>', 'error');
-        setTimeout(function() {
+        setTimeout(function () {
             window.location.href = "/sis_seguros_aj/index.php";
         }, 1500);
     </script>
-<?php
+    <?php
     if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
         // session isn't started
         session_start();
@@ -102,12 +102,15 @@ if (isset($_SESSION["msj_error"])) {
         <div class="container-fluid">
             <ul class="nav nav-pills justify-content-around id=" menu" role="tablist"">  
                 <li class=" nav-item" role="presentation">
-                <button class="nav-link" id="pills-consulta-tab" data-bs-toggle="pill" data-bs-target="#pills-consulta" type="button" role="tab" aria-controls="pills-consulta" aria-selected="true">Consulta Polizas por Vencimiento de Vigencia</button>
+                <button class="nav-link" id="pills-consulta-tab" data-bs-toggle="pill" data-bs-target="#pills-consulta"
+                    type="button" role="tab" aria-controls="pills-consulta" aria-selected="true">Consulta Polizas por
+                    Vencimiento de Vigencia</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <!-- Consulta -->
-                <div class="container-fluid text-center tab-pane fade show active" id="pills-consulta" role="tabpanel" aria-labelledby="pills-consulta-tab" tabindex="0">
+                <div class="container-fluid text-center tab-pane fade show active" id="pills-consulta" role="tabpanel"
+                    aria-labelledby="pills-consulta-tab" tabindex="0">
                     <!-- Pagina de Busqueda -->
                     <div class="card">
                         <div class="card-header">
@@ -116,11 +119,17 @@ if (isset($_SESSION["msj_error"])) {
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="vigencia">Vencimiento - Vigencia desde: </span>
-                                        <input type="date" id="fechadesde" name="fechadesde" class="form-control" placeholder="" aria-label="fechadesde" aria-describedby="fechadesde">
+                                        <span class="input-group-text" id="vigencia">Vencimiento - Vigencia desde:
+                                        </span>
+                                        <input type="date" id="fechadesde" name="fechadesde" class="form-control"
+                                            placeholder="" aria-label="fechadesde"
+                                            aria-describedby="fechadesde" required >
                                         <span class="input-group-text" id="aseguradobuscado">hasta: </span>
-                                        <input type="date" id="fechahasta" name="fechahasta" class="form-control" placeholder="" aria-label="fechahasta" aria-describedby="fechahasta">
-                                        <button type="submit" name="accion" value="Buscarvencimiento" class="btn btn-primary">
+                                        <input type="date" id="fechahasta" name="fechahasta" class="form-control"
+                                             placeholder="" aria-label="fechahasta"
+                                            aria-describedby="fechahasta" required>
+                                        <button type="submit" name="accion" value="Buscarvencimiento"
+                                            class="btn btn-primary">
                                             Buscar Polizas <i class="fa-solid fa-search"></i></button>
                                     </div>
                                 </div>
@@ -167,10 +176,10 @@ if (isset($_SESSION["msj_error"])) {
                                                     <?php echo $poliza['apellido_y_nombre_asegurado'] ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo date('d/m/Y', strtotime($poliza['vigencia_desde']))  ?>
+                                                    <?php echo date('d/m/Y', strtotime($poliza['vigencia_desde'])) ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo date('d/m/Y', strtotime($poliza['vigencia_hasta']))  ?>
+                                                    <?php echo date('d/m/Y', strtotime($poliza['vigencia_hasta'])) ?>
                                                 </td>
 
                                                 <td>
@@ -180,11 +189,13 @@ if (isset($_SESSION["msj_error"])) {
                                         <?php } ?>
                                     </tbody>
                                 </table>
-                                <form method="POST" enctype="multipart/form-data" action="pdf-consultapolizaxvencimiento.php">
+                                <form target="_blank" method="POST" enctype="multipart/form-data"
+                                    action="pdf-consultapolizaxvencimiento.php">
                                     <input type="hidden" name="fechadesde" value="<?php echo $vencimientodesde ?>" />
                                     <input type="hidden" name="fechahasta" value="<?php echo $vencimientohasta ?>" />
 
-                                    <button type="submit" name="accion" value="imprimir" data-bs-toggle="modal" data-bs-target="#ModificarModal" class="btn btn-sm btn-warning">
+                                    <button type="submit" name="accion" value="imprimir" data-bs-toggle="modal"
+                                        data-bs-target="#ModificarModal" class="btn btn-sm btn-warning">
                                         <i class="fa-solid fa-print"></i> Imprimir
                                     </button>
                                 </form>
@@ -197,7 +208,7 @@ if (isset($_SESSION["msj_error"])) {
         </div>
     </div>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             document.getElementById("fechadesde").focus();
         });
     </script>
