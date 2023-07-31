@@ -19,9 +19,9 @@ $titulo = (isset($_POST["titulo"])) ? $_POST["titulo"] : "";
 $txPolizaModel = new PolizaModel();
 $listapolizas = $txPolizaModel->BuscarporVigenciahasta($vencimientodesde, $vencimientohasta);
 
-
 class PDF extends FPDF
 {
+
     // Cabecera de página
     function Header()
     {
@@ -33,14 +33,19 @@ class PDF extends FPDF
         $this->Ln(5);
         $this->Cell(60);
 
-        // Título
-        $titulo = "Vencimientos de Polizas";
-        $this->Cell(55, 10, $titulo, 1, 0, 'C');
+        // Título        
+        $this->Cell(55, 10, $GLOBALS["titulo"], 1, 0, 'C');
         $this->Cell(60);
         $this->SetFont('Arial', '', 8);
         $this->Cell(5, 10, date("d/m/Y"), 0, 0, 'C');
         // Salto de línea
-        $this->Ln(20);
+        $this->Ln(8);
+        $this->Cell(60);
+        // Título       
+        $desdehasta = 'Desde ' .date('d/m/Y', strtotime($GLOBALS["vencimientodesde"]))  . " hasta " . date('d/m/Y', strtotime($GLOBALS["vencimientohasta"])) ;
+        $this->Cell(55, 10, $desdehasta, 0, 0, 'C');
+        // Salto de línea
+        $this->Ln(12);
     }
 
     // Pie de página
@@ -102,11 +107,11 @@ foreach ($listapolizas as $poliza) {
         //print column titles for the current page
         if ($companiacorte <> $compania || $seccioncorte <> $seccion) {
             $pdf->SetX(10);
-            $pdf->SetFont('Arial','', 10);
+            $pdf->SetFont('Arial', '', 10);
             $pdf->Cell(20, 10, iconv("UTF-8", "ISO-8859-1", "Compañia: "), 0, 0, 'C');
             $pdf->SetFont('Arial', 'B', 10);
             $pdf->Cell(55, 10, iconv("UTF-8", "ISO-8859-1", $compania), 0, 0, 'L');
-            $pdf->SetFont('Arial','', 10);
+            $pdf->SetFont('Arial', '', 10);
             $pdf->Cell(15, 10, iconv("UTF-8", "ISO-8859-1", "Sección: "), 0, 0, 'C');
             $pdf->SetFont('Arial', 'B', 10);
             $pdf->Cell(35, 10, iconv("UTF-8", "ISO-8859-1", $seccion), 0, 0, 'L');
@@ -150,7 +155,7 @@ foreach ($listapolizas as $poliza) {
         $companiacorte = $compania;
         $seccioncorte = $seccion;
         $y_axis = $y_axis + $row_height;
-        $y_axis = $y_axis + $row_height;        
+        $y_axis = $y_axis + $row_height;
         $i = $i + 1;
         $pdf->SetY($y_axis);
         $pdf->SetFillColor(232, 232, 232);
@@ -165,9 +170,8 @@ foreach ($listapolizas as $poliza) {
         $pdf->Cell(20, 6, 'hasta', 1, 0, 'C', 1);
         $pdf->Cell(50, 6, 'Suma Asegurada', 1, 0, 'C', 1);
         //Go to next row
-        $y_axis = $y_axis + $row_height;        
+        $y_axis = $y_axis + $row_height;
         $fill = false;
-
     }
 
     $pdf->SetFillColor(224, 235, 255);
@@ -175,7 +179,7 @@ foreach ($listapolizas as $poliza) {
     $pdf->SetFont('');
 
     $pdf->SetY($y_axis);
-    $pdf->SetX(10);    
+    $pdf->SetX(10);
     $pdf->Cell(25, 6, iconv("UTF-8", "ISO-8859-1", $polizanro), 1, 0, 'C', $fill);
     $pdf->Cell(15, 6, iconv("UTF-8", "ISO-8859-1", $endoso), 1, 0, 'C', $fill);
     $pdf->Cell(45, 6, iconv("UTF-8", "ISO-8859-1", $asegurado), 1, 0, 'L', $fill);

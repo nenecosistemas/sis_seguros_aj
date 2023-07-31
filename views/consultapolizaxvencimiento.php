@@ -193,7 +193,7 @@ if (isset($_SESSION["msj_error"])) {
                                     action="pdf-consultapolizaxvencimiento.php">
                                     <input type="hidden" name="fechadesde" value="<?php echo $vencimientodesde ?>" />
                                     <input type="hidden" name="fechahasta" value="<?php echo $vencimientohasta ?>" />
-                                    <input type="hidden" name="titulo" value="Listado de Vencimientos de Polizas" />
+                                    <input type="hidden" name="titulo" value="Vencimientos de Polizas" />
 
                                     <button type="submit" name="accion" value="imprimir" data-bs-toggle="modal"
                                         data-bs-target="#ModificarModal" class="btn btn-sm btn-warning">
