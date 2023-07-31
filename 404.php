@@ -1,4 +1,4 @@
-<?php include("componentes/encabezado.php"); ?>      
+<?php include("views/encabezado.php"); ?>      
 <body class="bodyerror">
     <div class="d-flex align-items-center justify-content-center" id="Errorpage">
         <div class="text-center row">
@@ -20,4 +20,4 @@
         </div>
     </div>
 </body>
-<?php include("componentes/pie.php"); ?>       
+<?php include("views/pie.php"); ?>       

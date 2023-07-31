@@ -13,7 +13,7 @@ class CompaniaModel
 
     public function __construct()
     {
-        include_once("../clases/conexion.php");
+        include_once("../controller/conexion.php");
 
         try {
             $conectar = new Conexion();

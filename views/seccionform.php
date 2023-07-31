@@ -1,24 +1,24 @@
 <?php
-include_once("../clases/conexion.php");
-include_once("../clases/iva.php");
-include_once("../clases/ivamodel.php");
+include_once("../controller/conexion.php");
+include_once("../model/seccion.php");
+include_once("../controller/seccioncontroller.php");
 include("encabezado.php");
 
-$txtivaBuscado = (isset($_POST["ivabuscado"])) ? $_POST["ivabuscado"] : "";
+$txtseccionBuscado = (isset($_POST["seccionbuscado"])) ? $_POST["seccionbuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
-$txiva = new Iva();
+$txseccion = new Seccion();
 
 if (isset($_POST["accion"])) {
-    $txiva->__SET("id", (isset($_POST["id"])) ? $_POST["id"] : "");
-    $txiva->__SET("nombre_iva", (isset($_POST["nombre_iva"])) ? $_POST["nombre_iva"] : "");
-    $txiva->__SET("descripcion_iva", (isset($_POST["descripcion_iva"])) ? $_POST["descripcion_iva"] : "");
+    $txseccion->__SET("id", (isset($_POST["id"])) ? $_POST["id"] : "");
+    $txseccion->__SET("nombre_seccion", (isset($_POST["nombre_seccion"])) ? $_POST["nombre_seccion"] : "");
+    $txseccion->__SET("descripcion_seccion", (isset($_POST["descripcion_seccion"])) ? $_POST["descripcion_seccion"] : "");
 }
 
 switch ($txtAccion) {
     case "Agregar":
-        $txivaModel = new ivaModel();
-        $txivaModel->Agregar($txiva);
+        $txseccionModel = new SeccionModel();
+        $txseccionModel->Agregar($txseccion);
         if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
             // session isn't started
             session_start();
@@ -26,14 +26,14 @@ switch ($txtAccion) {
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
     case "Buscar":
-        $txivaModel = new ivaModel();
-        $listaivas = $txivaModel->Buscar($txtivaBuscado);
+        $txseccionModel = new SeccionModel();
+        $listaseccions = $txseccionModel->Buscar($txtseccionBuscado);
         break;
     case "Cancelar":
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/componentes/ivaform.php";
+                window.location.href = "/sis_seguros_aj/views/seccionform.php";
             });
         </script>
         <?php
@@ -78,7 +78,7 @@ if (isset($_SESSION["msj_error"])) {
 
 <body>
     <div class="col-md-12 justify-content-center" id="Normalpage">
-        <label for="titulo" class="labeltitulo" style="width: 100%;">I.V.A.</label>
+        <label for="titulo" class="labeltitulo" style="width: 100%;">SECCIÓN</label>
         <div class="container-fluid">
             <ul class="nav nav-pills justify-content-around id=" menu" role="tablist"">  
                 <li class=" nav-item" role="presentation">
@@ -102,18 +102,18 @@ if (isset($_SESSION["msj_error"])) {
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="txivabuscado">Sección: </span>
-                                        <input type="text" id="ivabuscado" name="ivabuscado"
-                                            class="form-control" placeholder=" ingrese dato a Buscar (I.V.A.) "
-                                            aria-label="iva" aria-describedby="iva">
+                                        <span class="input-group-text" id="txseccionbuscado">Sección: </span>
+                                        <input type="text" id="seccionbuscado" name="seccionbuscado"
+                                            class="form-control" placeholder=" ingrese dato a Buscar (Sección) "
+                                            aria-label="seccion" aria-describedby="seccion">
                                         <button type="submit" name="accion" value="Buscar" class="btn btn-primary">
-                                            Buscar I.V.A. <i class="fa-solid fa-search"></i></button>
+                                            Buscar Sección <i class="fa-solid fa-search"></i></button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <?php if (isset($listaivas) and !empty($listaivas)) { ?>
+                    <?php if (isset($listaseccions) and !empty($listaseccions)) { ?>
                         <!-- Resultado de Busqueda -->
                         <div class="card">
                             <div class="card-header">
@@ -122,24 +122,24 @@ if (isset($_SESSION["msj_error"])) {
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>I.V.A.</th>
-                                            <th>Descripción</th>
-                                            <th>Acción</th>
+                                            <th>Seccion</th>
+                                            <th>descripcion</th>
+                                            <th>Accion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($listaivas as $iva) { ?>
+                                        <?php foreach ($listaseccions as $seccion) { ?>
                                             <tr>
                                                 <td>
-                                                    <?php echo $iva['nombre_iva'] ?>
+                                                    <?php echo $seccion['nombre_seccion'] ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $iva['descripcion_iva'] ?>
+                                                    <?php echo $seccion['descripcion_seccion'] ?>
                                                 </td>
                                                 <td>
                                                     <form method="POST" enctype="multipart/form-data"
-                                                        action="ivaeditarborrar.php">
-                                                        <input type="hidden" name="id" value="<?php echo $iva['id'] ?>" />
+                                                        action="seccioneditarborrar.php">
+                                                        <input type="hidden" name="id" value="<?php echo $seccion['id'] ?>" />
 
                                                         <button type="submit" name="accion" value="Seleccionar"
                                                             data-bs-toggle="modal" data-bs-target="#ModificarModal"
@@ -170,26 +170,27 @@ if (isset($_SESSION["msj_error"])) {
                         <div class="card-body">
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
-                                    <div class="input-group mb-3">                                        
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="id" type="hidden">ID</span>
                                         <input type="hidden" id="id" name="id" class="form-control" aria-label="id"
                                             aria-describedby="id" hide>
-                                        <span class="input-group-text">I.V.A.</span>
-                                        <input type="text" id="nombre_iva" name="nombre_iva"
-                                            class="form-control" placeholder="" aria-label="nombre_iva"
-                                            aria-describedby="nombre_iva">
+                                        <span class="input-group-text">Nombre</span>
+                                        <input type="text" id="nombre_seccion" name="nombre_seccion"
+                                            class="form-control" placeholder="" aria-label="nombre_seccion"
+                                            aria-describedby="nombre_seccion">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="descripcion_iva">Descripción</span>
-                                        <input type="text" id="descripcion_iva" name="descripcion_iva"
-                                            class="form-control" placeholder="" aria-label="descripcion_iva"
-                                            aria-describedby="descripcion_iva">
+                                        <span class="input-group-text" id="descripcion_seccion">descripcion</span>
+                                        <input type="text" id="descripcion_seccion" name="descripcion_seccion"
+                                            class="form-control" placeholder="" aria-label="descripcion_seccion"
+                                            aria-describedby="descripcion_seccion">
                                     </div>
                                 </div>
                                 <div class="col-md-12 ">
                                     <button type="submit" name="accion" value="Agregar" class="btn btn-primary">
-                                        Grabar I.V.A. <i class="fa-solid fa-save"></i></button>
+                                        Grabar Sección <i class="fa-solid fa-save"></i></button>
                                     <button type="cancel" name="accion" value="Cancelar" class="btn btn-info">
                                         Cancelar
                                         <i class="fa-solid fa-cancel"></i></button>
@@ -203,7 +204,7 @@ if (isset($_SESSION["msj_error"])) {
     </div>
     <script>
       $(document).ready(function() {
-         document.getElementById("ivabuscado").focus();
+         document.getElementById("seccionbuscado").focus();
       });
    </script>
 </body>

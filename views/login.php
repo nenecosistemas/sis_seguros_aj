@@ -1,8 +1,8 @@
 <?php
 
-include_once("../clases/conexion.php");
-include_once("../clases/usuario.php");
-include_once("../clases/usuariomodel.php");
+include_once("../controller/conexion.php");
+include_once("../model/usuario.php");
+include_once("../controller/usuariocontroller.php");
 
 if (isset($_POST["emailusuario"])) {
    $txtcorreo = (isset($_POST["emailusuario"])) ? $_POST["emailusuario"] : "";

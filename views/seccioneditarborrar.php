@@ -1,7 +1,7 @@
 <?php
-include_once("../clases/conexion.php");
-include_once("../clases/seccion.php");
-include_once("../clases/seccionmodel.php");
+include_once("../controller/conexion.php");
+include_once("../model/seccion.php");
+include_once("../controller/seccioncontroller.php");
 
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
@@ -29,7 +29,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/componentes/seccionform.php";
+                window.location.href = "/sis_seguros_aj/views/seccionform.php";
             });
         </script>
         <?php
@@ -42,7 +42,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/componentes/seccionform.php";
+                window.location.href = "/sis_seguros_aj/views/seccionform.php";
             });
         </script>
         <?php
@@ -51,7 +51,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/componentes/seccionform.php";
+                window.location.href = "/sis_seguros_aj/views/seccionform.php";
             });
         </script>
         <?php

@@ -1,9 +1,9 @@
 <?php
-include_once("../clases/conexion.php");
-include_once("../clases/compania.php");
-include_once("../clases/iva.php");
-include_once("../clases/companiamodel.php");
-include_once("../clases/ivamodel.php");
+include_once("../controller/conexion.php");
+include_once("../model/compania.php");
+include_once("../model/iva.php");
+include_once("../controller/companiacontroller.php");
+include_once("../controller/ivacontroller.php");
 
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
@@ -42,7 +42,7 @@ switch ($txtAccion) {
 ?>
         <script>
             setTimeout(function() {
-                window.location.href = "/sis_seguros_aj/componentes/companiaform.php";
+                window.location.href = "/sis_seguros_aj/views/companiaform.php";
             });
         </script>
     <?php
@@ -55,7 +55,7 @@ switch ($txtAccion) {
     ?>
         <script>
             setTimeout(function() {
-                window.location.href = "/sis_seguros_aj/componentes/companiaform.php";
+                window.location.href = "/sis_seguros_aj/views/companiaform.php";
             });
         </script>
     <?php
@@ -64,7 +64,7 @@ switch ($txtAccion) {
     ?>
         <script>
             setTimeout(function() {
-                window.location.href = "/sis_seguros_aj/componentes/companiaform.php";
+                window.location.href = "/sis_seguros_aj/views/companiaform.php";
             });
         </script>
 <?php

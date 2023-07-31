@@ -1,13 +1,13 @@
 <?php
-include_once("../clases/conexion.php");
-include_once("../clases/poliza.php");
-include_once("../clases/polizamodel.php");
-include_once("../clases/compania.php");
-include_once("../clases/companiamodel.php");
-include_once("../clases/seccion.php");
-include_once("../clases/seccionmodel.php");
-include_once("../clases/asegurado.php");
-include_once("../clases/aseguradomodel.php");
+include_once("../controller/conexion.php");
+include_once("../model/poliza.php");
+include_once("../controller/polizacontroller.php");
+include_once("../model/compania.php");
+include_once("../controller/companiacontroller.php");
+include_once("../model/seccion.php");
+include_once("../controller/seccioncontroller.php");
+include_once("../model/asegurado.php");
+include_once("../controller/aseguradocontroller.php");
 
 include("encabezado.php");
 
@@ -53,7 +53,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/componentes/polizaform.php";
+                window.location.href = "/sis_seguros_aj/views/polizaform.php";
             });
         </script>
         <?php

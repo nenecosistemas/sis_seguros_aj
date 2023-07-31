@@ -1,6 +1,6 @@
-<?php include("componentes/encabezado.php"); ?>   
+<?php include("views/encabezado.php"); ?>   
 <body>
-  <?php include("componentes/principal.php"); ?>  
+  <?php include("views/principal.php"); ?>  
 </body>
-<?php include("componentes/pie.php"); ?>   
+<?php include("views/pie.php"); ?>   
   
