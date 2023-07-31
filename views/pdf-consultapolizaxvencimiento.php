@@ -8,7 +8,7 @@ include_once("../model/seccion.php");
 include_once("../controller/seccioncontroller.php");
 include_once("../model/asegurado.php");
 include_once("../controller/aseguradocontroller.php");
-require("../controller/fpdf.php");
+require("../lib/fpdf.php");
 
 // datos 
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
