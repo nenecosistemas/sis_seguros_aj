@@ -177,7 +177,7 @@ class PolizaModel
             LEFT JOIN aj_compania on aj_poliza.compania_id = aj_compania.cuit_compania
             LEFT JOIN aj_seccion on aj_poliza.seccion_id = aj_seccion.id
             LEFT JOIN aj_asegurado on aj_poliza.asegurado_id = aj_asegurado.dni_asegurado
-            WHERE aj_asegurado.apellido_y_nombre_asegurado LIKE CONCAT('%', :nombre_asegurado, '%') order by aj_poliza.poliza_nro");
+            WHERE aj_asegurado.apellido_y_nombre_asegurado LIKE CONCAT('%', :nombre_asegurado, '%') order by aj_compania.nombre_compania, aj_seccion.nombre_seccion, aj_poliza.poliza_nro");
             $sentenciaSQL->bindParam(':nombre_asegurado', $txtaseguradoBuscado, PDO::PARAM_STR);
             $sentenciaSQL->execute();
             return $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
@@ -212,7 +212,7 @@ class PolizaModel
             LEFT JOIN aj_compania on aj_poliza.compania_id = aj_compania.cuit_compania
             LEFT JOIN aj_seccion on aj_poliza.seccion_id = aj_seccion.id
             LEFT JOIN aj_asegurado on aj_poliza.asegurado_id = aj_asegurado.dni_asegurado
-            WHERE aj_poliza.vigencia_hasta between :fechadesde and :fechahasta order by aj_poliza.poliza_nro");
+            WHERE aj_poliza.vigencia_hasta between :fechadesde and :fechahasta order by aj_compania.nombre_compania, aj_seccion.nombre_seccion, aj_poliza.poliza_nro");
             $sentenciaSQL->bindParam(':fechadesde', $fechadesde);
             $sentenciaSQL->bindParam(':fechahasta', $fechahasta);            
             $sentenciaSQL->execute();
