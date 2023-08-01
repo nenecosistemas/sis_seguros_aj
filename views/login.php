@@ -69,11 +69,10 @@ if (isset($_SESSION["msj_error"])) {
                      <div class="form-floating">
                         <input type="email" class="form-control" id="email_asegurado" name="emailusuario" placeholder="name@example.com">
                         <label for="email_asegurado"> Correo Electrónico </label>
-                     </div>
+                     </div>                     
                      <div class="form-floating">
                         <input type="password" class="form-control" id="claveusuario" name="claveusuario" placeholder="name@example.com">
                         <label for="claveusuario"> Clave </label>
-
                      </div>
                   </div>
             </div>

@@ -1,10 +1,11 @@
 <?php
 class Usuario
 {
-    private $usuario;
-    private $nombrereal;
     private $correo;
     private $clave;
+    private $usuario;
+    private $nombrereal;
+    
     public function __GET($k)
     {
         return $this->$k;
