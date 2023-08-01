@@ -1,8 +1,8 @@
 <?php
 class Usuario
 {
-    private $nombre;
-    private $nombreReal;
+    private $usuario;
+    private $nombrereal;
     private $correo;
     private $clave;
     public function __GET($k)
@@ -17,7 +17,7 @@ class Usuario
     public function __construct(string $correo, string $clave)
     {
         $this->correo = $correo;
-        $this->clave = $clave;
+        $this->clave = $clave;        
 
     }
 
