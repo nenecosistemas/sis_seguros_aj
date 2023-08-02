@@ -51,7 +51,6 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
             <?php
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                 ?>
-
                 <ul class="list-group list-group-horizontal" id="menu">
                     <li class="list-group-item border-0">
                         <div class="dropdown">
@@ -105,6 +104,40 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
             }
             ?>
             <ul class="list-group list-group-horizontal" id="menu">
+                <?php
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                    ?>
+                    <div class="btn-group dropleft">
+                        <li class="list-group-item border-0 dropleft">
+                            <i class="btn dropdown fa-solid fa-circle-user fa-2xl" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            </i>
+                            <ul class="dropdown-menu ">
+                                <?php
+                                if (isset($_SESSION['rol_admin']) && $_SESSION['rol_admin'] == "admin") {
+                                    ?>
+                                    <li><a class="dropdown-item " href="#"><i class="fa-solid fa-user-plus ">
+                                            </i> Alta</a>
+                                    </li>
+                                    <div class="dropdown-divider"></div>
+                                    <?php
+                                }
+                                ?>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-pen ">
+                                        </i> Modificar</a>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <li>
+                                    <a class="dropdown-item" href="/sis_seguros_aj/views/logout.php">
+                                        <i class="fa-solid fa-right-from-bracket "></i> Salir
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+                    </li>
+                    <?php
+                }
+                ?>
                 <li class="list-group-item border-0">
                     <!-- Button trigger modal LOGIN-->
                     <?php
@@ -120,11 +153,12 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                     <?php
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         ?>
-                        <!-- Button LOGOUT-->
+                        <!-- Button LOGOUT 
                         <a href="/sis_seguros_aj/views/logout.php">
                             <i class="fa-solid fa-right-from-bracket fa-2xl">
                             </i>
                         </a>
+                        -->
                         <?php
                     }
                     ?>

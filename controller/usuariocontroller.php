@@ -101,9 +101,22 @@ class UsuarioModel
     }
     public function esUsuarioHabilitado(string $correo, string $clave)
     {
+        $rol = "user";
         if ($correo == "andrea@andrea.com" and $clave == "valentina") {
+            if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
+                // session isn't started
+                session_start();
+            }
+            if ($rol == "admin") {
+                $_SESSION["rol_admin"] = $rol;
+            }            
             return true;
         } else {
+            if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
+                // session isn't started
+                session_start();
+            }
+            unset($_SESSION["rol_admin"]);
             return false;
         }
     }

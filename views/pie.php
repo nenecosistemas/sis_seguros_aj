@@ -12,4 +12,4 @@
     })
 </script>
 
-<script src="../css/currency.js"></script>
+<script src="../lib/currency.js"></script>
