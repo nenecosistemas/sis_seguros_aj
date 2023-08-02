@@ -109,9 +109,18 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                     ?>
                     <div class="btn-group dropleft">
                         <li class="list-group-item border-0 dropleft">
+                            
                             <i class="btn dropdown fa-solid fa-circle-user fa-2xl" data-bs-toggle="dropdown"
                                 aria-expanded="false">
+                                <a style="font-size:1rem; color:#D7DBDD; font-family:'Times New Roman', serif ;">
+                            <?php
+                            if (isset($_SESSION['user_login'])) {
+                             echo $_SESSION["user_login"];
+                            }
+                            ?>
+                            </a>
                             </i>
+                            
                             <ul class="dropdown-menu ">
                                 <?php
                                 if (isset($_SESSION['rol_admin']) && $_SESSION['rol_admin'] == "admin") {
@@ -124,7 +133,7 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                                 }
                                 ?>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-pen ">
-                                        </i> Modificar</a>
+                                        </i> Modificar clave</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li>
