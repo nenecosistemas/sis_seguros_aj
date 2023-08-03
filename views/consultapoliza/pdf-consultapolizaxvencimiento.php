@@ -1,4 +1,5 @@
 <?php
+
 include_once("../../controller/conexion.php");
 include_once("../../model/poliza.php");
 include_once("../../controller/polizacontroller.php");
@@ -64,6 +65,8 @@ class PDF extends FPDF
 /* Impresion en Archivo PDF */
 
 $pdf = new PDF();
+
+
 //Disable automatic page break
 $pdf->SetAutoPageBreak(false);
 $pdf->AliasNbPages();
@@ -205,8 +208,6 @@ foreach ($listapolizas as $poliza) {
 }
 
 //Send file
-?>
-<?php
-$pdf->SetTitle('consulta.pdf');
-$pdf->Output();
+$pdf->SetTitle('Consulta-Poliza.pdf');  // Para el Tab del Browser
+$pdf->Output("I","Consulta-Polizas.pdf"); // Nombre del archivo definitivo
 ?>

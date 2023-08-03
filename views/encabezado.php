@@ -17,7 +17,9 @@ if (!isset($_SESSION["entre"])) {
     <!-- 
   <base href="/sis_seguros_aj">
   -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">g    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msapplication-TileImage" content="/sis_seguros_aj/assets/favicon.ico">    
+    <link rel="shortcut icon" type="image/x-icon" href="/sis_seguros_aj/assets/favicon.ico">    
     <link rel="icon" type="image/x-icon" href="/sis_seguros_aj/assets/favicon.ico">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
