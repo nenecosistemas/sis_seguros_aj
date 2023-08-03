@@ -13,8 +13,8 @@ $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txcompania = new Compania();
 $txiva = new Iva();
 
-$txivaModel = new IvaModel();
-$listaivas = $txivaModel->Todos();
+$txIvaController = new IvaController();
+$listaivas = $txIvaController->Todos();
 
 if (isset($_POST["accion"])) {
     $txcompania->__SET("cuit_compania", (isset($_POST["cuit_compania"])) ? $_POST["cuit_compania"] : "");
@@ -27,14 +27,14 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Agregar":
-        $txcompaniaModel = new CompaniaModel();
-        $txcompaniaModel->Agregar($txcompania);
+        $txCompaniaController = new CompaniaController();
+        $txCompaniaController->Agregar($txcompania);
         session_start();
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
     case "Buscar":
-        $txcompaniaModel = new CompaniaModel();
-        $listacompanias = $txcompaniaModel->Buscar($txtcompaniaBuscado);
+        $txCompaniaController = new CompaniaController();
+        $listacompanias = $txCompaniaController->Buscar($txtcompaniaBuscado);
         break;
     case "Cancelar":
 ?>

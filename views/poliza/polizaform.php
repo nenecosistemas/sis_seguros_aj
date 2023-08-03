@@ -16,14 +16,14 @@ $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txPoliza = new Poliza();
 
-$txcompaniaModel = new CompaniaModel();
-$listacompanias = $txcompaniaModel->Todos();
+$txCompaniaController = new CompaniaController();
+$listacompanias = $txCompaniaController->Todos();
 
-$txseccionModel = new SeccionModel();
-$listasecciones = $txseccionModel->Todos();
+$txSeccionController = new SeccionController();
+$listasecciones = $txSeccionController->Todos();
 
-$txaseguradoModel = new AseguradoModel();
-$listaasegurados = $txaseguradoModel->Todos();
+$txAseguradoController = new AseguradoController();
+$listaasegurados = $txAseguradoController->Todos();
 
 if (isset($_POST["accion"])) {
     $txPoliza->__SET("compania_id", (isset($_POST["compania_id"])) ? $_POST["compania_id"] : "");
@@ -45,8 +45,8 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Agregar":
-        $txPolizaModel = new PolizaModel();
-        $txPolizaModel->Agregar($txPoliza);
+        $txPolizaController = new PolizaController();
+        $txPolizaController->Agregar($txPoliza);
         if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
             // session isn't started
             session_start();
@@ -54,8 +54,8 @@ switch ($txtAccion) {
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
     case "Buscar":
-        $txPolizaModel = new PolizaModel();
-        $listapolizas = $txPolizaModel->Buscar($txtaseguradoBuscado);
+        $txPolizaController = new PolizaController();
+        $listapolizas = $txPolizaController->Buscar($txtaseguradoBuscado);
         break;
     case "Cancelar":
 ?>

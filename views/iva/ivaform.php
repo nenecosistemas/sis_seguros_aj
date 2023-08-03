@@ -17,8 +17,8 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Agregar":
-        $txivaModel = new ivaModel();
-        $txivaModel->Agregar($txiva);
+        $txIvaController = new IvaController();
+        $txIvaController->Agregar($txiva);
         if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
             // session isn't started
             session_start();
@@ -26,8 +26,8 @@ switch ($txtAccion) {
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
     case "Buscar":
-        $txivaModel = new ivaModel();
-        $listaivas = $txivaModel->Buscar($txtivaBuscado);
+        $txIvaController = new IvaController();
+        $listaivas = $txIvaController->Buscar($txtivaBuscado);
         break;
     case "Cancelar":
         ?>

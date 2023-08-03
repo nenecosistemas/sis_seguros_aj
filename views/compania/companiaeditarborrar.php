@@ -10,8 +10,8 @@ $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txcompania = new Compania();
 $txiva = new Iva();
 
-$txivaModel = new IvaModel();
-$listaivas = $txivaModel->Todos();
+$txIvaController = new IvaController();
+$listaivas = $txIvaController->Todos();
 
 
 if (isset($_POST["accion"])) {
@@ -25,8 +25,8 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Seleccionar":
-        $txcompaniaModel = new CompaniaModel();
-        $compania = $txcompaniaModel->Seleccionar($txtId);
+        $txCompaniaController = new CompaniaController();
+        $compania = $txCompaniaController->Seleccionar($txtId);
         $txtcuit = $compania->cuit_compania;
         $txtiva = $compania->tipoiva_compania;
         $txtnombre = $compania->nombre_compania;
@@ -35,8 +35,8 @@ switch ($txtAccion) {
         $txtcorreo = $compania->correo_compania;
         break;
     case "Modificar":
-        $txcompaniaModel = new companiaModel();
-        $txcompaniaModel->Modificar($txcompania, $txcompania->__GET("cuit_compania"));
+        $txCompaniaController = new CompaniaController();
+        $txCompaniaController->Modificar($txcompania, $txcompania->__GET("cuit_compania"));
         session_start();
         $_SESSION["msj_normal"] = " Los datos se modificaron correctamente ";
 ?>
@@ -48,8 +48,8 @@ switch ($txtAccion) {
     <?php
         break;
     case "Eliminar":
-        $txcompaniaModel = new CompaniaModel();
-        $txcompaniaModel->Eliminar($txtId);
+        $txCompaniaController = new CompaniaController();
+        $txCompaniaController->Eliminar($txtId);
         session_start();
         $_SESSION["msj_normal"] = " El documento " . $txtId . " Se elimino correctamente";
     ?>

@@ -1,5 +1,5 @@
 <?php
-class IvaModel
+class IvaController
 {
     private $conexion;
     public function __GET($k)

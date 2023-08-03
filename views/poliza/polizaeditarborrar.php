@@ -13,14 +13,14 @@ $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txPoliza = new Poliza();
 
-$txcompaniaModel = new CompaniaModel();
-$listacompanias = $txcompaniaModel->Todos();
+$txCompaniaController = new CompaniaController();
+$listacompanias = $txCompaniaController->Todos();
 
-$txseccionModel = new SeccionModel();
-$listasecciones = $txseccionModel->Todos();
+$txSeccionController = new SeccionController();
+$listasecciones = $txSeccionController->Todos();
 
-$txaseguradoModel = new AseguradoModel();
-$listaasegurados = $txaseguradoModel->Todos();
+$txAseguradoController = new AseguradoController();
+$listaasegurados = $txAseguradoController->Todos();
 
 if (isset($_POST["accion"])) {
     $txPoliza->__SET("id", (isset($_POST["id"])) ? $_POST["id"] : "");
@@ -43,8 +43,8 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Seleccionar":
-        $txpolizaModel = new PolizaModel();
-        $poliza = $txpolizaModel->Seleccionar($txtId);
+        $txPolizaController = new PolizaController();
+        $poliza = $txPolizaController->Seleccionar($txtId);
         $txtid = $poliza->id;
         $compania = $poliza->compania_id;
         $seccion = $poliza->seccion_id;
@@ -62,8 +62,8 @@ switch ($txtAccion) {
         $premio = $poliza->premio;
         break;
     case "Modificar":
-        $txpolizaModel = new PolizaModel();
-        $txpolizaModel->Modificar($txPoliza, $txPoliza->__GET("id"));
+        $txPolizaController = new PolizaController();
+        $txPolizaController->Modificar($txPoliza, $txPoliza->__GET("id"));
         session_start();
         $_SESSION["msj_normal"] = " Los datos se modificaron correctamente ";
         ?>
@@ -75,8 +75,8 @@ switch ($txtAccion) {
         <?php
         break;
     case "Eliminar":
-        $txpolizaModel = new PolizaModel();
-        $txpolizaModel->Eliminar($txtId);
+        $txPolizaController = new PolizaController();
+        $txPolizaController->Eliminar($txtId);
         session_start();
         $_SESSION["msj_normal"] = " La Sección " . $txtId . " Se elimino correctamente";
         ?>

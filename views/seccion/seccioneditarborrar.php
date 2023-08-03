@@ -15,15 +15,15 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Seleccionar":
-        $txseccionModel = new SeccionModel();
-        $seccion = $txseccionModel->Seleccionar($txtId);
+        $txSeccionController = new SeccionController();
+        $seccion = $txSeccionController->Seleccionar($txtId);
         $txtid = $seccion->id;
         $txtnombre = $seccion->nombre_seccion;
         $txtdescripcion = $seccion->descripcion_seccion;
         break;
     case "Modificar":
-        $txseccionModel = new SeccionModel();
-        $txseccionModel->Modificar($txseccion, $txseccion->__GET("id"));
+        $txSeccionController = new SeccionController();
+        $txSeccionController->Modificar($txseccion, $txseccion->__GET("id"));
         session_start();
         $_SESSION["msj_normal"] = " Los datos se modificaron correctamente ";
         ?>
@@ -35,8 +35,8 @@ switch ($txtAccion) {
         <?php
         break;
     case "Eliminar":
-        $txseccionModel = new SeccionModel();
-        $txseccionModel->Eliminar($txtId);
+        $txSeccionController = new SeccionController();
+        $txSeccionController->Eliminar($txtId);
         session_start();
         $_SESSION["msj_normal"] = " La Sección " . $txtId . " Se elimino correctamente";
         ?>

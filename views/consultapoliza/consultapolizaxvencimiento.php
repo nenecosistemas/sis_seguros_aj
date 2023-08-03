@@ -17,14 +17,14 @@ $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txPoliza = new Poliza();
 
-$txcompaniaModel = new CompaniaModel();
-$listacompanias = $txcompaniaModel->Todos();
+$txCompaniaController = new CompaniaController();
+$listacompanias = $txCompaniaController->Todos();
 
-$txseccionModel = new SeccionModel();
-$listasecciones = $txseccionModel->Todos();
+$txSeccionController = new SeccionController();
+$listasecciones = $txSeccionController->Todos();
 
-$txaseguradoModel = new AseguradoModel();
-$listaasegurados = $txaseguradoModel->Todos();
+$txAseguradoController = new AseguradoController();
+$listaasegurados = $txAseguradoController->Todos();
 
 if (isset($_POST["accion"])) {
     $txPoliza->__SET("compania_id", (isset($_POST["compania_id"])) ? $_POST["compania_id"] : "");
@@ -46,8 +46,8 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Buscarvencimiento":
-        $txPolizaModel = new PolizaModel();
-        $listapolizas = $txPolizaModel->BuscarporVigenciahasta($vencimientodesde, $vencimientohasta);
+        $txPolizaController = new PolizaController();
+        $listapolizas = $txPolizaController->BuscarporVigenciahasta($vencimientodesde, $vencimientohasta);
         break;
     case "Cancelar":
         ?>

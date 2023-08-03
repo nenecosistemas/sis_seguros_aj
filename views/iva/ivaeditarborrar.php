@@ -15,15 +15,15 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Seleccionar":
-        $txivaModel = new IvaModel();
-        $iva = $txivaModel->Seleccionar($txtId);
+        $txIvaController = new IvaController();
+        $iva = $txIvaController->Seleccionar($txtId);
         $txtid = $iva->id;
         $txtnombre = $iva->nombre_iva;
         $txtdescripcion = $iva->descripcion_iva;
         break;
     case "Modificar":
-        $txivaModel = new IvaModel();
-        $txivaModel->Modificar($txiva, $txiva->__GET("id"));
+        $txIvaController = new IvaController();
+        $txIvaController->Modificar($txiva, $txiva->__GET("id"));
         session_start();
         $_SESSION["msj_normal"] = " Los datos se modificaron correctamente ";
         ?>
@@ -35,8 +35,8 @@ switch ($txtAccion) {
         <?php
         break;
     case "Eliminar":
-        $txivaModel = new IvaModel();
-        $txivaModel->Eliminar($txtId);
+        $txIvaController = new IvaController();
+        $txIvaController->Eliminar($txtId);
         session_start();
         $_SESSION["msj_normal"] = " La Sección " . $txtId . " Se elimino correctamente";
         ?>

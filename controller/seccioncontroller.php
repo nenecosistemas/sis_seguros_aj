@@ -1,5 +1,5 @@
 <?php
-class SeccionModel
+class SeccionController
 {
     private $conexion;
     public function __GET($k)

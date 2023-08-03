@@ -10,8 +10,8 @@ $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txAsegurado = new Asegurado();
 $txiva = new Iva();
 
-$txivaModel = new IvaModel();
-$listaivas = $txivaModel->Todos();
+$txIvaController = new IvaController();
+$listaivas = $txIvaController->Todos();
 
 if (isset($_POST["accion"])) {
     $txAsegurado->__SET("dni_asegurado", (isset($_POST["dni_asegurado"])) ? $_POST["dni_asegurado"] : "");
@@ -25,8 +25,8 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Seleccionar":
-        $txAseguradoModel = new AseguradoModel();
-        $asegurado = $txAseguradoModel->Seleccionar($txtId);
+        $txAseguradoController = new AseguradoController();
+        $asegurado = $txAseguradoController->Seleccionar($txtId);
         $txtdni = $asegurado->dni_asegurado;
         $txtapellido = $asegurado->apellido_y_nombre_asegurado;
         $txtdomicilio = $asegurado->domicilio_asegurado;
@@ -36,8 +36,8 @@ switch ($txtAccion) {
         $txtcuit = $asegurado->cuit_asegurado;
         break;
     case "Modificar":
-        $txAseguradoModel = new AseguradoModel();
-        $txAseguradoModel->Modificar($txAsegurado, $txAsegurado->__GET("dni_asegurado"));
+        $txAseguradoController = new AseguradoController();
+        $txAseguradoController->Modificar($txAsegurado, $txAsegurado->__GET("dni_asegurado"));
         session_start();
         $_SESSION["msj_normal"] = " Los datos se modificaron correctamente ";
 ?>
@@ -49,8 +49,8 @@ switch ($txtAccion) {
     <?php
         break;
     case "Eliminar":
-        $txAseguradoModel = new AseguradoModel();
-        $txAseguradoModel->Eliminar($txtId);
+        $txAseguradoController = new AseguradoController();
+        $txAseguradoController->Eliminar($txtId);
         session_start();
         $_SESSION["msj_normal"] = " El documento " . $txtId . " Se elimino correctamente";
     ?>

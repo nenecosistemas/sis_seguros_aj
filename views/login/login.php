@@ -9,9 +9,9 @@ if (isset($_POST["emailusuario"])) {
    $txtclave = (isset($_POST["claveusuario"])) ? $_POST["claveusuario"] : "";
 
    $txUsuario = new Usuario();
-   $txUsuarioModel = new UsuarioModel();
+   $txUsuarioController = new UsuarioController();
 
-   if ($txUsuarioModel->esUsuarioHabilitado($txtcorreo, $txtclave)) {
+   if ($txUsuarioController->esUsuarioHabilitado($txtcorreo, $txtclave)) {
       session_start();
       $_SESSION["entre"] = true;
       $_SESSION["msj_normal"] = " Usuario Logeado correctamente";

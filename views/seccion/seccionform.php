@@ -17,8 +17,8 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Agregar":
-        $txseccionModel = new SeccionModel();
-        $txseccionModel->Agregar($txseccion);
+        $txSeccionController = new SeccionController();
+        $txSeccionController->Agregar($txseccion);
         if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
             // session isn't started
             session_start();
@@ -26,8 +26,8 @@ switch ($txtAccion) {
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
     case "Buscar":
-        $txseccionModel = new SeccionModel();
-        $listaseccions = $txseccionModel->Buscar($txtseccionBuscado);
+        $txSeccionController = new SeccionController();
+        $listaseccions = $txSeccionController->Buscar($txtseccionBuscado);
         break;
     case "Cancelar":
         ?>

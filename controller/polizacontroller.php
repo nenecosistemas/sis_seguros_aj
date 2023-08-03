@@ -1,5 +1,5 @@
 <?php
-class PolizaModel
+class PolizaController
 {
     private $conexion;
     public function __GET($k)

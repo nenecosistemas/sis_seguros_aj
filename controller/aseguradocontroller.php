@@ -1,5 +1,5 @@
 <?php
-class AseguradoModel
+class AseguradoController
 {
     private $conexion;
     public function __GET($k)

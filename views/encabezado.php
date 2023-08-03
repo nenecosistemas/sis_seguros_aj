@@ -125,7 +125,7 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                                 <?php
                                 if (isset($_SESSION['rol_admin']) && $_SESSION['rol_admin'] == "admin") {
                                     ?>
-                                    <li><a class="dropdown-item " href="#"><i class="fa-solid fa-user-plus ">
+                                    <li><a class="dropdown-item " href="/sis_seguros_aj/views/usuario/usuarioform.php"><i class="fa-solid fa-user-plus ">
                                             </i> Alta</a>
                                     </li>
                                     <div class="dropdown-divider"></div>

@@ -12,8 +12,8 @@ $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txAsegurado = new Asegurado();
 $txiva = new Iva();
 
-$txivaModel = new IvaModel();
-$listaivas = $txivaModel->Todos();
+$txIvaController = new IvaController();
+$listaivas = $txIvaController->Todos();
 
 $txtdni = "";
 $txtapellido = "";
@@ -35,14 +35,14 @@ if (isset($_POST["accion"])) {
 
 switch ($txtAccion) {
     case "Agregar":
-        $txAseguradoModel = new AseguradoModel();
-        $txAseguradoModel->Agregar($txAsegurado);
+        $txAseguradoController = new AseguradoController();
+        $txAseguradoController->Agregar($txAsegurado);
         session_start();
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
     case "Buscar":
-        $txAseguradoModel = new AseguradoModel();
-        $listaAsegurados = $txAseguradoModel->Buscar($txtAseguradoBuscado);
+        $txAseguradoController = new AseguradoController();
+        $listaAsegurados = $txAseguradoController->Buscar($txtAseguradoBuscado);
         break;
     case "Cancelar":
 ?>

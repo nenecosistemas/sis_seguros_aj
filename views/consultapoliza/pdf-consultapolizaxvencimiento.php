@@ -17,8 +17,8 @@ $vencimientodesde = (isset($_POST["fechadesde"])) ? $_POST["fechadesde"] : "";
 $vencimientohasta = (isset($_POST["fechahasta"])) ? $_POST["fechahasta"] : "";
 $titulo = (isset($_POST["titulo"])) ? $_POST["titulo"] : "";
 
-$txPolizaModel = new PolizaModel();
-$listapolizas = $txPolizaModel->BuscarporVigenciahasta($vencimientodesde, $vencimientohasta);
+$txPolizaController = new PolizaController();
+$listapolizas = $txPolizaController->BuscarporVigenciahasta($vencimientodesde, $vencimientohasta);
 
 class PDF extends FPDF
 {
@@ -57,7 +57,7 @@ class PDF extends FPDF
         // Arial italic 8
         $this->SetFont('Arial', 'I', 8);
         // Número de página
-        $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
+        $this->Cell(0, 10,  iconv("UTF-8", "ISO-8859-1", 'Página ') . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
 }
 
@@ -209,5 +209,5 @@ foreach ($listapolizas as $poliza) {
 
 //Send file
 $pdf->SetTitle('Consulta-Poliza.pdf');  // Para el Tab del Browser
-$pdf->Output("I","Consulta-Polizas.pdf"); // Nombre del archivo definitivo
+$pdf->Output("I","Consulta-Polizas.pdf",true); // Nombre del archivo definitivo
 ?>

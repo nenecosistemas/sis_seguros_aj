@@ -1,5 +1,5 @@
 <?php
-class CompaniaModel
+class CompaniaController
 {
     private $conexion;
     public function __GET($k)

@@ -2,6 +2,9 @@
 include_once("../../controller/conexion.php");
 include_once("../../model/usuario.php");
 include_once("../../controller/usuariocontroller.php");
+include_once("../../model/rol.php");
+include_once("../../controller/rolcontroller.php");
+
 
 include("../encabezado.php");
 
@@ -10,26 +13,27 @@ $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
 $txusuario = new Usuario();
 
+$txRolController = new RolController();
+$listaroles = $txRolController->Todos();
+
 if (isset($_POST["accion"])) {
-    $txusuario->__SET("dni_usuario", (isset($_POST["dni_usuario"])) ? $_POST["dni_usuario"] : "");
-    $txusuario->__SET("apellido_y_nombre_usuario", (isset($_POST["apellido_y_nombre_usuario"])) ? $_POST["apellido_y_nombre_usuario"] : "");
-    $txusuario->__SET("domicilio_usuario", (isset($_POST["domicilio_usuario"])) ? $_POST["domicilio_usuario"] : "");
-    $txusuario->__SET("telefono_usuario", (isset($_POST["telefono_usuario"])) ? $_POST["telefono_usuario"] : "");
-    $txusuario->__SET("correo_usuario", (isset($_POST["correo_usuario"])) ? $_POST["correo_usuario"] : "");
-    $txusuario->__SET("tipoiva_usuario", (isset($_POST["tipoiva_usuario"])) ? $_POST["tipoiva_usuario"] : "");
-    $txusuario->__SET("cuit_usuario", (isset($_POST["cuit_usuario"])) ? $_POST["cuit_usuario"] : "");
+    $txusuario->__SET("correo", (isset($_POST["correo"])) ? $_POST["correo"] : "");
+    $txusuario->__SET("clave", (isset($_POST["clave"])) ? $_POST["clave"] : "");
+    $txusuario->__SET("usuario", (isset($_POST["usuario"])) ? $_POST["usuario"] : "");
+    $txusuario->__SET("nombrereal", (isset($_POST["nombrereal"])) ? $_POST["nombrereal"] : "");
+    $txusuario->__SET("rol", (isset($_POST["rol"])) ? $_POST["rol"] : "");    
 }
 
 switch ($txtAccion) {
     case "Agregar":
-        $txusuarioModel = new usuarioModel();
-        $txusuarioModel->Agregar($txusuario);
+        $txUsuarioController = new UsuarioController();
+        $txUsuarioController->Agregar($txusuario);
         session_start();
         $_SESSION["msj_normal"] = " Los datos se grabaron correctamente";
         break;
     case "Buscar":
-        $txusuarioModel = new usuarioModel();
-        $listausuarios = $txusuarioModel->Buscar($txtusuarioBuscado);
+        $txUsuarioController = new UsuarioController();
+        $listausuarios = $txUsuarioController->Buscar($txtUsuarioBuscado);
         break;
     case "Cancelar":
 ?>
@@ -80,7 +84,7 @@ if (isset($_SESSION["msj_error"])) {
 
 <body>
     <div class="col-md-12 justify-content-center" id="Normalpage">
-        <label for="titulo" class="labeltitulo" style="width: 100%;">usuario</label>
+        <label for="titulo" class="labeltitulo" style="width: 100%;">Usuario</label>
         <div class="container-fluid">
             <ul class="nav nav-pills justify-content-around id=" menu" role="tablist"">  
                 <li class=" nav-item" role="presentation">
@@ -101,7 +105,7 @@ if (isset($_SESSION["msj_error"])) {
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="txusuariobuscado">usuario: </span>
+                                        <span class="input-group-text" id="txtUsuarioBuscado">Usuario: </span>
                                         <input type="text" id="usuariobuscado" name="usuariobuscado" class="form-control" placeholder=" ingrese dato a Buscar (Apellido) " aria-label="usuario" aria-describedby="usuario">
                                         <button type="submit" name="accion" value="Buscar" class="btn btn-primary">
                                             Buscar usuario
@@ -120,9 +124,8 @@ if (isset($_SESSION["msj_error"])) {
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>DNI</th>
+                                            <th>Usuario</th>
                                             <th>Apellido y Nombre</th>
-                                            <th>Telefono</th>
                                             <th>Correo Electrónico</th>
                                             <th>Accion</th>
                                         </tr>
@@ -131,25 +134,21 @@ if (isset($_SESSION["msj_error"])) {
                                         <?php foreach ($listausuarios as $usuario) { ?>
                                             <tr>
                                                 <td scope="row">
-                                                    <?php echo $usuario['dni_usuario'] ?>
+                                                    <?php echo $usuario['usuario'] ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $usuario['apellido_y_nombre_usuario'] ?>
+                                                    <?php echo $usuario['nombrereal'] ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $usuario['telefono_usuario'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $usuario['correo_usuario'] ?>
-                                                </td>
+                                                    <?php echo $usuario['correo'] ?>
+                                                </td>                                                
                                                 <td>
                                                     <form method="POST" enctype="multipart/form-data" action="usuarioeditarborrar.php">
-                                                        <input type="hidden" name="id" value="<?php echo $usuario['dni_usuario'] ?>" />
+                                                        <input type="hidden" name="id" value="<?php echo $usuario['correo'] ?>" />
 
                                                         <button type="submit" name="accion" value="Seleccionar" data-bs-toggle="modal" data-bs-target="#ModificarModal" class="btn btn-sm btn-warning">
                                                             <i class="fa-solid fa-pen-to-square"></i> Editar
                                                         </button>
-
                                                         <button type="submit" name="accion" value="Eliminar" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i>
                                                             Eliminar </button>
                                                     </form>
@@ -172,39 +171,31 @@ if (isset($_SESSION["msj_error"])) {
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text">DNI usuario</span>
-                                        <input type="text" inputmode="numeric" id="dni_usuario" name="dni_usuario" class="form-control" placeholder="" aria-label="dni_usuario" aria-describedby="dni_usuario">
-                                        <span class="input-group-text">Apellido y Nombre</span>
-                                        <input type="text" id="apellido_y_nombre_usuario" name="apellido_y_nombre_usuario" class="form-control" placeholder="" aria-label="apellido_y_nombre_usuario" aria-describedby="apellido_y_nombre_usuario">
+                                        <span class="input-group-text">Correo Electrónico</span>
+                                        <input type="email" inputmode="text" id="correo" name="correo" class="form-control" placeholder="correo@correo.com.ar" aria-label="correo" aria-describedby="correo">
+                                        <span class="input-group-text">Clave</span>
+                                        <input type="text" id="clave" name="clave" class="form-control" placeholder="" aria-label="clave" aria-describedby="clave">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="domicilio_usuario">Domicilio</span>
-                                        <input type="text" id="domicilio_usuario" name="domicilio_usuario" class="form-control" placeholder="" aria-label="domicilio_usuario" aria-describedby="domicilio_usuario">
+                                        <span class="input-group-text" id="nombre">Apellido y Nombre: </span>
+                                        <input type="text" id="nombrereal" name="nombrereal" class="form-control" placeholder="" aria-label="nombrereal" aria-describedby="nombrereal">
+                                        <span class="input-group-text" id="usuario">Usuario corto: </span>
+                                        <input type="text" id="usuario" name="usuario" class="form-control" placeholder="" aria-label="usuario" aria-describedby="usuario">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="telefono_usuario">Teléfono</span>
-                                        <input type="tel" id="telefono_usuario" name="telefono_usuario" class="form-control" placeholder="" aria-label="telefono_usuario" aria-describedby="telefono_usuario">
-                                        <span class="input-group-text" id="email_usuario">Correo Electónico</span>
-                                        <input type="email" id="correo_usuario" name="correo_usuario" class="form-control" placeholder="" aria-label="email_usuario" aria-describedby="email_usuario">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="input-group mb-3">
-                                        <label class="input-group-text" for="tipoiva_usuario">Tipo IVA</label>
-                                        <select id="tipoiva_usuario" name="tipoiva_usuario" class="form-select" id="tipoiva_usuario">
-                                            <option value="">Seleccione Tipo de Iva...</option>
-                                            <?php foreach ($listaivas as $iva) { ?>
-                                                <option value="<?php echo $iva['id'] ?>"><?php echo $iva['nombre_iva'] ?></option>
+                                        <label class="input-group-text" for="rol">Rol</label>
+                                        <select id="rol" name="rol" class="form-select" id="rol">
+                                            <option value="">Seleccione Rol de Usuario</option>
+                                            <?php foreach ($listaroles as $rol) { ?>
+                                                <option value="<?php echo $rol['id'] ?>"><?php echo $rol['nombre_rol'] ?></option>
                                             <?php } ?>
                                         </select>
-                                        <span class="input-group-text" id="cuit_usuario">C.U.I.T.</span>
-                                        <input type="text" id="cuit_usuario" name="cuit_usuario" class="form-control" placeholder="99-99999999-9" pattern="[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]" title="99-99999999-9" aria-label="cuit_usuario" aria-describedby="cuit_usuario">
                                     </div>
-                                </div>
+                                </div>                                
                                 <div class="col-md-12 ">
                                     <button type="submit" name="accion" value="Agregar" class="btn btn-primary">
                                         Grabar
