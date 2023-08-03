@@ -1,9 +1,7 @@
 <?php
-include_once("../controller/conexion.php");
-include_once("../model/asegurado.php");
-include_once("../model/iva.php");
-include_once("../controller/aseguradocontroller.php");
-include_once("../controller/ivacontroller.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/usuario.php");
+include_once("../../controller/usuariocontroller.php");
 
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
