@@ -101,7 +101,7 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	$this->WithAlpha = false;
 	$this->ws = 0;
 	$this->iconv = function_exists('iconv');	
-	$this->fontpath = "../css/font/";
+	$this->fontpath = "../../css/font/";
 	// Font path
 	/*
 	if(defined('FPDF_FONTPATH'))

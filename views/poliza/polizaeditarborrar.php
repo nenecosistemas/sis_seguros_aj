@@ -1,13 +1,13 @@
 <?php
-include_once("../controller/conexion.php");
-include_once("../model/poliza.php");
-include_once("../controller/polizacontroller.php");
-include_once("../model/compania.php");
-include_once("../controller/companiacontroller.php");
-include_once("../model/seccion.php");
-include_once("../controller/seccioncontroller.php");
-include_once("../model/asegurado.php");
-include_once("../controller/aseguradocontroller.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/poliza.php");
+include_once("../../controller/polizacontroller.php");
+include_once("../../model/compania.php");
+include_once("../../controller/companiacontroller.php");
+include_once("../../model/seccion.php");
+include_once("../../controller/seccioncontroller.php");
+include_once("../../model/asegurado.php");
+include_once("../../controller/aseguradocontroller.php");
 
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
@@ -69,7 +69,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/views/polizaform.php";
+                window.location.href = "/sis_seguros_aj/views/poliza/polizaform.php";
             });
         </script>
         <?php
@@ -82,7 +82,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/views/polizaform.php";
+                window.location.href = "/sis_seguros_aj/views/poliza/polizaform.php";
             });
         </script>
         <?php
@@ -91,7 +91,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/views/polizaform.php";
+                window.location.href = "/sis_seguros_aj/views/poliza/polizaform.php";
             });
         </script>
         <?php
@@ -99,7 +99,7 @@ switch ($txtAccion) {
 }
 
 ?>
-<?php include("encabezado.php"); ?>
+<?php include("../encabezado.php"); ?>
 
 <body>
     <div class="col-md-12 justify-content-center" id="Normalpage">
@@ -241,4 +241,4 @@ switch ($txtAccion) {
         </div>
     </div>
 </body>
-<?php include("pie.php"); ?>
+<?php include("../pie.php"); ?>

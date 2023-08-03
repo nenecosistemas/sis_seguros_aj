@@ -1,14 +1,14 @@
 <?php
-include_once("../controller/conexion.php");
-include_once("../model/poliza.php");
-include_once("../controller/polizacontroller.php");
-include_once("../model/compania.php");
-include_once("../controller/companiacontroller.php");
-include_once("../model/seccion.php");
-include_once("../controller/seccioncontroller.php");
-include_once("../model/asegurado.php");
-include_once("../controller/aseguradocontroller.php");
-require("../lib/fpdf.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/poliza.php");
+include_once("../../controller/polizacontroller.php");
+include_once("../../model/compania.php");
+include_once("../../controller/companiacontroller.php");
+include_once("../../model/seccion.php");
+include_once("../../controller/seccioncontroller.php");
+include_once("../../model/asegurado.php");
+include_once("../../controller/aseguradocontroller.php");
+require("../../lib/fpdf.php");
 
 // datos 
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
@@ -26,7 +26,7 @@ class PDF extends FPDF
     function Header()
     {
         // Logo
-        $this->Image('../assets/logo.png', 10, 8, 33);
+        $this->Image('../../assets/logo.png', 10, 8, 33);
         // Arial bold 15
         $this->SetFont('Arial', 'B', 12);
         // Movernos a la derecha
@@ -42,7 +42,7 @@ class PDF extends FPDF
         $this->Ln(8);
         $this->Cell(60);
         // Título       
-        $desdehasta = 'Desde ' .date('d/m/Y', strtotime($GLOBALS["vencimientodesde"]))  . " hasta " . date('d/m/Y', strtotime($GLOBALS["vencimientohasta"])) ;
+        $desdehasta = 'Desde ' . date('d/m/Y', strtotime($GLOBALS["vencimientodesde"])) . " hasta " . date('d/m/Y', strtotime($GLOBALS["vencimientohasta"]));
         $this->Cell(55, 10, $desdehasta, 0, 0, 'C');
         // Salto de línea
         $this->Ln(12);
@@ -205,4 +205,8 @@ foreach ($listapolizas as $poliza) {
 }
 
 //Send file
+?>
+<?php
+$pdf->SetTitle('consulta.pdf');
 $pdf->Output();
+?>

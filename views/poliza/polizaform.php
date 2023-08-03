@@ -1,15 +1,15 @@
 <?php
-include_once("../controller/conexion.php");
-include_once("../model/poliza.php");
-include_once("../controller/polizacontroller.php");
-include_once("../model/compania.php");
-include_once("../controller/companiacontroller.php");
-include_once("../model/seccion.php");
-include_once("../controller/seccioncontroller.php");
-include_once("../model/asegurado.php");
-include_once("../controller/aseguradocontroller.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/poliza.php");
+include_once("../../controller/polizacontroller.php");
+include_once("../../model/compania.php");
+include_once("../../controller/companiacontroller.php");
+include_once("../../model/seccion.php");
+include_once("../../controller/seccioncontroller.php");
+include_once("../../model/asegurado.php");
+include_once("../../controller/aseguradocontroller.php");
 
-include("encabezado.php");
+include("../encabezado.php");
 
 $txtaseguradoBuscado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
@@ -61,7 +61,7 @@ switch ($txtAccion) {
 ?>
         <script>
             setTimeout(function() {
-                window.location.href = "/sis_seguros_aj/views/polizaform.php";
+                window.location.href = "/sis_seguros_aj/views/poliza/polizaform.php";
             });
         </script>
 <?php
@@ -308,4 +308,4 @@ if (isset($_SESSION["msj_error"])) {
       });
    </script>
 </body>
-<?php include("pie.php"); ?>
+<?php include("../pie.php"); ?>

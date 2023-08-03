@@ -1,17 +1,17 @@
 <?php
 
-include_once("../controller/conexion.php");
-include_once("../model/usuario.php");
-include_once("../controller/usuariocontroller.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/usuario.php");
+include_once("../../controller/usuariocontroller.php");
 
 if (isset($_POST["emailusuario"])) {
    $txtcorreo = (isset($_POST["emailusuario"])) ? $_POST["emailusuario"] : "";
    $txtclave = (isset($_POST["claveusuario"])) ? $_POST["claveusuario"] : "";
 
-   $txUsuario = new Usuario($txtcorreo, $txtclave);
+   $txUsuario = new Usuario();
    $txUsuarioModel = new UsuarioModel();
 
-   if ($txUsuarioModel->esUsuarioHabilitado($txUsuario->__GET('correo'), $txUsuario->__GET('clave'))) {
+   if ($txUsuarioModel->esUsuarioHabilitado($txtcorreo, $txtclave)) {
       session_start();
       $_SESSION["entre"] = true;
       $_SESSION["msj_normal"] = " Usuario Logeado correctamente";
@@ -23,7 +23,7 @@ if (isset($_POST["emailusuario"])) {
 
 ?>
 
-<?php include("encabezado.php"); ?>
+<?php include("../encabezado.php"); ?>
 <?php
 ## Mensajes comunes
 if (isset($_SESSION["msj_normal"])) {
@@ -90,4 +90,4 @@ if (isset($_SESSION["msj_error"])) {
       });
    </script>
 </body>
-<?php include("pie.php"); ?>
+<?php include("../pie.php"); ?>

@@ -1,48 +1,48 @@
 <?php
-include_once("../controller/conexion.php");
-include_once("../model/iva.php");
-include_once("../controller/ivacontroller.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/seccion.php");
+include_once("../../controller/seccioncontroller.php");
 
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
-$txiva = new Iva();
+$txseccion = new Seccion();
 
 if (isset($_POST["accion"])) {
-    $txiva->__SET("id", (isset($_POST["id"])) ? $_POST["id"] : "");
-    $txiva->__SET("nombre_iva", (isset($_POST["nombre_iva"])) ? $_POST["nombre_iva"] : "");
-    $txiva->__SET("descripcion_iva", (isset($_POST["descripcion_iva"])) ? $_POST["descripcion_iva"] : "");
+    $txseccion->__SET("id", (isset($_POST["id"])) ? $_POST["id"] : "");
+    $txseccion->__SET("nombre_seccion", (isset($_POST["nombre_seccion"])) ? $_POST["nombre_seccion"] : "");
+    $txseccion->__SET("descripcion_seccion", (isset($_POST["descripcion_seccion"])) ? $_POST["descripcion_seccion"] : "");
 }
 
 switch ($txtAccion) {
     case "Seleccionar":
-        $txivaModel = new IvaModel();
-        $iva = $txivaModel->Seleccionar($txtId);
-        $txtid = $iva->id;
-        $txtnombre = $iva->nombre_iva;
-        $txtdescripcion = $iva->descripcion_iva;
+        $txseccionModel = new SeccionModel();
+        $seccion = $txseccionModel->Seleccionar($txtId);
+        $txtid = $seccion->id;
+        $txtnombre = $seccion->nombre_seccion;
+        $txtdescripcion = $seccion->descripcion_seccion;
         break;
     case "Modificar":
-        $txivaModel = new IvaModel();
-        $txivaModel->Modificar($txiva, $txiva->__GET("id"));
+        $txseccionModel = new SeccionModel();
+        $txseccionModel->Modificar($txseccion, $txseccion->__GET("id"));
         session_start();
         $_SESSION["msj_normal"] = " Los datos se modificaron correctamente ";
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/views/ivaform.php";
+                window.location.href = "/sis_seguros_aj/views/seccion/seccionform.php";
             });
         </script>
         <?php
         break;
     case "Eliminar":
-        $txivaModel = new IvaModel();
-        $txivaModel->Eliminar($txtId);
+        $txseccionModel = new SeccionModel();
+        $txseccionModel->Eliminar($txtId);
         session_start();
         $_SESSION["msj_normal"] = " La Sección " . $txtId . " Se elimino correctamente";
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/views/ivaform.php";
+                window.location.href = "/sis_seguros_aj/views/seccion/seccionform.php";
             });
         </script>
         <?php
@@ -51,7 +51,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/views/ivaform.php";
+                window.location.href = "/sis_seguros_aj/views/seccion/seccionform.php";
             });
         </script>
         <?php
@@ -59,11 +59,11 @@ switch ($txtAccion) {
 }
 
 ?>
-<?php include("encabezado.php"); ?>
+<?php include("../encabezado.php"); ?>
 
 <body>
     <div class="col-md-12 justify-content-center" id="Normalpage">
-        <label for="titulo" class="labeltitulo" style="width: 100%;">MODIFICAR I.V.A.</label>
+        <label for="titulo" class="labeltitulo" style="width: 100%;">MODIFICAR SECCIÓN</label>
         <div class="container-fluid text-center " id="modificacompania" tabindex="0">
             <!-- abm -->
             <div class="row">
@@ -74,24 +74,24 @@ switch ($txtAccion) {
                         <div class="card-body">
                             <form method="POST" enctype="multipart/form-data" action="#">
                                 <div class="form-group row">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3">                                        
                                         <span class="input-group-text">Nombre</span>
-                                        <input type="text" id="nombre_iva" name="nombre_iva" class="form-control"
-                                            placeholder="" value="<?php echo $txtnombre; ?>" aria-label="nombre_iva"
-                                            aria-describedby="nombre_iva">
+                                        <input type="text" id="nombre_seccion" name="nombre_seccion"
+                                            class="form-control" placeholder="" value="<?php echo $txtnombre; ?>"
+                                            aria-label="nombre_seccion" aria-describedby="nombre_seccion">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="descripcion_iva">Descripción</span>
-                                        <input type="text" id="descripcion_iva" name="descripcion_iva"
+                                        <span class="input-group-text" id="descripcion_seccion">Descripción</span>
+                                        <input type="text" id="descripcion_seccion" name="descripcion_seccion"
                                             class="form-control" placeholder="" value="<?php echo $txtdescripcion; ?>"
-                                            aria-label="descripcion_iva" aria-describedby="descripcion_iva">
+                                            aria-label="descripcion_seccion" aria-describedby="descripcion_seccion">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text">ID I.V.A.</span>
+                                        <span class="input-group-text">ID Sección</span>
                                         <input type="text" inputmode="numeric" id="id" readonly name="id"
                                             class="form-control" placeholder="" value="<?php echo $txtid; ?>"
                                             aria-label="id" aria-describedby="id">
@@ -100,7 +100,7 @@ switch ($txtAccion) {
                                 <div class="col-md-12 ">
                                     <button type="submit" name="accion" value="Modificar" class="btn btn-primary">
                                         Modificar
-                                        I.V.A. <i class="fa-solid fa-save"></i></button>
+                                        Sección <i class="fa-solid fa-save"></i></button>
                                     <button type="cancel" name="accion" value="Cancelar" class="btn btn-info">
                                         Cancelar
                                         <i class="fa-solid fa-cancel"></i></button>
@@ -113,4 +113,4 @@ switch ($txtAccion) {
         </div>
     </div>
 </body>
-<?php include("pie.php"); ?>
+<?php include("../pie.php"); ?>

@@ -1,11 +1,11 @@
 <?php
-include_once("../controller/conexion.php");
-include_once("../model/compania.php");
-include_once("../controller/companiacontroller.php");
-include_once("../model/iva.php");
-include_once("../controller/ivacontroller.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/compania.php");
+include_once("../../controller/companiacontroller.php");
+include_once("../../model/iva.php");
+include_once("../../controller/ivacontroller.php");
 
-include("encabezado.php");
+include("../encabezado.php");
 
 $txtcompaniaBuscado = (isset($_POST["companiabuscado"])) ? $_POST["companiabuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
@@ -40,7 +40,7 @@ switch ($txtAccion) {
 ?>
         <script>
             setTimeout(function() {
-                window.location.href = "/sis_seguros_aj/views/companiaform.php";
+                window.location.href = "/sis_seguros_aj/views/compania/companiaform.php";
             });
         </script>
 <?php
@@ -229,4 +229,4 @@ if (isset($_SESSION["msj_error"])) {
       });
    </script>
 </body>
-<?php include("pie.php"); ?>
+<?php include("../pie.php"); ?>

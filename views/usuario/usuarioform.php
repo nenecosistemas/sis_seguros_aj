@@ -1,27 +1,14 @@
 <?php
-include_once("../controller/conexion.php");
-include_once("../model/asegurado.php");
-include_once("../model/iva.php");
-include_once("../controller/aseguradocontroller.php");
-include_once("../controller/ivacontroller.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/usuario.php");
+include_once("../../controller/usuariocontroller.php");
+
 include("encabezado.php");
 
-$txtAseguradoBuscado = (isset($_POST["aseguradobuscado"])) ? $_POST["aseguradobuscado"] : "";
+$txtUsuarioBuscado = (isset($_POST["usuariobuscado"])) ? $_POST["usuariobuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
 $txtAccion = (isset($_POST["accion"])) ? $_POST["accion"] : "";
-$txAsegurado = new Asegurado();
-$txiva = new Iva();
-
-$txivaModel = new IvaModel();
-$listaivas = $txivaModel->Todos();
-
-$txtdni = "";
-$txtapellido = "";
-$txtdomicilio = "";
-$txttelefono = "";
-$txtcorreo = "";
-$txtiva = "";
-$txtcuit = "";
+$txusuario = new Usuario();
 
 if (isset($_POST["accion"])) {
     $txAsegurado->__SET("dni_asegurado", (isset($_POST["dni_asegurado"])) ? $_POST["dni_asegurado"] : "");
@@ -48,7 +35,7 @@ switch ($txtAccion) {
 ?>
         <script>
             setTimeout(function() {
-                window.location.href = "/sis_seguros_aj/views/aseguradoform.php";
+                window.location.href = "/sis_seguros_aj/views/usuario/usuarioform.php";
             });
         </script>
 <?php

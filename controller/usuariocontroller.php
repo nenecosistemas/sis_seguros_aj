@@ -12,7 +12,7 @@ class UsuarioModel
 
     public function __construct()
     {
-        include_once("../controller/conexion.php");        
+        include_once("../../controller/conexion.php");        
         
         try {
             $conectar = new Conexion();
@@ -102,14 +102,16 @@ class UsuarioModel
     public function esUsuarioHabilitado(string $correo, string $clave)
     {
         $rol = "user";
+        $user = "ajuranovic";
         if ($correo == "andrea@andrea.com" and $clave == "valentina") {
             if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
                 // session isn't started
                 session_start();
             }
-            if ($rol == "admin") {
+            if ($rol == "admin") {                
                 $_SESSION["rol_admin"] = $rol;
-            }            
+            }           
+            $_SESSION["user_login"] = $user; 
             return true;
         } else {
             if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {

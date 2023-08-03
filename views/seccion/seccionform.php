@@ -1,8 +1,8 @@
 <?php
-include_once("../controller/conexion.php");
-include_once("../model/seccion.php");
-include_once("../controller/seccioncontroller.php");
-include("encabezado.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/seccion.php");
+include_once("../../controller/seccioncontroller.php");
+include("../encabezado.php");
 
 $txtseccionBuscado = (isset($_POST["seccionbuscado"])) ? $_POST["seccionbuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
@@ -33,7 +33,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/views/seccionform.php";
+                window.location.href = "/sis_seguros_aj/views/seccion/seccionform.php";
             });
         </script>
         <?php
@@ -208,4 +208,4 @@ if (isset($_SESSION["msj_error"])) {
       });
    </script>
 </body>
-<?php include("pie.php"); ?>
+<?php include("../pie.php"); ?>

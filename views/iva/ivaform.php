@@ -1,8 +1,8 @@
 <?php
-include_once("../controller/conexion.php");
-include_once("../model/iva.php");
-include_once("../controller/ivacontroller.php");
-include("encabezado.php");
+include_once("../../controller/conexion.php");
+include_once("../../model/iva.php");
+include_once("../../controller/ivacontroller.php");
+include("../encabezado.php");
 
 $txtivaBuscado = (isset($_POST["ivabuscado"])) ? $_POST["ivabuscado"] : "";
 $txtId = (isset($_POST["id"])) ? $_POST["id"] : "";
@@ -33,7 +33,7 @@ switch ($txtAccion) {
         ?>
         <script>
             setTimeout(function () {
-                window.location.href = "/sis_seguros_aj/views/ivaform.php";
+                window.location.href = "/sis_seguros_aj/views/iva/ivaform.php";
             });
         </script>
         <?php
@@ -207,4 +207,4 @@ if (isset($_SESSION["msj_error"])) {
       });
    </script>
 </body>
-<?php include("pie.php"); ?>
+<?php include("../pie.php"); ?>

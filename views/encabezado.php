@@ -17,7 +17,7 @@ if (!isset($_SESSION["entre"])) {
     <!-- 
   <base href="/sis_seguros_aj">
   -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">g    
     <link rel="icon" type="image/x-icon" href="/sis_seguros_aj/assets/favicon.ico">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -59,11 +59,11 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                                 Polizas
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/polizaform.php">ABM - Poliza</a>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/poliza/polizaform.php">ABM - Poliza</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li><a class="dropdown-item"
-                                        href="/sis_seguros_aj/views/consultapolizaxvencimiento.php">Consulta por
+                                        href="/sis_seguros_aj/views/consultapoliza/consultapolizaxvencimiento.php">Consulta por
                                         Vencimiento</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
@@ -85,16 +85,16 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                                 Archivos Auxiliares
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/aseguradoform.php">Asegurados</a>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/asegurado/aseguradoform.php">Asegurados</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/companiaform.php">Compañias</a>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/compania/companiaform.php">Compañias</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/seccionform.php">Secciones</a>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/seccion/seccionform.php">Secciones</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/ivaform.php">I.V.A.</a>
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/iva/ivaform.php">I.V.A.</a>
                                 </li>
                             </ul>
                         </div>
@@ -109,9 +109,18 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                     ?>
                     <div class="btn-group dropleft">
                         <li class="list-group-item border-0 dropleft">
+                            
                             <i class="btn dropdown fa-solid fa-circle-user fa-2xl" data-bs-toggle="dropdown"
                                 aria-expanded="false">
+                                <a style="font-size:1rem; color:#D7DBDD; font-family:'Times New Roman', serif ;">
+                            <?php
+                            if (isset($_SESSION['user_login'])) {
+                             echo $_SESSION["user_login"];
+                            }
+                            ?>
+                            </a>
                             </i>
+                            
                             <ul class="dropdown-menu ">
                                 <?php
                                 if (isset($_SESSION['rol_admin']) && $_SESSION['rol_admin'] == "admin") {
@@ -124,11 +133,11 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                                 }
                                 ?>
                                 <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-pen ">
-                                        </i> Modificar</a>
+                                        </i> Modificar clave</a>
                                 </li>
                                 <div class="dropdown-divider"></div>
                                 <li>
-                                    <a class="dropdown-item" href="/sis_seguros_aj/views/logout.php">
+                                    <a class="dropdown-item" href="/sis_seguros_aj/views/login/logout.php">
                                         <i class="fa-solid fa-right-from-bracket "></i> Salir
                                     </a>
                                 </li>
@@ -143,7 +152,7 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                     <?php
                     if (empty($_SESSION['loggedin'])) {
                         ?>
-                        <a href="/sis_seguros_aj/views/login.php">
+                        <a href="/sis_seguros_aj/views/login/login.php">
                             <i class="fa-solid fa-user-lock fa-2xl">
                             </i>
                         </a>

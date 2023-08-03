@@ -13,7 +13,7 @@ class IvaModel
 
     public function __construct()
     {
-        include_once("../controller/conexion.php");
+        include_once("../../controller/conexion.php");
 
         try {
             $conectar = new Conexion();
