@@ -123,7 +123,7 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                             
                             <ul class="dropdown-menu ">
                                 <?php
-                                if (isset($_SESSION['rol_admin']) && $_SESSION['rol_admin'] == "admin") {
+                                if (isset($_SESSION['rol_admin']) && $_SESSION['rol_admin'] == "1") {
                                     ?>
                                     <li><a class="dropdown-item " href="/sis_seguros_aj/views/usuario/usuarioform.php"><i class="fa-solid fa-user-plus ">
                                             </i> Alta</a>
@@ -132,7 +132,7 @@ $_SESSION['loggedin'] = (isset($_SESSION["entre"])) ? true : false;
                                     <?php
                                 }
                                 ?>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-pen ">
+                                <li><a class="dropdown-item" href="/sis_seguros_aj/views/usuario/usuariomodificar.php"><i class="fa-solid fa-user-pen ">
                                         </i> Modificar clave</a>
                                 </li>
                                 <div class="dropdown-divider"></div>

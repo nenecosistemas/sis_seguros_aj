@@ -12,12 +12,18 @@ if (isset($_POST["emailusuario"])) {
    $txUsuarioController = new UsuarioController();
 
    if ($txUsuarioController->esUsuarioHabilitado($txtcorreo, $txtclave)) {
-      session_start();
+      session_start();      
       $_SESSION["entre"] = true;
       $_SESSION["msj_normal"] = " Usuario Logeado correctamente";
-   } else {      
+   } else {
       session_start();
       $_SESSION["msj_error"] = " Usuario o Clave erronea";
+      unset($_SESSION["entre"]);
+      unset($_SESSION["rol_admin"]);
+      unset($_SESSION["user_login"]);
+      unset($_SESSION["email_login"]);
+      unset($_SESSION['loggedin']);
+      header('Refresh: 0; URL = /sis_seguros_aj/index.php');
    }
 }
 
@@ -69,7 +75,7 @@ if (isset($_SESSION["msj_error"])) {
                      <div class="form-floating">
                         <input type="email" class="form-control" id="email_asegurado" name="emailusuario" placeholder="name@example.com">
                         <label for="email_asegurado"> Correo Electrónico </label>
-                     </div>                     
+                     </div>
                      <div class="form-floating">
                         <input type="password" class="form-control" id="claveusuario" name="claveusuario" placeholder="name@example.com">
                         <label for="claveusuario"> Clave </label>

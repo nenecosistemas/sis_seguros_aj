@@ -90,6 +90,32 @@ class UsuarioController
             die($ex->getMessage());
         }
     }
+
+    public function ModificarClave(Usuario $usuario, string $id)
+    {
+        try {
+            $correo = $usuario->__GET('correo');
+            $clave = $usuario->__GET('clave');
+            $usuariocorto = $usuario->__GET('usuario');
+            $nombre = $usuario->__GET('nombrereal');
+            $rol = $usuario->__GET('rol');
+                        
+            $sentenciaSQL = $this->__GET('conexion')->prepare("UPDATE aj_usuario
+                SET clave=aes_encrypt(:clave,'nenecosistemas13'),
+                usuario=:usuario,                 
+                nombrereal=:nombrereal WHERE correo=:correo");
+
+            $sentenciaSQL->bindParam(':correo', $id);            
+            $sentenciaSQL->bindParam(':clave', $clave);            
+            $sentenciaSQL->bindParam(':usuario', $usuariocorto);
+            $sentenciaSQL->bindParam(':nombrereal', $nombre);            
+            
+            $sentenciaSQL->execute();       
+                        
+        } catch (PDOException $ex) {
+            die($ex->getMessage());
+        }
+    }
     public function Buscar($txtusuarioBuscado)
     {
         try {
@@ -113,28 +139,22 @@ class UsuarioController
             die($ex->getMessage());
         }
     }
-    public function esUsuarioHabilitado(string $correo, string $clave)
+    public function esUsuarioHabilitado(string $correo, string $clave)    
     {
-        $rol = "admin";
-        $user = "ajuranovic";
-        if ($correo == "andrea@andrea.com" and $clave == "valentina") {
-            if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
-                // session isn't started
-                session_start();
-            }
-            if ($rol == "admin") {                
-                $_SESSION["rol_admin"] = $rol;
-            }           
+        $txUsuario = $this->Seleccionar($correo);
+        
+        if ($correo == $txUsuario['correo'] and $clave == $txUsuario['clave']) {
+            session_start();
+            
+            $rol = $txUsuario['rol'];
+            $user = $txUsuario['usuario'];
+
+            $_SESSION["rol_admin"] = $rol;                      
             $_SESSION["user_login"] = $user; 
+            $_SESSION["email_login"] = $correo; 
             return true;
         } else {
-            if (session_id() == '' || !isset($_SESSION) || session_status() === PHP_SESSION_NONE) {
-                // session isn't started
-                session_start();
-            }
-            unset($_SESSION["rol_admin"]);
             return false;
         }
     }
-
 }

@@ -175,7 +175,7 @@ if (isset($_SESSION["msj_error"])) {
                                         <input type="email" inputmode="text" id="correo" name="correo" required class="form-control" placeholder="correo@correo.com.ar" aria-label="correo" aria-describedby="correo">
                                         <span class="input-group-text">Clave</span>
                                         <input type="password" id="clave" name="clave" required class="form-control" placeholder="" aria-label="clave" aria-describedby="clave">
-                                        <span class="input-group-text fa-solid fa-eye-slash" id="eye" onclick="showPassword()"></span>
+                                        <span class="input-group-text fa-solid fa-eye-slash" style="cursor: pointer;" id="eye" onclick="showPassword()"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
