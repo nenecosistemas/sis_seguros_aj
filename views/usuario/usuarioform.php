@@ -172,17 +172,18 @@ if (isset($_SESSION["msj_error"])) {
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">Correo Electrónico</span>
-                                        <input type="email" inputmode="text" id="correo" name="correo" class="form-control" placeholder="correo@correo.com.ar" aria-label="correo" aria-describedby="correo">
+                                        <input type="email" inputmode="text" id="correo" name="correo" required class="form-control" placeholder="correo@correo.com.ar" aria-label="correo" aria-describedby="correo">
                                         <span class="input-group-text">Clave</span>
-                                        <input type="text" id="clave" name="clave" class="form-control" placeholder="" aria-label="clave" aria-describedby="clave">
+                                        <input type="password" id="clave" name="clave" required class="form-control" placeholder="" aria-label="clave" aria-describedby="clave">
+                                        <span class="input-group-text fa-solid fa-eye-slash" id="eye" onclick="showPassword()"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="nombre">Apellido y Nombre: </span>
-                                        <input type="text" id="nombrereal" name="nombrereal" class="form-control" placeholder="" aria-label="nombrereal" aria-describedby="nombrereal">
+                                        <input type="text" id="nombrereal" name="nombrereal" required class="form-control" placeholder="" aria-label="nombrereal" aria-describedby="nombrereal">
                                         <span class="input-group-text" id="usuario">Usuario corto: </span>
-                                        <input type="text" id="usuario" name="usuario" class="form-control" placeholder="" aria-label="usuario" aria-describedby="usuario">
+                                        <input type="text" id="usuario" name="usuario" required class="form-control" placeholder="" aria-label="usuario" aria-describedby="usuario">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -191,7 +192,7 @@ if (isset($_SESSION["msj_error"])) {
                                         <select id="rol" name="rol" class="form-select" id="rol">
                                             <option value="">Seleccione Rol de Usuario</option>
                                             <?php foreach ($listaroles as $rol) { ?>
-                                                <option value="<?php echo $rol['id'] ?>"><?php echo $rol['nombre_rol'] ?></option>
+                                                <option value="<?php echo $rol['id'] ?>" <?php echo ($rol['id']=="0") ? 'selected' : '' ?>><?php echo $rol['nombre_rol'] ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -216,5 +217,17 @@ if (isset($_SESSION["msj_error"])) {
          document.getElementById("usuariobuscado").focus();
       });
    </script>
+   <script>
+        function showPassword() {
+            var x = document.getElementById("clave");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("eye").className = "input-group-text fa-solid fa-eye";
+            } else {
+                x.type = "password";
+                document.getElementById("eye").className = "input-group-text fa-solid fa-eye-slash";
+            }            
+        }
+    </script>
 </body>
 <?php include("../pie.php"); ?>

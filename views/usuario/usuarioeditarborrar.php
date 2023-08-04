@@ -85,8 +85,9 @@ switch ($txtAccion) {
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Correo Electrónico</span>
                                     <input type="email" inputmode="text" id="correo" readonly name="correo" class="form-control" placeholder="" value="<?php echo $txtcorreo; ?>" aria-label="correo" aria-describedby="correo">
-                                    <span class="input-group-text">Clave</span>
-                                    <input type="text" id="clave" name="clave" class="form-control" placeholder="" value="<?php echo $txtclave; ?>" aria-label="clave" aria-describedby="clave">
+                                    <span class="input-group-text">Clave</span>                                    
+                                    <input type="password" id="clave" name="clave" class="form-control" placeholder="" value="<?php echo $txtclave; ?>" aria-label="clave" aria-describedby="clave">
+                                    <span class="input-group-text fa-solid fa-eye-slash" id="eye" onclick="showPassword()"></span>
                                 </div>
                                 <div class="form-group row">
                                     <div class="input-group mb-3">
@@ -107,7 +108,6 @@ switch ($txtAccion) {
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-md-12 ">
                                     <button type="submit" name="accion" value="Modificar" class="btn btn-primary">
                                         Modificar Usuario <i class="fa-solid fa-save"></i></button>
@@ -122,5 +122,18 @@ switch ($txtAccion) {
             </div>
         </div>
     </div>
+    <script>
+        function showPassword() {
+            var x = document.getElementById("clave");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("eye").className = "input-group-text fa-solid fa-eye";
+            } else {
+                x.type = "password";
+                document.getElementById("eye").className = "input-group-text fa-solid fa-eye-slash";
+            }
+            
+        }
+    </script>
 </body>
 <?php include("../pie.php"); ?>
